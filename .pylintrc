@@ -2,7 +2,7 @@
 #encoding = utf-8
 
 [MAIN]
-#Dies deaktiviert die Prüfung der Moduldokumentation und der Funktiondokumentation, aber alle anderen Prüfungen werden
+#Dies deaktiviert die Prüfung der Moduldokumentation und der Funktion dokumentation, aber alle anderen Prüfungen werden
 #weiterhin ausgeführt
 disable = missing-function-docstring, missing-module-docstring
 
@@ -52,7 +52,7 @@ fail-under = 10
 #übergeben werden muss.
 #from-stdin=
 
-#Zu ignorierende Dateien oder Verzeichnisse. Sie sollten Basenamen sein, keine Pfade.
+#Zu ignorierende Dateien oder Verzeichnisse. Sie sollten Base namen sein, keine Pfade.
 ignore = CVS
 
 #Fügen Sie reguläre Ausdrucksmuster hinzu, die Dateien oder Verzeichnisse ignorieren sollen. Der
@@ -67,246 +67,199 @@ ignore-paths=
 ignore-patterns=^.#
 
 #Liste von Modulnamen, für die Member-Attribute nicht überprüft werden sollten (n
-##Anfang
-# List of module names for which member attributes should not be checked
-# (useful for modules/projects where namespaces are manipulated during runtime
-# and thus existing member attributes cannot be deduced by static analysis). It
-# supports qualified module names, as well as Unix pattern matching.
-ignored-modules=
+#Liste von Modulnamen, für die Mitgliedsattribute nicht überprüft werden sollten
+#(nützlich für Module/Projekte, bei denen Namensräume zur Laufzeit manipuliert
+#werden und somit vorhandene Mitgliedsattribute nicht durch statische Analyse
+#abgeleitet werden können). Es unterstützt qualifizierte Modulnamen sowie Unix-Musterabgleich.
 
-# Python code to execute, usually for sys.path manipulation such as
-# pygtk.require().
+#ignorierte-Module =
+
+#Python-Code zur Ausführung, normalerweise zur sys.path-Manipulation wie pygtk.require().
 #init-hook=
 
-# Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
-# number of processors available to use, and will cap the count on Windows to
-# avoid hangs.
-jobs=1
+#Verwenden Sie mehrere Prozesse, um Pylint zu beschleunigen. Wenn Sie 0 angeben, wird die Anzahl der verfügbaren Prozessoren automatisch erkannt und die Anzahl auf Windows begrenzt, um Hängen zu vermeiden.
+jobs = 1
 
-# Control the amount of potential inferred values when inferring a single
-# object. This can help the performance when dealing with large functions or
-# complex, nested conditions.
-limit-inference-results=100
+#Steuern Sie die Anzahl der potenziellen abgeleiteten Werte beim Ableiten eines einzelnen Objekts. Dies kann die Leistung bei der Verarbeitung großer Funktionen oder komplexer, verschachtelter Bedingungen verbessern.
+limit-inference-results = 100
 
-# List of plugins (as comma separated values of python module names) to load,
-# usually to register additional checkers.
-load-plugins=
+#Liste der zu ladenden Plugins (als durch Komma getrennte Werte von Python-Modulnamen), normalerweise zur Registrierung zusätzlicher Checker.
+load-plugins =
 
-# Pickle collected data for later comparisons.
-persistent=yes
+#Pickle gesammelte Daten für spätere Vergleiche.
+persistent = yes
 
-# Minimum Python version to use for version dependent checks. Will default to
-# the version used to run pylint.
-py-version=3.11
+#Mindest-Python-Version für Versionsabhängige Überprüfungen. Wird standardmäßig auf die zur Ausführung von Pylint verwendete Version festgelegt.
+py-version = 3.11
 
-# Discover python modules and packages in the file system subtree.
-recursive=no
+#Entdecken Sie Python-Module und -Pakete im Dateisystem-Unterbaum.
+recursive = no
 
-# When enabled, pylint would attempt to guess common misconfiguration and emit
-# user-friendly hints instead of false-positive error messages.
-suggestion-mode=yes
+#Wenn aktiviert, würde Pylint versuchen, häufige Fehlkonfigurationen zu erraten und benutzerfreundliche Hinweise anstelle von falsch positiven Fehlermeldungen auszugeben.
+suggestion-mode = yes
 
-# Allow loading of arbitrary C extensions. Extensions are imported into the
-# active Python interpreter and may run arbitrary code.
-unsafe-load-any-extension=no
+#Erlauben Sie das Laden beliebiger C-Erweiterungen. Erweiterungen werden in den aktiven Python-Interpreter importiert und können beliebigen Code ausführen.
+unsafe-load-any-extension = no
 
-# In verbose mode, extra non-checker-related info will be displayed.
+#Im verbose-Modus wird zusätzliche, nicht checker-bezogene Informationen angezeigt.
 #verbose=
-
 
 [BASIC]
 
-# Naming style matching correct argument names.
-argument-naming-style=snake_case
+#Namensstil, der den korrekten Argumentnamen entspricht.
+argument-naming-style = snake_case
 
-# Regular expression matching correct argument names. Overrides argument-
-# naming-style. If left empty, argument names will be checked with the set
-# naming style.
+#Regulärer Ausdruck, der den korrekten Argumentnamen entspricht. Überschreibt argument-naming-style. Wenn leer gelassen, werden Argumentnamen mit dem festgelegten Namensstil überprüft.
 #argument-rgx=
 
-# Naming style matching correct attribute names.
-attr-naming-style=snake_case
+#Namensstil, der den korrekten Attributnamen entspricht.
+attr-naming-style = snake_case
 
-# Regular expression matching correct attribute names. Overrides attr-naming-
-# style. If left empty, attribute names will be checked with the set naming
-# style.
+#Regulärer Ausdruck, der den korrekten Attributnamen entspricht. Überschreibt attr-naming-style. Wenn leer gelassen, werden Attributnamen mit dem festgelegten Namensstil überprüft.
 #attr-rgx=
 
-# Bad variable names which should always be refused, separated by a comma.
+#Liste der schlechten Variablennamen, die immer abgelehnt werden sollten, durch Kommas getrennt.
 bad-names=foo,
-          bar,
-          baz,
-          toto,
-          tutu,
-          tata
+    bar,
+    baz,
+    toto,
+    tutu,
+    tata
 
-# Bad variable names regexes, separated by a comma. If names match any regex,
-# they will always be refused
+#Reguläre Ausdrücke für schlechte Variablennamen, durch Kommas getrennt. Wenn Namen zu einem Regex passen,
+#werden sie immer abgelehnt.
 bad-names-rgxs=
 
-# Naming style matching correct class attribute names.
+#Naming-Style, der zu korrekten Klassenattributnamen passt.
 class-attribute-naming-style=any
 
-# Regular expression matching correct class attribute names. Overrides class-
-# attribute-naming-style. If left empty, class attribute names will be checked
-# with the set naming style.
+#Regulärer Ausdruck, der zu korrekten Klassenattributnamen passt. Überschreibt class-attribute-naming-style. Wenn leer gelassen,
+#werden Klassenattributnamen mit dem eingestellten Naming-Style überprüft.
 #class-attribute-rgx=
 
-# Naming style matching correct class constant names.
+#Naming-Style, der zu korrekten Klassenkonstanten-Namen passt.
 class-const-naming-style=UPPER_CASE
 
-# Regular expression matching correct class constant names. Overrides class-
-# const-naming-style. If left empty, class constant names will be checked with
-# the set naming style.
+#Regulärer Ausdruck, der zu korrekten Klassenkonstanten-Namen passt.
+#Überschreibt class-const-naming-style. Wenn leer gelassen,
+#werden Klassenkonstantennamen mit dem eingestellten Naming-Style überprüft.
 #class-const-rgx=
 
-# Naming style matching correct class names.
+#Naming-Style, der zu korrekten Klassennamen passt.
 class-naming-style=PascalCase
 
-# Regular expression matching correct class names. Overrides class-naming-
-# style. If left empty, class names will be checked with the set naming style.
+#Regulärer Ausdruck, der zu korrekten Klassennamen passt. Überschreibt class-naming-style. Wenn leer gelassen,
+#werden Klassennamen mit dem eingestellten Naming-Style überprüft.
 #class-rgx=
 
-# Naming style matching correct constant names.
+#Naming-Style, der zu korrekten Konstantennamen passt.
 const-naming-style=UPPER_CASE
 
-# Regular expression matching correct constant names. Overrides const-naming-
-# style. If left empty, constant names will be checked with the set naming
-# style.
+#Regulärer Ausdruck, der zu korrekten Konstantennamen passt. Überschreibt const-naming-style. Wenn leer gelassen,
+#werden Konstantennamen mit dem eingestellten Naming-Style überprüft.
 #const-rgx=
 
-# Minimum line length for functions/classes that require docstrings, shorter
-# ones are exempt.
+#Minimale Zeilenlänge für Funktionen/Klassen, die Docstrings benötigen. Kürzere sind ausgenommen.
 docstring-min-length=-1
 
-# Naming style matching correct function names.
+#Naming-Style, der zu korrekten Funktionsnamen passt.
 function-naming-style=snake_case
 
-# Regular expression matching correct function names. Overrides function-
-# naming-style. If left empty, function names will be checked with the set
-# naming style.
+#Regulärer Ausdruck, der zu korrekten Funktionsnamen passt. Überschreibt function-naming-style. Wenn leer gelassen,
+#werden Funktionsnamen mit dem eingestellten Naming-Style überprüft.
 #function-rgx=
 
-# Good variable names which should always be accepted, separated by a comma.
+#Gute Variablennamen, die immer akzeptiert werden sollten, durch Kommas getrennt.
 good-names=i,
-           j,
-           k,
-           ex,
-           Run,
-           _
+    j,
+    k,
+    ex,
+    Run,
+    _
 
-# Good variable names regexes, separated by a comma. If names match any regex,
-# they will always be accepted
+#Reguläre Ausdrücke für gute Variablennamen, durch Kommas getrennt. Wenn Namen zu einem Regex passen,
+#werden sie immer akzeptiert.
 good-names-rgxs=
 
-# Include a hint for the correct naming format with invalid-name.
+#Einen Hinweis für das korrekte Namensformat mit invalid-name einbeziehen.
 include-naming-hint=no
 
-# Naming style matching correct inline iteration names.
+#Naming-Style, der zu korrekten Inline-Iteratoren passt.
 inlinevar-naming-style=any
 
-# Regular expression matching correct inline iteration names. Overrides
-# inlinevar-naming-style. If left empty, inline iteration names will be checked
-# with the set naming style.
-#inlinevar-rgx=
+#Regulärer Ausdruck, der zu korrekten Inline-Iteratoren passt. Überschreibt inlinevar-naming-style. Wenn leer gelassen
 
-# Naming style matching correct method names.
+
+#inlinevar-rgx=
+#Naming-Style, das den korrekten Methodennamen entspricht.
 method-naming-style=snake_case
 
-# Regular expression matching correct method names. Overrides method-naming-
-# style. If left empty, method names will be checked with the set naming style.
+#Regulärer Ausdruck, der korrekte Methodennamen entspricht. Überschreibt die
+#Methode-Namenskonvention. Wenn leer, werden Methodennamen mit der festgelegten
+#Namenskonvention überprüft.
 #method-rgx=
 
-# Naming style matching correct module names.
+#Naming-Style, der den korrekten Modulnamen entspricht.
 module-naming-style=snake_case
 
-# Regular expression matching correct module names. Overrides module-naming-
-# style. If left empty, module names will be checked with the set naming style.
+#Regulärer Ausdruck, der korrekte Modulnamen entspricht. Überschreibt die
+#Modul-Namenskonvention. Wenn leer, werden Modulnamen mit der festgelegten
+#Namenskonvention überprüft.
 #module-rgx=
 
-# Colon-delimited sets of names that determine each other's naming style when
-# the name regexes allow several styles.
+#Durch Doppelpunkt getrennte Namen, die jeweils den Namensstil des anderen bestimmen,
+#wenn die Namens-Regexes mehrere Stile zulassen.
 name-group=
 
-# Regular expression which should only match function or class names that do
-# not require a docstring.
+#Regulärer Ausdruck, der nur zu Funktionen oder Klassennamen passen sollte,
+#die keine Docstring erfordern.
 no-docstring-rgx=^_
 
-# List of decorators that produce properties, such as abc.abstractproperty. Add
-# to this list to register other decorators that produce valid properties.
-# These decorators are taken in consideration only for invalid-name.
+#Liste der Dekoratoren, die Eigenschaften erzeugen, z. B. abc.abstractproperty.
+#Fügen Sie diese Liste hinzu, um andere Dekoratoren zu registrieren, die gültige Eigenschaften
+#erzeugen. Diese Dekoratoren werden nur bei invalid-name berücksichtigt.
 property-classes=abc.abstractproperty
 
-# Regular expression matching correct type variable names. If left empty, type
-# variable names will be checked with the set naming style.
+#Regulärer Ausdruck, der korrekte Namen von Typvariablen entspricht. Wenn leer,
+#werden Typvariablennamen mit der festgelegten Namenskonvention überprüft.
 #typevar-rgx=
 
-# Naming style matching correct variable names.
+#Naming-Style, der den korrekten Variablennamen entspricht.
 variable-naming-style=snake_case
 
-# Regular expression matching correct variable names. Overrides variable-
-# naming-style. If left empty, variable names will be checked with the set
-# naming style.
+#Regulärer Ausdruck, der korrekte Variablennamen entspricht. Überschreibt die
+#Variablen-Namenskonvention. Wenn leer, werden Variablennamen mit der festgelegten
+#Namenskonvention überprüft.
 #variable-rgx=
-
-
-[CLASSES]
-
-# Warn about protected attribute access inside special methods
-check-protected-access-in-special-methods=no
-
-# List of method names used to declare (i.e. assign) instance attributes.
-defining-attr-methods=__init__,
-                      __new__,
-                      setUp,
-                      __post_init__
-
-# List of member names, which should be excluded from the protected access
-# warning.
-exclude-protected=_asdict,
-                  _fields,
-                  _replace,
-                  _source,
-                  _make
-
-# List of valid names for the first argument in a class method.
-valid-classmethod-first-arg=cls
-
-# List of valid names for the first argument in a metaclass class method.
+#Liste gültiger Namen für das erste Argument in einer Metaklasse-Klassenmethode.
 valid-metaclass-classmethod-first-arg=mcs
-
 
 [DESIGN]
 
-# List of regular expressions of class ancestor names to ignore when counting
-# public methods (see R0903)
+#Liste von regulären Ausdrücken von Klassenvorfahrensnamen, die beim Zählen von
+#öffentlichen Methoden ignoriert werden sollen (siehe R0903)
 exclude-too-few-public-methods=
 
-# List of qualified class names to ignore when counting class parents (see
-# R0901)
+#Liste von qualifizierten Klassennamen, die beim Zählen von Klasseneltern ignoriert werden sollen (siehe R0901)
 ignored-parents=
 
-# Maximum number of arguments for function / method.
+#Maximale Anzahl von Argumenten für eine Funktion/Methode.
 max-args=5
 
-# Maximum number of attributes for a class (see R0902).
+#Maximale Anzahl von Attributen für eine Klasse (siehe R0902).
 max-attributes=7
 
-# Maximum number of boolean expressions in an if statement (see R0916).
+#Maximale Anzahl von Booleschen Ausdrücken in einer if-Anweisung (siehe R0916).
 max-bool-expr=5
 
-# Maximum number of branch for function / method body.
+#Maximale Anzahl von Zweigen für den Funktions-/Methodenrumpf.
 max-branches=12
 
-# Maximum number of locals for function / method body.
+#Maximale Anzahl von Lokalvariablen für den Funktions-/Methodenrumpf.
 max-locals=15
 
-# Maximum number of parents for a class (see R0901).
-max-parents=7
+#Maximale Anzahl von Eltern für eine Klasse (siehe R0901).
 
-
-
-##Ende
 #Maximale Anzahl öffentlicher Methoden für eine Klasse (siehe R0904).
 max-public-methods=20
 
@@ -385,131 +338,158 @@ int-import-graph=
 known-standard-library=
 
 #Erzwingen Sie die Importreihenfolge, um ein Modul als Teil einer Bibliothek von Drittanbiet
-##Anfang
+#Erzwinge die Import-Reihenfolge, um ein Modul als Teil einer Bibliothek von Drittanbietern zu
+#erkennen.
+known-third-party=enchant
 
-# Minimum lines number of a similarity.
+#Paare von Modulen und bevorzugten Modulen, durch Komma getrennt.
+preferred-modules=
+
+[LOGGING]
+
+#Der Typ der Zeichenkettenformatierung, die von Logging-Methoden verwendet wird.
+#old bedeutet die Verwendung von %
+#Formatierung, new ist für die {} Formatierung.
+logging-format-style=old
+
+#Logging-Module, um zu überprüfen, ob die Zeichenkettenformatargumente im Logging
+#Funktionsparameterformat sind.
+logging-modules=logging
+
+[MESSAGES CONTROL]
+
+#Zeige nur Warnungen mit den aufgelisteten Vertrauensniveaus an. Leer lassen, um alle anzuzeigen.
+confidence=HIGH,
+           CONTROL_FLOW,
+           INFERENCE,
+           INFERENCE_FAILURE,
+           UNDEFINED
+
+#Deaktivieren Sie die Nachricht, den Bericht, die Kategorie oder den Prüfer mit den angegebenen IDs. Sie können entweder mehrere Identifikatoren durch Komma (,) angeben oder diese Option mehrmals angeben (nur auf der Befehlszeile, nicht in der Konfigurationsdatei, in der sie nur einmal erscheinen sollte). Sie können auch "--disable=all" verwenden, um zunächst alles zu deaktivieren und dann bestimmte Überprüfungen wieder zu aktivieren. Wenn Sie beispielsweise nur den Similarities-Prüfer ausführen möchten, können Sie "--disable=all --enable=similarities" verwenden. Wenn Sie nur den Klassenprüfer ausführen möchten, aber keine Warnstufenmeldungen angezeigt werden sollen, verwenden Sie "--disable=all --enable=classes
+disable=raw-checker-failed,
+        bad-inline-option,
+        locally-disabled,
+        file-ignored,
+        suppressed-message,
+        useless-suppression,
+        deprecated-pragma,
+        use-symbolic-message-instead
+
+#Aktivieren Sie die Nachricht, den Bericht, die Kategorie oder den Prüfer mit den angegebenen IDs. Sie können
+#entweder mehrere Identifier durch Komma (,) angeben oder diese Option mehrmals angeben (nur auf der Befehlszeile, nicht in der Konfigurationsdatei, in der sie nur einmal erscheinen sollte). Siehe auch die "--disable" Option für Beispiele.
+enable=c-extension-no-member
+
+[METHOD_ARGS]
+
+#Liste der qualifizierten Namen (d. h. Bibliotheksmethode), die einen Timeout-Parameter erfordern,
+#z. B. 'requests.api.get,requests.api.post'
+timeout-methods=requests.api.delete,requests.api.get,requests.api.head,requests.api.options,requests.api.patch,requests.api.post,requests.api.put,requests.api.request
+
+#Mindestzeilenanzahl einer Ähnlichkeit.
+[MISCELLANEOUS]
+
+#Liste von Notiz-Tags, die berücksichtigt werden sollen, getrennt durch Komma.
+notes=FIXME,
+    XXX,
+    TODO
+
+#Regulärer Ausdruck der Notiz-Tags, die berücksichtigt werden sollen.
+notes-rgx=
+
+[REFACTORING]
+
+#Maximale Anzahl von verschachtelten Blöcken für die Funktion / Methode.
+max-nested-blocks=5
+
+#Vollständiger Name von Funktionen, die niemals zurückgeben. Wenn bei der Prüfung auf inkonsistente Rückgabeanweisungen eine Funktion aufgerufen wird, die niemals zurückkehrt, wird sie als explizite Rückgabeanweisung betrachtet und es wird keine Meldung ausgegeben.
+never-returning-functions=sys.exit,argparse.parse_error
+
+[REPORTS]
+
+#Python-Ausdruck, der eine Punktzahl von höchstens 10 zurückgeben sollte. Sie haben Zugriff auf die Variablen 'fatal', 'error', 'warning', 'refactor', 'convention' und 'info', die die Anzahl der Meldungen in jeder Kategorie enthalten, sowie 'statement', das die Gesamtzahl der analysierten Anweisungen ist. Diese Punktzahl wird von dem globalen Bewertungsbericht (RP0004) verwendet.
+evaluation=max(0, 0 if fatal else 10.0 - ((float(5 * error + warning + refactor + convention) / statement) * 10))
+
+#Vorlage zur Anzeige von Nachrichten. Dies ist eine Python-Neustil-Formatzeichenfolge, die zur Formatierung von Nachrichteninformationen verwendet wird. Siehe Dokumentation für alle Details.
+msg-template=
+
+#Legt das Ausgabeformat fest. Verfügbare Formate sind Text, Parsbar, Colorized, JSON und MSVS (Visual Studio). Sie können auch eine Reporter-Klasse angeben, z. B. mypackage.mymodule.MyReporterClass.
+#output-format=
+
+#Gibt an, ob ein vollständiger Bericht oder nur die Meldungen angezeigt werden sollen.
+reports=no
+
+#Aktiviert die Bewertungsnote.
+score=yes
+
+[SIMILARITIES]
+
+#Kommentare werden aus der Ähnlichkeitsberechnung entfernt.
+ignore-comments=yes
+
+#Docstrings werden aus der Ähnlichkeitsberechnung entfernt.
+ignore-docstrings=yes
+
+#Importe werden aus der Ähnlichkeitsberechnung entfernt.
+ignore-imports=yes
+
+#Signaturen werden aus der Ähnlichkeitsberechnung entfernt.
+ignore-signatures=yes
+
+#Mindestzeilenanzahl einer Ähnlichkeit.
 min-similarity-lines=4
 
-
-[SPELLING]
-
-# Limits count of emitted suggestions for spelling mistakes.
-max-spelling-suggestions=4
-
-# Spelling dictionary name. Available dictionaries: none. To make it work,
-# install the 'python-enchant' package.
-spelling-dict=
-
-# List of comma separated words that should be considered directives if they
-# appear at the beginning of a comment and should not be checked.
-spelling-ignore-comment-directives=fmt: on,fmt: off,noqa:,noqa,nosec,isort:skip,mypy:
-
-# List of comma separated words that should not be checked.
-spelling-ignore-words=
-
-# A path to a file that contains the private dictionary; one word per line.
-spelling-private-dict-file=
-
-# Tells whether to store unknown words to the private dictionary (see the
-# --spelling-private-dict-file option) instead of raising a message.
-spelling-store-unknown-words=no
-
-
-[STRING]
-
-# This flag controls whether inconsistent-quotes generates a warning when the
-# character used as a quote delimiter is used inconsistently within a module.
-check-quote-consistency=no
-
-# This flag controls whether the implicit-str-concat should generate a warning
-# on implicit string concatenation in sequences defined over several lines.
-check-str-concat-over-line-jumps=no
-
-
-[TYPECHECK]
-
-# List of decorators that produce context managers, such as
-# contextlib.contextmanager. Add to this list to register other decorators that
-# produce valid context managers.
-contextmanager-decorators=contextlib.contextmanager
-
-# List of members which are set dynamically and missed by pylint inference
-# system, and so shouldn't trigger E1101 when accessed. Python regular
-# expressions are accepted.
-generated-members=
-
-# Tells whether to warn about missing members when the owner of the attribute
-# is inferred to be None.
-ignore-none=yes
-
-# This flag controls whether pylint should warn about no-member and similar
-# checks whenever an opaque object is returned when inferring. The inference
-# can return multiple potential results while evaluating a Python object, but
-# some branches might not be evaluated, which results in partial inference. In
-# that case, it might be useful to still emit no-member and other checks for
-# the rest of the inferred objects.
-ignore-on-opaque-inference=yes
-
-# List of symbolic message names to ignore for Mixin members.
+#Liste von symbolischen Nachrichtennamen, die für Mixin-Mitglieder ignoriert werden sollen.
 ignored-checks-for-mixins=no-member,
-                          not-async-context-manager,
-                          not-context-manager,
-                          attribute-defined-outside-init
+    not-async-context-manager,
+    not-context-manager,
+    attribute-defined-outside-init
 
-# List of class names for which member attributes should not be checked (useful
-# for classes with dynamically set attributes). This supports the use of
-# qualified names.
+#Liste von Klassennamen, für die Mitgliedsattribute nicht überprüft werden sollten (nützlich
+#für Klassen mit dynamisch gesetzten Attributen). Dies unterstützt die Verwendung von
+#qualifizierten Namen.
 ignored-classes=optparse.Values,thread._local,_thread._local,argparse.Namespace
 
-# Show a hint with possible names when a member name was not found. The aspect
-# of finding the hint is based on edit distance.
+#Zeigt einen Hinweis mit möglichen Namen an, wenn ein Membername nicht gefunden wurde. Der Aspekt
+#des Auffindens des Hinweises basiert auf der Editierdistanz.
 missing-member-hint=yes
 
-# The minimum edit distance a name should have in order to be considered a
-# similar match for a missing member name.
+#Die minimale Editierdistanz, die ein Name haben sollte, um als ähnliches Match für einen fehlenden Membernamen betrachtet zu werden.
 missing-member-hint-distance=1
 
-# The total number of similar names that should be taken in consideration when
-# showing a hint for a missing member.
+#Die Gesamtzahl ähnlicher Namen, die in Betracht gezogen werden sollten, wenn ein Hinweis für ein fehlendes Mitglied angezeigt wird.
 missing-member-max-choices=1
 
-# Regex pattern to define which classes are considered mixins.
+#Regex-Muster, um zu definieren, welche Klassen als Mixins betrachtet werden.
 mixin-class-rgx=.*[Mm]ixin
 
-# List of decorators that change the signature of a decorated function.
+#Liste von Dekoratoren, die die Signatur einer dekorierten Funktion ändern.
 signature-mutators=
-
 
 [VARIABLES]
 
-# List of additional names supposed to be defined in builtins. Remember that
-# you should avoid defining new builtins when possible.
+#Liste von zusätzlichen Namen, die in builtins definiert werden sollen. Denken Sie daran, dass
+#Sie neue builtins möglichst vermeiden sollten.
 additional-builtins=
 
-# Tells whether unused global variables should be treated as a violation.
+#Gibt an, ob unbenutzte globale Variablen als Verstoß behandelt werden sollen.
 allow-global-unused-variables=yes
 
-# List of names allowed to shadow builtins
+#Liste von Namen, die gebaut werden dürfen.
 allowed-redefined-builtins=
 
-# List of strings which can identify a callback function by name. A callback
-# name must start or end with one of those strings.
+#Liste von Zeichenfolgen, mit denen eine Rückruffunktion anhand des Namens identifiziert werden kann. Ein Rückrufname muss mit einer dieser Zeichenfolgen beginnen oder enden.
 callbacks=cb_,
-          _cb
+    _cb
 
-# A regular expression matching the name of dummy variables (i.e. expected to
-# not be used).
+#Ein regulärer Ausdruck, der den Namen von Dummy-Variablen (d. H. Nicht verwendet werden soll) entspricht.
 dummy-variables-rgx=_+$|(_[a-zA-Z0-9_]*[a-zA-Z0-9]+?$)|dummy|^ignored_|^unused_
 
-# Argument names that match this expression will be ignored.
-ignored-argument-names=_.*|^ignored_|^unused_
+#Argumentnamen, die diesem Ausdruck entsprechen, werden ignoriert.
+ignored-argument-names=.*|^ignored|^unused_
 
-# Tells whether we should check for unused import in __init__ files.
+#Gibt an, ob wir in init -Dateien auf nicht verwendete Importe prüfen sollten.
 init-import=no
 
-# List of qualified module names which can have objects that can redefine
-# builtins.
-redefining-builtins-modules=six.moves,past.builtins,future.builtins,builtins,io
+#Liste von qualifizierten Modulnamen, die Objekte enthalten können,
+# die eingebaute Funktionen neu definieren können.
 
-
-##Ende

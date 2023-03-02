@@ -1,1 +1,6 @@
 pylint
+asyncio
+shutil
+datetime
+openai
+dotenv

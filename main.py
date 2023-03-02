@@ -8,4 +8,5 @@ print("tes")
 def sub(int1: int, int2: int):
     return int1 - int2
 
+
 print(sub(10, 5))
