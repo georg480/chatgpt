@@ -1,0 +1,27 @@
+geänderten code:
+isort .
+black .
+pylint .py
+pytest
+
+github README schreiben
+beschreibung  codierrregeln
+beschreibung Namensregln
+beschreibung System Architecktur und Schnittstellen
+abgleich codierreglen mit pylint konfig
+Object orientierte Programmierung
+von sync auf async ändern schnitttelle openai
+hinzufügen von Funkktionenn der python Programms
+überszen von englisch ins deutsche
+Analase des Quellcodes
+
+Feste Anfang für änderungbeschreibung
+Auswertung der Quellcodes mit interieb da mis nur als funktion die BEschreibung  werte die funtion aus.
+Änder dauch die Funktion
+testen nicht nur mit untittest bsondern auch mit pytest
+promt weiter machen oder neuen erstellen.
+testen tdd mit async
+Chatverlaufe weiter machen der neuen( wweis was vorher war) beginnen wie
+sehr lange anfragen Verarbeiten auf mehrere anfragen aufteileen ? geht das mit Chatgpt auf windows?
+wenn anfrage in einer Stunde voll ist einfachandere Brower nutzen oder cokkies löschen(alternativ VPN)
+

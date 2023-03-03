@@ -10,7 +10,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 response = openai.Completion.create(
     model="text-davinci-003",
-    prompt="Schreib mir einen weihnachtlichen Text. in deutsch\n",
+    prompt="Schreib mir einen wihnachtlichen Text. in deutsch\n",
     temperature=0.7,
     max_tokens=256,
     top_p=1,
