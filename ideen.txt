@@ -24,4 +24,4 @@ testen tdd mit async
 Chatverlaufe weiter machen der neuen( wweis was vorher war) beginnen wie
 sehr lange anfragen Verarbeiten auf mehrere anfragen aufteileen ? geht das mit Chatgpt auf windows?
 wenn anfrage in einer Stunde voll ist einfachandere Brower nutzen oder cokkies löschen(alternativ VPN)
-
+https://platform.openai.com/docs/api-reference/edits/create

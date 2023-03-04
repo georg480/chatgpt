@@ -1,19 +1,29 @@
 import os
+from random import randint
 
 import openai
 from dotenv import load_dotenv
 
 load_dotenv()
-API_KEY = os.getenv("OPENAI_API_KEY")
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-response = openai.Completion.create(
-    model="text-davinci-003",
-    prompt="Schreib mir einen wihnachtlichen Text. in deutsch\n",
-    temperature=0.7,
-    max_tokens=256,
-    top_p=1,
-    frequency_penalty=0,
-    presence_penalty=0,
-)
+
+def chat(anweisung, model):
+    antwort = openai.Completion.create(
+        model=model,
+        prompt=anweisung,
+        temperature=0.9,
+        max_tokens=150,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0.6,
+    )
+    return antwort.choices[0].text
+
+
+def play_random():
+    num = randint(0, 10)
+    if num > 5:
+        return "größer"
+    return "kleiner"
