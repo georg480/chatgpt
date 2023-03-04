@@ -4,7 +4,7 @@
 [MAIN]
 #Dies deaktiviert die Prüfung der Moduldokumentation und der Funktion dokumentation, aber alle anderen Prüfungen werden
 #weiterhin ausgeführt
-disable = missing-function-docstring, missing-module-docstring
+disable = missing-function-docstring, missing-module-docstring, missing-class-docstring
 
 #Analysieren von Import-Fallback-Blöcken. Dies kann verwendet werden, um sowohl Python-2- als auch
 #Python-3-kompatiblen Code zu unterstützen, was bedeutet, dass der Block Code enthalten kann, der
