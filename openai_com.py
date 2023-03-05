@@ -12,7 +12,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def chat(anweisung, model):
     zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
-    schreibe_protokol("Protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
+    schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
     antwort = openai.Completion.create(
         model=model,
         prompt=anweisung,
@@ -22,6 +22,6 @@ def chat(anweisung, model):
         frequency_penalty=0,
         presence_penalty=0.6,
     )
-    schreibe_protokol("Protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
+    schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
     print(f"Antwort: {antwort.choices[0].text}")
     return antwort.choices[0].text

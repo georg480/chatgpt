@@ -119,12 +119,7 @@ attr-naming-style = snake_case
 #attr-rgx=
 
 #Liste der schlechten Variablennamen, die immer abgelehnt werden sollten, durch Kommas getrennt.
-bad-names=foo,
-    bar,
-    baz,
-    toto,
-    tutu,
-    tata
+bad-names=foo,bar,baz,toto,tutu,tata
 
 #Reguläre Ausdrücke für schlechte Variablennamen, durch Kommas getrennt. Wenn Namen zu einem Regex passen,
 #werden sie immer abgelehnt.
@@ -170,12 +165,7 @@ function-naming-style=snake_case
 #function-rgx=
 
 #Gute Variablennamen, die immer akzeptiert werden sollten, durch Kommas getrennt.
-good-names=i,
-    j,
-    k,
-    ex,
-    Run,
-    _
+good-names=i,j,k,ex,Run,_
 
 #Reguläre Ausdrücke für gute Variablennamen, durch Kommas getrennt. Wenn Namen zu einem Regex passen,
 #werden sie immer akzeptiert.
@@ -294,7 +284,7 @@ indent-after-paren=4
 indent-string='    '
 
 #Maximale Anzahl von Zeichen in einer einzelnen Zeile.
-max-line-length=120
+max-line-length=100
 
 #Maximale Anzahl von Zeilen in einem Modul.
 max-module-lines=1000

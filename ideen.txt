@@ -5,7 +5,7 @@ pylint .py
 pytest
 
 github README schreiben
-beschreibung  codierrregeln
+beschreibung codierrregeln
 beschreibung Namensregln
 beschreibung System Architecktur und Schnittstellen
 abgleich codierreglen mit pylint konfig
@@ -24,3 +24,7 @@ Chatverlaufe weiter machen der neuen( wweis was vorher war) beginnen wie
 sehr lange anfragen Verarbeiten auf mehrere anfragen aufteileen ? geht das mit Chatgpt auf windows?
 wenn anfrage in einer Stunde voll ist einfachandere Brower nutzen oder cokkies löschen(alternativ VPN)
 https://platform.openai.com/docs/api-reference/edits/create
+
+
+namensmuster für pylint  einfügen(https://www.youtube.com/watch?v=EzsebuWCIZ4)
+Namensliste
