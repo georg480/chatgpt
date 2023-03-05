@@ -3,7 +3,9 @@ from openai_com import chat
 MODEL = "text-davinci-003"
 
 while True:
-    benutzer_eingabe = input("Frage /Eingabe ein. x(aus), e (erkläre Code),f (frage),  u (Eng->D)")
+    benutzer_eingabe = input(
+        "Frage /Eingabe ein. e (erkläre Code), f (frage),  u (Eng->D), x (aus)"
+    )
 
     if benutzer_eingabe.lower() == "u":
         anweisung = (
