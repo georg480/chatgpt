@@ -28,3 +28,7 @@ https://platform.openai.com/docs/api-reference/edits/create
 
 namensmuster für pylint  einfügen(https://www.youtube.com/watch?v=EzsebuWCIZ4)
 Namensliste
+
+
+Weil ChatGPT auf ein begrenztes Maximum an Textzeichen beschränkt ist. Es ist auf 400 Zeichen begrenzt, weil es sonst zu viele Daten übertragen müsste, um das gesamte Ergebnis zu liefern. Dadurch würde die Verarbeitungsgeschwindigkeit reduziert werden. Wenn Sie mehr Text verarbeiten möchten, müssen Sie ihn in mehrere Sequenzen aufteilen und jede Sequenz separat übertr
+
