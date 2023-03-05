@@ -22,15 +22,6 @@ def chat(anweisung, model):
         frequency_penalty=0,
         presence_penalty=0.6,
     )
-    # for choice in antwort.choices:
-    #     print("Text:", choice.text)
-    #     print("Finish Reason:", choice.finish_reason)
-    #     print("Index:", choice.index)
-    #     print("Logprobs:", choice.logprobs)
-    #     print("Text Offset:", choice.text_offset)
-    #     print("Selected Tokens:", choice.tokens)
-    #     print("===================")
     schreibe_protokol("Protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
-    print(f"antwort: {antwort}")
-    print(f"id: {antwort.id}")
+    print(f"Antwort: {antwort.choices[0].text}")
     return antwort.choices[0].text

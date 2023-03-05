@@ -1,20 +1,11 @@
 import unittest
-from unittest.mock import patch
 
-import openai_com
+from openai_com import chat
 
 
-class TestOpenAICom(unittest.TestCase):
-    @patch("openai_com.randint")
-    def test_play_random_greater(self, mock_randint):
-        mock_randint.return_value = 8
-        expected_response = "größer"
-        actual_response = openai_com.play_random()
-        self.assertEqual(actual_response, expected_response)
-
-    @patch("openai_com.randint")
-    def test_play_random_smaller(self, mock_randint):
-        mock_randint.return_value = 3
-        expected_response = "kleiner"
-        actual_response = openai_com.play_random()
-        self.assertEqual(actual_response, expected_response)
+class TestChat(unittest.TestCase):
+    def test_chat(self):
+        anweisung = "Was ist die Hauptstadt von Frankreich?"
+        antwort = chat(anweisung, "text-davinci-002")
+        self.assertIsInstance(antwort, str)
+        self.assertGreater(len(antwort), 0)
