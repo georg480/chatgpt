@@ -27,4 +27,7 @@ while True:
         print(benutzer_eingabe)
 
 
+print("hi")
+
+
 print("test git new Branch")
