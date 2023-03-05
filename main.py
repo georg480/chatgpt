@@ -25,9 +25,3 @@ while True:
         break
     else:
         print(benutzer_eingabe)
-
-
-print("hi")
-
-
-print("test git new Branch")
