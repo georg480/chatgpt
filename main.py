@@ -25,5 +25,3 @@ while True:
         break
     else:
         print(benutzer_eingabe)
-
-print("tt")
