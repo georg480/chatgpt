@@ -3,7 +3,7 @@ from openai_com import chat
 MODEL = "text-davinci-003"
 
 while True:
-    benutzer_eingabe = input("Frage /Eingabe ein. x(aus), e (erkläre Code), u (Eng->D)")
+    benutzer_eingabe = input("Frage /Eingabe ein. x(aus), e (erkläre Code),f (frage),  u (Eng->D)")
 
     if benutzer_eingabe.lower() == "u":
         anweisung = (
@@ -17,7 +17,7 @@ while True:
         )
         antwort = chat(anweisung, MODEL)
         print(f"\n{antwort}")
-    elif benutzer_eingabe.lower() == "c":
+    elif benutzer_eingabe.lower() == "f":
         anweisung = input("Eingabe Frage")
         antwort = chat(anweisung, MODEL)
         print(f"\n{antwort}")
