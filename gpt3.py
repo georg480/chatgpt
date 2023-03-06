@@ -12,7 +12,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 def gpt3(
     prompt,
     engine="text-davinci-003",
-    response_length=64,
+    response_length=400,
     temperature=0.7,
     top_p=1,
     frequency_penalty=0,
