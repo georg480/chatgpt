@@ -1,6 +1,5 @@
-from openai_com import chat
 from komm_chat import komm_chat
-
+from openai_com import chat
 
 MODEL = "text-davinci-003"
 
