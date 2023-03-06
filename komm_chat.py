@@ -1,7 +1,7 @@
 from gpt3 import gpt3
 
 
-def chat():
+def komm_chat():
     prompt = """Human: Hey, how are you doing?
 AI: I'm good! What would you like to chat about?
 Human:"""
@@ -20,4 +20,4 @@ Human:"""
 
 
 if __name__ == "__main__":
-    chat()
+    komm_chat()
