@@ -1,11 +1,12 @@
 from komm_chat import komm_chat
+from models.functions import teste_py_gebaut
 from openai_com import chat
 
 MODEL = "text-davinci-003"
 
 while True:
     eingabe_benutzer = input(
-        "Frage /Eingabe ein. c (chat), e (erkläre Code), f (frage),  u (Eng->D), x (aus)"
+        "Frage /Eingabe ein. c (chat), e (erkläre Code), f (frage), t(test neu py),  u (Eng->D), x (aus)"
     )
 
     if eingabe_benutzer.lower() == "u":
@@ -16,6 +17,8 @@ while True:
         print(f"\n{antwort}")
     elif eingabe_benutzer.lower() == "c":
         komm_chat()
+    elif eingabe_benutzer.lower() == "t":
+        teste_py_gebaut("functions.py")
     elif eingabe_benutzer.lower() == "f":
         anweisung = input("Eingabe Frage")
         antwort = chat(anweisung, MODEL)
