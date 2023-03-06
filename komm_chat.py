@@ -2,8 +2,8 @@ from gpt3 import gpt3
 
 
 def komm_chat():
-    prompt = """Human: Hey, how are you doing?
-AI: I'm good! What would you like to chat about?
+    prompt = """Human: Erklaäre alles auf deutsch
+AI: 
 Human:"""
     while True:
         prompt += input("Du: ")
