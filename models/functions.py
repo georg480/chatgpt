@@ -30,5 +30,3 @@ def mal(in1: int, in2: int):
     return in1 * in2
 
 
-class classtest:
-    print("test")
