@@ -2,7 +2,7 @@ import os
 
 from komm_chat import komm_chat
 from openai_com import chat, erzeuge_unittest
-from models.dateien import lese_datei,schreibe_protokol
+from models.dateien import lese_datei,schreibe_datei
 
 MODEL = "text-davinci-003"
 
@@ -17,7 +17,7 @@ while True:
         )
         antwort = chat(anweisung, MODEL, 150)
         print(f"\n{antwort}")
-        schreibe_protokol("deutscher_text.txt", antwort)
+        schreibe_datei("deutscher_text.txt", antwort)
     elif eingabe_benutzer.lower() == "c":
         komm_chat()
     elif eingabe_benutzer.lower() == "t":
