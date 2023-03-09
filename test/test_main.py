@@ -1,21 +1,18 @@
 import unittest
 
-from models.dateien import lese_datei, schreibe_datei
-from openai_com import chat, erzeuge_unittest
+from komm_chat import komm_chat
+from openai_com import erzeuge_unittest
 
 
-class TestOpenAiCom(unittest.TestCase):
-    
-    def setUp(self):
-        self.model = "text-davinci-003"
-    
-    def test_chat(self):
-        anweisung = "Wie ist das Wetter heute?"
-        antwort = chat(anweisung, self.model, 150)
-        self.assertIsNotNone(antwort)
+class TestSkript(unittest.TestCase):
+    def test_erzeuge_unittest(self):
+        skripname = "test_skript"
+        model = "text-davinci-003"
+        self.assertEqual(erzeuge_unittest(skripname, model), "Skript erfolgreich getestet")
 
-    def test_lese_schreibe_datei(self):
-        englischer_text = "Hello World"
-        schreibe_datei("englischer_text.txt", englischer_text)
-        antwort_lesen = lese_datei("englischer_text.txt")
-        self.assertEqual(englischer_text, antwort_lesen)
+    def test_komm_chat(self):
+        self.assertEqual(komm_chat(), "Chat erfolgreich beendet")
+
+if __name__ == '__main__':
+  unittest.main()
+  '\n
