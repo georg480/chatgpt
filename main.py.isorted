@@ -36,5 +36,3 @@ while True:
         break
     else:
         print(eingabe_benutzer)
-
-print("Mainpy")
