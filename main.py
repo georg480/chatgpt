@@ -37,4 +37,7 @@ while True:
     else:
         print(eingabe_benutzer)
 
+
+print("master")
+
 print("Mainpy")
