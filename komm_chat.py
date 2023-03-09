@@ -17,4 +17,3 @@ Human:"""
             stop_seq=["\nHuman:", "\n"],
         )
         print("GPT-3:" + answer)
-
