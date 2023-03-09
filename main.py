@@ -14,7 +14,7 @@ while True:
         print(lese_datei("englischer_text.txt"))
         anweisung = (
             "Translate this into German:\n\n"
-            + lese_datei("englischer_text.txt")    
+            + lese_datei("englischer_text.txt")
             + "\n\n"
         )
         antwort = chat(anweisung, MODEL, 1024)

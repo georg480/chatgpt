@@ -3,13 +3,13 @@ import os
 import openai
 from dotenv import load_dotenv
 
-# from transformers import AutoTokenizer
-#
-# gpt2_tokenizer = AutoTokenizer.from_pretrained("gpt2", use_fast=True)
-#
-# text_in = "bla bla"
-# tokens = gpt2_tokenizer.tokenize(text_in)
-# print(tokens)
+from transformers import AutoTokenizer
+
+gpt2_tokenizer = AutoTokenizer.from_pretrained("gpt2", use_fast=True)
+
+text_in = "bla bla"
+tokens = gpt2_tokenizer.tokenize(text_in)
+print(tokens)
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
