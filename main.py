@@ -1,8 +1,8 @@
 import os
 
 from komm_chat import komm_chat
+from models.dateien import lese_datei, schreibe_datei
 from openai_com import chat, erzeuge_unittest
-from models.dateien import lese_datei,schreibe_datei
 
 MODEL = "text-davinci-003"
 
@@ -13,9 +13,11 @@ while True:
     if eingabe_benutzer.lower() == "u":
         print(lese_datei("englischer_text.txt"))
         anweisung = (
-            "Translate this into German:\n\n" + lese_datei("englischer_text.txt") + "\n\n"
+            "Translate this into German:\n\n"
+            + lese_datei("englischer_text.txt")
+            + "\n\n"
         )
-        antwort = chat(anweisung, MODEL, 150)
+        antwort = chat(anweisung, MODEL, 1024)
         print(f"\n{antwort}")
         schreibe_datei("deutscher_text.txt", antwort)
     elif eingabe_benutzer.lower() == "c":
@@ -25,7 +27,11 @@ while True:
     elif eingabe_benutzer.lower() == "f":
         anweisung = input("Eingabe Frage")
         antwort = chat(anweisung, MODEL, 150)
-        print(f"\n{antwort}")
+    elif eingabe_benutzer.lower() == "e":
+        anweisung = input("Welche Datei")
+        anweisung = "Ekläre was der Code macht! \n" + lese_datei(anweisung)
+        print(anweisung)
+        antwort = chat(anweisung, MODEL, 1024)
     elif eingabe_benutzer.lower() == "x":
         break
     else:

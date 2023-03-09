@@ -28,5 +28,3 @@ def teilen(in1: int, in2: int):
 
 def mal(in1: int, in2: int):
     return in1 * in2
-
-

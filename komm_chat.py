@@ -18,6 +18,3 @@ Human:"""
         )
         print("GPT-3:" + answer)
 
-
-if __name__ == "__main__":
-    komm_chat()
