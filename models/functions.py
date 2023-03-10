@@ -2,7 +2,7 @@ import subprocess
 
 
 def pruefe_py_gebaut(skript_name: str):
-    subprocess.call("isort .", shell=True)
+    subprocess.call("isort -rc .", shell=True)
     subprocess.call("black .", shell=True)
     subprocess.call("pylint " + skript_name, shell=True)
     subprocess.call("pyreverse -a1 -s1  -f ALL -d ALL  .  -o pdf", shell=True)
