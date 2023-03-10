@@ -17,7 +17,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 # tokens = gpt2_tokenizer.tokenize(text_in)
 
 
-def chat(anweisung, model, max_tokens):
+def chat(anweisung, model):
     zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
     schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
     antwort = openai.Completion.create(
