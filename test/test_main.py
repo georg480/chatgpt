@@ -27,7 +27,3 @@ class TestOpenAIFunktionen(unittest.TestCase):
             "test_openai_funktionen.py", "text-davinci-003"
         )
         self.assertIsNotNone(unittestSkript)
-
-
-if __name__ == "__main__":
-    unittest.main

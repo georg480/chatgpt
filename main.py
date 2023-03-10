@@ -2,8 +2,8 @@ import os
 
 from komm_chat import komm_chat
 from models.dateien import lese_datei, schreibe_datei
-from openai_com import chat, erzeuge_unittest
 from models.functions import pruefe_py_gebaut
+from openai_com import chat, erzeuge_unittest
 
 MODEL = "text-davinci-003"
 
@@ -32,7 +32,7 @@ while True:
         antwort = chat(anweisung, MODEL)
     elif eingabe_benutzer.lower() == "e":
         anweisung = input("Welche Datei")
-        anweisung = "Ekläre was der Code macht! \n" + lese_datei(anweisung)
+        anweisung = "Erkläre die Funktion des Codes. \n" + lese_datei(anweisung)
         print(anweisung)
         antwort = chat(anweisung, MODEL)
     elif eingabe_benutzer.lower() == "x":

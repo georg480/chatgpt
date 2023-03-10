@@ -3,7 +3,8 @@ import unittest
 
 import openai
 from dotenv import load_dotenv
-from gpt2 import gpt3
+
+from gpt3 import gpt3
 
 
 class TestGpt3(unittest.TestCase):
@@ -58,7 +59,3 @@ class TestGpt3(unittest.TestCase):
         self.assertNotEqual(answer, None)
         self.assertIsInstance(answer, str)
         self.assertEqual(new_prompt, prompt + answer)
-
-
-if __name__ == "__main__":
-    unittest.main
