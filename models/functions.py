@@ -7,6 +7,7 @@ def pruefe_py_gebaut(skript_name: str):
     subprocess.call("pylint " + skript_name, shell=True)
     subprocess.call("pyreverse -a1 -s1  -f ALL -d ALL  .  -o pdf", shell=True)
     subprocess.call("pytest", shell=True)
+    print("Suche nach ERROR ")
 
 
 def plus(in1: int, in2: int):

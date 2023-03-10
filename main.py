@@ -3,12 +3,13 @@ import os
 from komm_chat import komm_chat
 from models.dateien import lese_datei, schreibe_datei
 from openai_com import chat, erzeuge_unittest
+from models.functions import pruefe_py_gebaut
 
 MODEL = "text-davinci-003"
 
 while True:
     eingabe_benutzer = input(
-        "Eingabe c(chat), e(erkl.Code), f(Frage), t(Unittest), u(E->D), x(en)"
+        "Eingabe c(chat), e(erkl.Code), f(Frage), p(prü), t(Unittest), u(E->D), x"
     )
     if eingabe_benutzer.lower() == "u":
         print(lese_datei("englischer_text.txt"))
@@ -24,6 +25,8 @@ while True:
         komm_chat()
     elif eingabe_benutzer.lower() == "t":
         erzeuge_unittest(input("Skript Name?"), MODEL)
+    elif eingabe_benutzer.lower() == "p":
+        pruefe_py_gebaut(input("Skript Name?"))
     elif eingabe_benutzer.lower() == "f":
         anweisung = input("Eingabe Frage")
         antwort = chat(anweisung, MODEL)
