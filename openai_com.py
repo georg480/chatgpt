@@ -49,8 +49,8 @@ def erzeuge_unittest(skript_quelle: str, model):
                 print(line + "\n")
                 file.write(line + "\n")
             print(f"Name des neuen Skripts: test_{skript_quelle}")
-    except Exception as e:
-        print("")
+    except Exception as exc:
+        print(f"Name des neuen Skripts: test_{skript_quelle}: {exc}")
         return
     pruefe_py_gebaut("test/test_" + skript_quelle)
     print(f"geänderte Funktion: {funktion}")

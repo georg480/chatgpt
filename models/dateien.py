@@ -10,13 +10,13 @@ def lese_datei(datei_namen):
     try:
         with open(datei_namen, "r", encoding="utf-8") as file:
             datei_inhalt = " ".join([line.strip() for line in file.readlines()])
-            file.flush()  # Puffer leeren und Daten auf die Festplatte schreiben
-    except IOError as e:
-        print(f"Es gab ein Problem beim Lesen der Datei '{datei_namen}': {e}")
+            file.flush()  # Puffer leeren und Daten auf die p m# schreiben
+    except IOError as exc:
+        print(f"Es gab ein Problem beim Lesen der Datei '{datei_namen}': {exc}")
         datei_inhalt = ""
-    except Exception as e:
+    except Exception as exc:
         print(
-            f"Es gab einen unbekannten Fehler beim Lesen der Datei '{datei_namen}': {e}"
+            f"Es gab einen unbekannten Fehler beim Lesen der Datei '{datei_namen}': {exc}"
         )
         datei_inhalt = ""
     return datei_inhalt

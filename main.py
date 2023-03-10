@@ -13,14 +13,14 @@ while True:
     )
     if eingabe_benutzer.lower() == "u":
         print(lese_datei("englischer_text.txt"))
-        anweisung = (
+        ANWEISUNG = (
             "Translate this into German:\n\n"
             + lese_datei("englischer_text.txt")
             + "\n\n"
         )
-        antwort = chat(anweisung, MODEL)
-        print(f"\n{antwort}")
-        schreibe_datei("deutscher_text.txt", antwort)
+        ANTWORT = chat(ANWEISUNG, MODEL)
+        print(f"\n{ANTWORT}")
+        schreibe_datei("deutscher_text.txt", ANTWORT)
     elif eingabe_benutzer.lower() == "c":
         komm_chat()
     elif eingabe_benutzer.lower() == "t":
@@ -28,13 +28,13 @@ while True:
     elif eingabe_benutzer.lower() == "p":
         pruefe_py_gebaut(input("Skript Name?"))
     elif eingabe_benutzer.lower() == "f":
-        anweisung = input("Eingabe Frage")
-        antwort = chat(anweisung, MODEL)
+        ANWEISUNG = input("Eingabe Frage")
+        ANTWORT = chat(ANWEISUNG, MODEL)
     elif eingabe_benutzer.lower() == "e":
-        anweisung = input("Welche Datei")
-        anweisung = "Erkläre die Funktion des Codes. \n" + lese_datei(anweisung)
-        print(anweisung)
-        antwort = chat(anweisung, MODEL)
+        ANWEISUNG = input("Welche Datei")
+        ANWEISUNG = "Erkläre die Funktion des Codes. \n" + lese_datei(ANWEISUNG)
+        print(ANWEISUNG)
+        ANTWORT = chat(ANWEISUNG, MODEL)
     elif eingabe_benutzer.lower() == "x":
         break
     else:
