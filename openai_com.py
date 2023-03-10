@@ -10,6 +10,12 @@ from models.functions import pruefe_py_gebaut
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+# from transformers import AutoTokenizer
+# gpt2_tokenizer = AutoTokenizer.from_pretrained("gpt2", use_fast=True)
+#
+# text_in = "bla bla"
+# tokens = gpt2_tokenizer.tokenize(text_in)
+
 
 def chat(anweisung, model, max_tokens):
     zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
@@ -18,7 +24,7 @@ def chat(anweisung, model, max_tokens):
         model=model,
         prompt=anweisung,
         temperature=0.9,
-        max_tokens=max_tokens,
+        max_tokens=2150,  #  max_tokens,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0.6,
@@ -34,7 +40,7 @@ def erzeuge_unittest(skript_quelle: str, model):
     funktion = "Schreibe zu der Funktion einen Unittest der in einem extra Datei ist."
     anweisung = f"{funktion}\n\n==== Python-Code ====\n\nPython-Code:\n{datei_inhalt}"
     print(f"anweisung gpt:{anweisung}")
-    antwort = chat(anweisung, model, 1024)
+    antwort = chat(anweisung, model, 4095)
     print(f"Der geänderte Inhalt ist: {antwort}")
     try:
         with open("test/test_" + skript_quelle, "w", encoding="utf-8") as file:
@@ -47,5 +53,5 @@ def erzeuge_unittest(skript_quelle: str, model):
         print("")
         return
     pruefe_py_gebaut("test/test_" + skript_quelle)
-    print(f"Die {skript_quelle}")
     print(f"geänderte Funktion: {funktion}")
+    print(f"prüfe in der test/test_{skript_quelle}")

@@ -2,7 +2,7 @@ from gpt3 import gpt3
 
 
 def komm_chat():
-    prompt = """Human: Erkläre alles auf deutsch
+    prompt = """Human: Erkläre alles auf Deutsch
 AI: 
 Human:"""
     while True:

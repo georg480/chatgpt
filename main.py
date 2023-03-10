@@ -17,7 +17,7 @@ while True:
             + lese_datei("englischer_text.txt")
             + "\n\n"
         )
-        antwort = chat(anweisung, MODEL, 1024)
+        antwort = chat(anweisung, MODEL)
         print(f"\n{antwort}")
         schreibe_datei("deutscher_text.txt", antwort)
     elif eingabe_benutzer.lower() == "c":
@@ -26,12 +26,12 @@ while True:
         erzeuge_unittest(input("Skript Name?"), MODEL)
     elif eingabe_benutzer.lower() == "f":
         anweisung = input("Eingabe Frage")
-        antwort = chat(anweisung, MODEL, 150)
+        antwort = chat(anweisung, MODEL)
     elif eingabe_benutzer.lower() == "e":
         anweisung = input("Welche Datei")
         anweisung = "Ekläre was der Code macht! \n" + lese_datei(anweisung)
         print(anweisung)
-        antwort = chat(anweisung, MODEL, 1024)
+        antwort = chat(anweisung, MODEL)
     elif eingabe_benutzer.lower() == "x":
         break
     else:

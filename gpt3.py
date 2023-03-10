@@ -3,13 +3,9 @@ import os
 import openai
 from dotenv import load_dotenv
 
-from transformers import AutoTokenizer
-
-gpt2_tokenizer = AutoTokenizer.from_pretrained("gpt2", use_fast=True)
-
-text_in = "bla bla"
-tokens = gpt2_tokenizer.tokenize(text_in)
-print(tokens)
+# from transformers import AutoTokenizer
+#
+# gpt2_tokenizer = AutoTokenizer.from_pretrained("gpt2", use_fast=True)
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -18,7 +14,6 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 def gpt3(
     prompt,
     engine="text-davinci-003",
-    response_length=200,
     temperature=0.7,
     top_p=1,
     frequency_penalty=0,
@@ -30,7 +25,7 @@ def gpt3(
     response = openai.Completion.create(
         prompt=prompt + start_text,
         engine=engine,
-        max_tokens=response_length,
+        max_tokens=2150,
         temperature=temperature,
         top_p=top_p,
         frequency_penalty=frequency_penalty,

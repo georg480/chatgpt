@@ -2,11 +2,6 @@ import subprocess
 
 
 def pruefe_py_gebaut(skript_name: str):
-    """
-
-    :param skript_name:
-    :type skript_name:
-    """
     subprocess.call("isort .", shell=True)
     subprocess.call("black .", shell=True)
     subprocess.call("pylint " + skript_name, shell=True)
