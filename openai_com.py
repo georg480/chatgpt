@@ -40,7 +40,7 @@ def erzeuge_unittest(skript_quelle: str, model):
     funktion = "Schreibe zu der Funktion einen Unittest der in einem extra Datei ist."
     anweisung = f"{funktion}\n\n==== Python-Code ====\n\nPython-Code:\n{datei_inhalt}"
     print(f"anweisung gpt:{anweisung}")
-    antwort = chat(anweisung, model, 4095)
+    antwort = chat(anweisung, model)
     print(f"Der geänderte Inhalt ist: {antwort}")
     try:
         with open("test/test_" + skript_quelle, "w", encoding="utf-8") as file:
