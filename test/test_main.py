@@ -1,9 +1,7 @@
-import os
+import main
 import unittest
 from io import StringIO
 from unittest.mock import patch
-
-import main
 
 
 class TestMain(unittest.TestCase):
