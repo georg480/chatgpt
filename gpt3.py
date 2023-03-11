@@ -25,7 +25,7 @@ def gpt3(
     response = openai.Completion.create(
         prompt=prompt + start_text,
         engine=engine,
-        max_tokens=512, # 2150,
+        max_tokens=512,  # 2150,
         temperature=temperature,
         top_p=top_p,
         frequency_penalty=frequency_penalty,
