@@ -1,41 +1,50 @@
 import os
+import unittest
+from unittest.mock import patch
+from io import StringIO
 
-from komm_chat import komm_chat
-from models.dateien import lese_datei, schreibe_datei
-from models.functions import pruefe_py_gebaut
-from openai_com import chat, erzeuge_unittest
+import main
 
-MODEL = "text-davinci-003"
 
-while True:
-    eingabe_benutzer = input(
-        "Eingabe c(chat), e(erkl.Code), f(Frage), p(prü), t(Unittest), u(E->D), x"
-    )
-    if eingabe_benutzer.lower() == "u":
-        print(lese_datei("englischer_text.txt"))
-        ANWEISUNG = (
-                "Translate this into German:\n\n"
-                + lese_datei("englischer_text.txt")
-                + "\n\n"
-        )
-        ANTWORT = chat(ANWEISUNG, MODEL)
-        print(f"\n{ANTWORT}")
-        schreibe_datei("deutscher_text.txt", ANTWORT)
-    elif eingabe_benutzer.lower() == "c":
-        komm_chat()
-    elif eingabe_benutzer.lower() == "t":
-        erzeuge_unittest(input("Skript Name?"), MODEL)
-    elif eingabe_benutzer.lower() == "p":
-        pruefe_py_gebaut(input("Skript Name?"))
-    elif eingabe_benutzer.lower() == "f":
-        ANWEISUNG = input("Eingabe Frage")
-        ANTWORT = chat(ANWEISUNG, MODEL)
-    elif eingabe_benutzer.lower() == "e":
-        ANWEISUNG = input("Welche Datei")
-        ANWEISUNG = "Erkläre die Funktion des Codes. \n" + lese_datei(ANWEISUNG)
-        print(ANWEISUNG)
-        ANTWORT = chat(ANWEISUNG, MODEL)
-    elif eingabe_benutzer.lower() == "x":
-        break
-    else:
-        print(eingabe_benutzer)
+class TestMain(unittest.TestCase):
+    def test_komm_chat(self):
+        with patch("builtins.input", side_effect=["Hallo", "x"]):
+            with patch("sys.stdout", new=StringIO()) as fake_output:
+                main.komm_chat()
+                self.assertEqual(
+                    fake_output.getvalue().strip(),
+                    "Bot: Hallo!\nBot: Was kann ich für dich tun?",
+                )
+
+    def test_erzeuge_unittest(self):
+        with patch("builtins.input", return_value="test/test_script.py"):
+            with patch("openai.Completion.create") as mock_create:
+                mock_create.return_value = {
+                    "choices": [
+                        {
+                            "text": "Python-Code: import unittest\n\n\nclass Test(unittest.TestCase):\n    def test_add(self):\n        self.assertEqual(add(2, 2), 4)"
+                        }
+                    ]
+                }
+                main.erzeuge_unittest("test/test_script.py", "test-model")
+                with open("test/test_script_test.py", "r") as f:
+                    test_file_content = f.read()
+                    self.assertEqual(
+                        test_file_content.strip(),
+                        "import unittest\n\n\nclass Test(unittest.TestCase):\n    def test_add(self):\n        self.assertEqual(add(2, 2), 4)",
+                    )
+
+    def test_pruefe_py_gebaut(self):
+        with patch("builtins.input", return_value="test/test_script.py"):
+            with patch("os.system") as mock_os:
+                main.pruefe_py_gebaut("test/test_script.py")
+                mock_os.assert_called_once_with("python -m py_compile test/test_script.py")
+
+    def test_fragen_chat(self):
+        with patch("builtins.input", return_value="Was ist Python?"):
+            with patch("openai.Completion.create") as mock_create:
+                mock_create.return_value = {
+                    "choices": [{"text": "Python ist eine Programmiersprache."}]
+                }
+                antwort = main.fragen_chat()
+                self.assertEqual(antwort, "Python ist eine Programmiersprache.")
