@@ -1,54 +1,21 @@
-import os
 import unittest
 from unittest.mock import patch
-
-import openai
-from dotenv import load_dotenv
-
-from openai_com import erzeuge_unittest
+from io import StringIO
+from komm_chat import komm_chat
 
 
-class TestOpenAI(unittest.TestCase):
-    @patch("openai.Completion.create")
-    @patch("openai_com.chat")
-    @patch("openai_com.schreibe_protokol")
-    def test_erzeuge_unittest(
-        self, mock_schreibe_protokol, mock_chat, mock_completion_create
-    ):
-        mock_chat.return_value = "Python-Code: def add(a, b):\n    return a + b\n"
-        mock_response = {
-            "choices": [
-                {
-                    "text": "Python-Code: import unittest\n\ndef test_add():\n    assert add(1, 2) == 3\n"
-                }
-            ]
-        }
-        mock_completion_create.return_value = mock_response
-
-        skript_quelle = r"C:\Users\georg\Seafile\Meine Bibliothek-008100\Dokumente\documents\programmieren\PycharmProjects\chatgpt\main.py"
-        model = "text-davinci-003"
-
-        load_dotenv()
-        openai.api_key = os.getenv("OPENAI_API_KEY")
-
-        erzeuge_unittest(skript_quelle, model)
-
-        mock_chat.assert_called_with(
-            "Schreibe zu der Funktion einen Unittest der in einem extra Datei ist.\n\n==== Python-Code ====\n\nPython-Code:\n['import os\\n', 'import sys\\n', 'from typing import List\\n', '\\n', 'def add(a: int, b: int) -> int:\\n', '    return a + b\\n']"
-        )
-        mock_completion_create.assert_called_with(
-            model=model,
-            prompt="Schreibe zu der Funktion einen Unittest der in einem extra Datei ist.\n\n==== Python-Code ====\n\nPython-Code:\n['import os\\n', 'import sys\\n', 'from typing import List\\n', '\\n', 'def add(a: int, b: int) -> int:\\n', '    return a + b\\n']",
-            temperature=0.9,
-            max_tokens=2150,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0.6,
-        )
-
-        with open("test/test_functions.py", "r") as f:
-            test_file_content = f.read()
-            self.assertEqual(
-                test_file_content.strip(),
-                "import unittest\ndef test_add():\n    assert add(1, 2) == 3",
-            )
+class TestKommChat(unittest.TestCase):
+    def test_chat(self):
+        test_input = ["Hallo", "Kannst du mir das Wetter sagen?", "Auf Wiedersehen"]
+        expected_output = [
+            "GPT-3:Guten Tag, wie kann ich Ihnen helfen?",
+            "GPT-3:Ja, in welcher Stadt möchten Sie das Wetter wissen?",
+            "GPT-3:Das Wetter in Berlin ist sonnig bei einer Temperatur von 22 Grad Celsius.",
+            "GPT-3:Gibt es noch etwas, bei dem ich helfen kann?",
+            "GPT-3:Auf Wiedersehen!",
+        ]
+        with patch("sys.stdout", new=StringIO()) as fake_output:
+            with patch("builtins.input", side_effect=test_input):
+                komm_chat()
+        actual_output = fake_output.getvalue().strip().split("\n")
+        self.assertEqual(actual_output, expected_output)
