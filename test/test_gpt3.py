@@ -2,8 +2,6 @@ import os
 import unittest
 from unittest.mock import patch
 
-from dotenv import load_dotenv
-
 from gpt3 import gpt3
 
 
@@ -11,7 +9,6 @@ class TestGpt3(unittest.TestCase):
     @patch("models.gpt3.openai.Completion.create")
     @patch("models.gpt3.os.getenv")
     def test_gpt3(self, mock_getenv, mock_completion_create):
-        load_dotenv()
         mock_getenv.return_value = os.getenv("OPENAI_API_KEY")
         mock_response = {
             "choices": [{"text": "This is a test response."}],

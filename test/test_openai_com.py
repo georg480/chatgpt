@@ -2,9 +2,7 @@ import os
 from unittest import TestCase, mock
 
 import openai
-from dotenv import load_dotenv
 
-load_dotenv()
 from openai_com import erzeuge_unittest
 
 

@@ -2,12 +2,10 @@ import os
 from datetime import datetime
 
 import openai
-from dotenv import load_dotenv
 
 from models.dateien import schreibe_protokol
 from models.functions import pruefe_py_gebaut
 
-load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # from transformers import AutoTokenizer
