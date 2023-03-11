@@ -1,6 +1,7 @@
 import unittest
-from unittest.mock import patch
 from io import StringIO
+from unittest.mock import patch
+
 from komm_chat import komm_chat
 
 
