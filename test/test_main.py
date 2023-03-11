@@ -1,7 +1,7 @@
 import os
 import unittest
-from unittest.mock import patch
 from io import StringIO
+from unittest.mock import patch
 
 import main
 
@@ -38,7 +38,9 @@ class TestMain(unittest.TestCase):
         with patch("builtins.input", return_value="test/test_script.py"):
             with patch("os.system") as mock_os:
                 main.pruefe_py_gebaut("test/test_script.py")
-                mock_os.assert_called_once_with("python -m py_compile test/test_script.py")
+                mock_os.assert_called_once_with(
+                    "python -m py_compile test/test_script.py"
+                )
 
     def test_fragen_chat(self):
         with patch("builtins.input", return_value="Was ist Python?"):

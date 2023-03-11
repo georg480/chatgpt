@@ -1,6 +1,10 @@
 import os
 from unittest import TestCase, mock
 
+import openai
+from dotenv import load_dotenv
+
+load_dotenv()
 from openai_com import erzeuge_unittest
 
 
@@ -12,9 +16,10 @@ class TestOpenAI(TestCase):
             "    def test_my_function(self):\n"
             "        self.assertEqual(1 + 1, 2)\n"
         )
+        openai.api_key = os.getenv("OPENAI_API_KEY")
 
-        skript_quelle = "main.py"
-        model = "text-davinci-002"
+        skript_quelle = "komm_unittest.py"
+        model = "text-davinci-003"
 
         erzeuge_unittest(skript_quelle, model)
 
@@ -24,9 +29,9 @@ class TestOpenAI(TestCase):
             "        self.assertEqual(1 + 1, 2)\n"
         )
 
-        with open(f"test/test_{skript_quelle}", "r") as f:
+        with open(f"test/test_{skript_quelle}.py", "r") as f:
             actual_content = f.read()
 
-        os.remove(f"test/test_{skript_quelle}")
+        os.remove(f"test/test_{skript_quelle}.py")
 
         self.assertEqual(actual_content, expected_content)
