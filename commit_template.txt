@@ -1,0 +1,11 @@
+Author: <author>
+
+Date: <hier das Datum einfügen>
+
+Files modified: <hier die Dateien einfügen, die geändert wurden>
+
+Short summary: <hier eine kurze Zusammenfassung der Änderungen einfügen>
+
+Detailed description: <hier eine detaillierte Beschreibung der Änderungen einfügen>
+
+Issue: <hier die Nummer des Issue einfügen, das mit den Änderungen zusammenhängt>
