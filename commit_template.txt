@@ -1,11 +1,16 @@
-Author: <author>
+Hallo Max Mustermann,
 
-Date: <hier das Datum einfÃ¼gen>
+Ich hoffe, es geht Ihnen gut. Hier ist eine Zusammenfassung Ihrer Bestellung:
 
-Files modified: <hier die Dateien einfÃ¼gen, die geÃ¤ndert wurden>
 
-Short summary: <hier eine kurze Zusammenfassung der Ã„nderungen einfÃ¼gen>
+2x Produkt A (10 Euro pro Stück)
 
-Detailed description: <hier eine detaillierte Beschreibung der Ã„nderungen einfÃ¼gen>
+1x Produkt B (5 Euro pro Stück)
 
-Issue: <hier die Nummer des Issue einfÃ¼gen, das mit den Ã„nderungen zusammenhÃ¤ngt>
+3x Produkt C (8 Euro pro Stück)
+
+
+Vielen Dank für Ihre Bestellung!
+
+Mit freundlichen Grüßen,
+Ihr Name
