@@ -2,13 +2,32 @@ import os
 
 import openai
 
-openai.organization = "org-aZJYYbwBAZnSsMCJnwvKgGAL"
-print(os.getenv("OPENAI_API_KEY"))
+openai.organization = os.getenv("OPENAI_API_ORG_KEY")
 openai.api_key = os.getenv("OPENAI_API_KEY")
-# openai.Model.list()
+openai.Model.list()
 
 print(list)
 
+import os
+
+import openai
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.Model.retrieve("text-davinci-003")
+
+
+import os
+
+import openai
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+antwort = openai.Completion.create(
+    model="davinci", prompt="Say this is a test", max_tokens=7, temperature=0
+)
+print(antwort)
+
+#
+#
 # import os
 # import openai
 #

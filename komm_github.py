@@ -10,10 +10,10 @@ order = [
 your_name = "Ihr Name"
 
 # Erstellen Sie die Jinja2-Umgebung und laden Sie die Template-Datei
-env = Environment(loader=FileSystemLoader('.'))
-template = env.get_template('template.j2')
+env = Environment(loader=FileSystemLoader("."))
+template = env.get_template("template.j2")
 
 # Rendern Sie das Template mit den Variablen und speichern Sie es in einer Datei
 output = template.render(name=name, order=order, your_name=your_name)
-with open('commit_template.txt', 'w') as file:
+with open("commit_template.txt", "w") as file:
     file.write(output)

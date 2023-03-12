@@ -6,6 +6,7 @@ import openai
 #
 # gpt2_tokenizer = AutoTokenizer.from_pretrained("gpt2", use_fast=True)
 openai.api_key = os.getenv("OPENAI_API_KEY")
+print(os.getenv("OPENAI_API_KEY"))
 
 
 def gpt3(
