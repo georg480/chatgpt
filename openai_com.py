@@ -7,7 +7,7 @@ from models.dateien import schreibe_protokol
 from models.functions import pruefe_py_gebaut
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-print(os.getenv("OPENAI_API_KEY"))
+
 # from transformers import AutoTokenizer
 # gpt2_tokenizer = AutoTokenizer.from_pretrained("gpt2", use_fast=True)
 #
@@ -15,14 +15,14 @@ print(os.getenv("OPENAI_API_KEY"))
 # tokens = gpt2_tokenizer.tokenize(text_in)
 
 
-def chat(anweisung, model):
+def chat(anweisung, model, max_laenge):
     zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
     schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
     antwort = openai.Completion.create(
         model=model,
         prompt=anweisung,
         temperature=0.9,
-        max_tokens=2150,  #  max_tokens,
+        max_tokens=max_laenge,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0.6,

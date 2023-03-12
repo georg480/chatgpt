@@ -5,7 +5,7 @@ from models.dateien import lese_datei, schreibe_datei
 from models.functions import pruefe_py_gebaut
 from openai_com import chat, erzeuge_unittest
 
-MODEL = "text-davinci-003"
+MODEL = "davinci"
 
 while True:
     eingabe_benutzer = input(
@@ -18,7 +18,7 @@ while True:
             + lese_datei("englischer_text.txt")
             + "\n\n"
         )
-        ANTWORT = chat(ANWEISUNG, MODEL)
+        ANTWORT = chat(ANWEISUNG, MODEL, 2035)
         print(f"\n{ANTWORT}")
         schreibe_datei("deutscher_text.txt", ANTWORT)
     elif eingabe_benutzer.lower() == "c":
@@ -29,12 +29,12 @@ while True:
         pruefe_py_gebaut(input("Skript Name?"))
     elif eingabe_benutzer.lower() == "f":
         ANWEISUNG = input("Eingabe Frage")
-        ANTWORT = chat(ANWEISUNG, MODEL)
+        ANTWORT = chat(ANWEISUNG, MODEL, 2035)
     elif eingabe_benutzer.lower() == "e":
         ANWEISUNG = input("Welche Datei")
         ANWEISUNG = "Erkläre die Funktion des Codes. \n" + lese_datei(ANWEISUNG)
         print(ANWEISUNG)
-        ANTWORT = chat(ANWEISUNG, MODEL)
+        ANTWORT = chat(ANWEISUNG, MODEL, 2035)
     elif eingabe_benutzer.lower() == "x":
         break
     else:
