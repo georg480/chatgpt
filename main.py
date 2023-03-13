@@ -1,6 +1,7 @@
 import os
 
 from komm_chat import komm_chat
+from komm_revchatgpt import chat
 from models.dateien import lese_datei, schreibe_datei
 from models.functions import pruefe_py_gebaut
 from openai_com import chat, erzeuge_unittest
