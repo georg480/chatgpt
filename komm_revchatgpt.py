@@ -58,8 +58,9 @@ def erzeuge_unittest(skript_quelle: str, model):
         [x["text"] if "text" in x else x["message"] for x in antwort],
         key=lambda x: len(x),
     )
-    schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
     print(f"Antwort: {sorted_messages[-1]}")
+    antwort = sorted_messages[-1]
+    schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
 
     print(f"Der geänderte Inhalt ist: {antwort}")
     try:
