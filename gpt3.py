@@ -2,9 +2,6 @@ import os
 
 import openai
 
-# from transformers import AutoTokenizer
-#
-# gpt2_tokenizer = AutoTokenizer.from_pretrained("gpt2", use_fast=True)
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 

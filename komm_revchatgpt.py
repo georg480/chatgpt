@@ -1,48 +1,35 @@
 import json
+import os
 from datetime import datetime
 
+import openai
 from revChatGPT.V1 import Chatbot
 
 from models.dateien import schreibe_protokol
+from models.functions import pruefe_py_gebaut
 
 conf = json.load(open("chatgpt.json"))
-conf["model"] = "text-davinci-003"
 
-chatbot = Chatbot(conf, conversation_id=None, parent_id=None)
+uuid = None
+
+chatbot = Chatbot(config=conf, conversation_id=uuid, parent_id=uuid)
 # anweisung = input("Stellen Sie eine Frage: ")
 # antwort = list(chatbot.ask(anweisung))
-# sorted_messages = sorted([x['text'] if 'text' in x else x['message'] for x in antwort], key=lambda x: len(x))
-# print(sorted_messages[-1])
+# antwort = antwort[-1]['message']
+# print(antwort)
 
 
 def chat(anweisung, model, max_laenge):
     zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
     schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
     antwort = list(chatbot.ask(anweisung))
-    sorted_messages = sorted(
-        [x["text"] if "text" in x else x["message"] for x in antwort],
-        key=lambda x: len(x),
-    )
+    antwort = antwort[-1]["message"]
     schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
-    print(f"Antwort: {sorted_messages[-1]}")
-    return sorted_messages[-1]
+    print(f"Antwort: {antwort}")
+    return antwort
 
-
-import os
-from datetime import datetime
-
-import openai
-
-from models.dateien import schreibe_protokol
-from models.functions import pruefe_py_gebaut
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-
-# from transformers import AutoTokenizer
-# gpt2_tokenizer = AutoTokenizer.from_pretrained("gpt2", use_fast=True)
-#
-# text_in = "bla bla"
-# tokens = gpt2_tokenizer.tokenize(text_in)
 
 
 def erzeuge_unittest(skript_quelle: str, model):
@@ -54,14 +41,9 @@ def erzeuge_unittest(skript_quelle: str, model):
     zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
     schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
     antwort = list(chatbot.ask(anweisung))
-    sorted_messages = sorted(
-        [x["text"] if "text" in x else x["message"] for x in antwort],
-        key=lambda x: len(x),
-    )
-    print(f"Antwort: {sorted_messages[-1]}")
-    antwort = sorted_messages[-1]
+    antwort = antwort[-1]["message"]
+    #    print(f"Antwort: {antwort}")
     schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
-
     print(f"Der geänderte Inhalt ist: {antwort}")
     try:
         with open("test/test_" + skript_quelle, "w", encoding="utf-8") as file:

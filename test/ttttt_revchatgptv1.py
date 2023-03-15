@@ -11,8 +11,7 @@ import os.path as osp
 import time
 import uuid
 from functools import wraps
-from os import environ
-from os import getenv
+from os import environ, getenv
 
 import requests
 from httpx import AsyncClient
@@ -50,7 +49,7 @@ def logger(is_timed: bool):
                     func.__name__,
                     out,
                     end - start,
-                    )
+                )
             else:
                 log.debug("Exiting %s with return value %s", func.__name__, out)
 
@@ -95,12 +94,12 @@ class Chatbot:
 
     @logger(is_timed=True)
     def __init__(
-            self,
-            config: dict[str, str],
-            conversation_id: str | None = None,
-            parent_id: str | None = None,
-            session_client=None,
-            lazy_loading: bool = False,
+        self,
+        config: dict[str, str],
+        conversation_id: str | None = None,
+        parent_id: str | None = None,
+        session_client=None,
+        lazy_loading: bool = False,
     ) -> None:
         user_home = getenv("HOME")
         if user_home is None:
@@ -245,7 +244,7 @@ class Chatbot:
     @logger(is_timed=True)
     def __login(self):
         if (
-                "email" not in self.config or "password" not in self.config
+            "email" not in self.config or "password" not in self.config
         ) and "session_token" not in self.config:
             log.error("Insufficient login details provided!")
             raise Exception("Insufficient login details provided!")
@@ -272,11 +271,11 @@ class Chatbot:
 
     @logger(is_timed=True)
     def ask(
-            self,
-            prompt: str,
-            conversation_id: str | None = None,
-            parent_id: str | None = None,
-            timeout: float = 360,
+        self,
+        prompt: str,
+        conversation_id: str | None = None,
+        parent_id: str | None = None,
+        timeout: float = 360,
     ):
         """
         Ask a question to the chatbot
@@ -383,8 +382,8 @@ class Chatbot:
             if not self.__check_fields(line):
                 log.error("Field missing", exc_info=True)
                 if (
-                        line.get("detail")
-                        == "Too many requests in 1 hour. Try again later."
+                    line.get("detail")
+                    == "Too many requests in 1 hour. Try again later."
                 ):
                     log.error("Rate limit exceeded")
                     raise Error(source="ask", message=line.get("detail"), code=2)
@@ -439,10 +438,10 @@ class Chatbot:
 
     @logger(is_timed=True)
     def get_conversations(
-            self,
-            offset: int = 0,
-            limit: int = 20,
-            encoding: str | None = None,
+        self,
+        offset: int = 0,
+        limit: int = 20,
+        encoding: str | None = None,
     ):
         """
         Get conversations
@@ -482,7 +481,7 @@ class Chatbot:
             data=json.dumps(
                 {"message_id": message_id, "model": "text-davinci-002-render"},
             ),
-            )
+        )
         self.__check_response(response)
 
     @logger(is_timed=True)
@@ -550,10 +549,10 @@ class AsyncChatbot(Chatbot):
     """
 
     def __init__(
-            self,
-            config,
-            conversation_id=None,
-            parent_id=None,
+        self,
+        config,
+        conversation_id=None,
+        parent_id=None,
     ) -> None:
         super().__init__(
             config=config,
@@ -563,11 +562,11 @@ class AsyncChatbot(Chatbot):
         )
 
     async def ask(
-            self,
-            prompt,
-            conversation_id=None,
-            parent_id=None,
-            timeout=360,
+        self,
+        prompt,
+        conversation_id=None,
+        parent_id=None,
+        timeout=360,
     ):
         """
         Ask a question to the chatbot
@@ -609,10 +608,10 @@ class AsyncChatbot(Chatbot):
         self.parent_id_prev_queue.append(data["parent_message_id"])
 
         async with self.session.stream(
-                method="POST",
-                url=BASE_URL + "api/conversation",
-                data=json.dumps(data),
-                timeout=timeout,
+            method="POST",
+            url=BASE_URL + "api/conversation",
+            data=json.dumps(data),
+            timeout=timeout,
         ) as response:
             self.__check_response(response)
             async for line in response.aiter_lines():
