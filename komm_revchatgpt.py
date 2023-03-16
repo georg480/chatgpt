@@ -1,5 +1,6 @@
 import json
 import os
+import glob
 from datetime import datetime
 
 import openai
@@ -85,7 +86,20 @@ def erzeuge_unittest(skript_quelle: str, model):
     print(f"prüfe in der test/test_{skript_quelle}")
 
 def erzeuge_uml():
-    # anweisung = f"{funktion}\n\n==== Python-Code ====\n\nPython-Code:\n{datei_inhalt}"
+    python_files = glob.glob("**/*.py", recursive=True)
+    #print(python_files)
+    for skript_quelle in python_files:
+        with open(skript_quelle, "r", encoding="utf-8") as file:
+            datei_inhalt = file.readlines()
+        funktion = "Schreibe den Dateinamen zurück."
+        anweisung = f"{funktion}\nDateiname: {skript_quelle}\nPython-Code:\n{datei_inhalt}"
+        print(f"anweisung gpt:{anweisung}")
+        zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
+        schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
+        antwort = list(chatbot.ask(anweisung))
+        antwort = antwort[-1]["message"]
+        print(antwort)
+        # anweisung = f"{funktion}\n\n==== Python-Code ====\n\nPython-Code:\n{datei_inhalt}"
     anweisung = "Erstelle ein UML Ablaufdiagramm des Gesamten prompt. gebe das ganze als Markdown aus."
     print(f"anweisung gpt:{anweisung}")
     zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
