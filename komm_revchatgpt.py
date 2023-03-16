@@ -83,3 +83,60 @@ def erzeuge_unittest(skript_quelle: str, model):
     pruefe_py_gebaut("test/test_" + skript_quelle)
     print(f"geänderte Funktion: {funktion}")
     print(f"prüfe in der test/test_{skript_quelle}")
+
+def erzeuge_uml():
+    # anweisung = f"{funktion}\n\n==== Python-Code ====\n\nPython-Code:\n{datei_inhalt}"
+    anweisung = "Erstelle ein UML Ablaufdiagramm des Gesamten prompt. gebe das ganze als Markdown aus."
+    print(f"anweisung gpt:{anweisung}")
+    zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
+    schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
+    antwort = list(chatbot.ask(anweisung))
+    antwort = antwort[-1]["message"]
+    schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
+    print(f"Der geänderte Inhalt ist: {antwort}")
+    try:
+        with open("ablauf_diagramm.md", "w", encoding="utf-8") as file:
+            lines = antwort[antwort.index("```"): antwort.rindex("```")]
+            for line in lines.split("\\n', '"):
+                print(line + "\n")
+                file.write(line + "\n")
+            print(f"Name des neuen ablauf_diagramm.md")
+    except Exception as exc:
+        print(f"Name des neuen ablauf_diagramm.md: {exc}")
+        return
+    anweisung = "Erstelle ein UML Sequenzdiagramm des Gesamten prompt. gebe das ganze als Markdown aus."
+    print(f"anweisung gpt:{anweisung}")
+    zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
+    schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
+    antwort = list(chatbot.ask(anweisung))
+    antwort = antwort[-1]["message"]
+    schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
+    print(f"Der geänderte Inhalt ist: {antwort}")
+    try:
+        with open("sequenz_diagramm.md", "w", encoding="utf-8") as file:
+            lines = antwort[antwort.index("```"): antwort.rindex("```")]
+            for line in lines.split("\\n', '"):
+                print(line + "\n")
+                file.write(line + "\n")
+            print(f"Name des neuen sequenz_diagramm.md")
+    except Exception as exc:
+        print(f"Name des neuen sequenz_diagramm.md: {exc}")
+        return
+    anweisung = "Erstelle ein UML Klassendiagramm des Gesamten prompt. gebe das ganze als Markdown aus."
+    print(f"anweisung gpt:{anweisung}")
+    zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
+    schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
+    antwort = list(chatbot.ask(anweisung))
+    antwort = antwort[-1]["message"]
+    schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
+    print(f"Der geänderte Inhalt ist: {antwort}")
+    try:
+        with open("klassen_diagramm.md", "w", encoding="utf-8") as file:
+            lines = antwort[antwort.index("```"): antwort.rindex("```")]
+            for line in lines.split("\\n', '"):
+                print(line + "\n")
+                file.write(line + "\n")
+            print(f"Name des neuen klassen_diagramm.md")
+    except Exception as exc:
+        print(f"Name des neuen klassen_diagramm.md: {exc}")
+        return

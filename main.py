@@ -1,7 +1,7 @@
 import os
 
 from komm_chat import komm_chat
-from komm_revchatgpt import chat, erzeuge_unittest
+from komm_revchatgpt import chat, erzeuge_unittest, erzeuge_uml
 from models.dateien import lese_datei, schreibe_datei
 from models.functions import pruefe_py_gebaut
 
@@ -9,7 +9,7 @@ MODEL = "davinci"
 
 while True:
     eingabe_benutzer = input(
-        "Eingabe c(chat), e(erkl.Code), f(Frage), p(prü), t(Unittest), u(E->D), x"
+        "Eingabe a(abl), e(erkl.Code), f(Frage), p(prü), t(Unittest), u(E->D), x"
     )
     if eingabe_benutzer.lower() == "u":
         print(lese_datei("englischer_text.txt"))
@@ -21,6 +21,8 @@ while True:
         ANTWORT = chat(ANWEISUNG, MODEL, 2035)
         print(f"\n{ANTWORT}")
         schreibe_datei("deutscher_text.txt", ANTWORT)
+    elif eingabe_benutzer.lower() == "a":
+        erzeuge_uml()
     elif eingabe_benutzer.lower() == "c":
         komm_chat()
     elif eingabe_benutzer.lower() == "t":
