@@ -25,4 +25,3 @@ Gib "x" als Benutzereingabe ein
 Überprüfe, ob das Programm beendet wird
 
 Durch diese Tests kann man sicherstellen, dass das Programm in den meisten Fällen korrekt funktioniert.
-https://drive.google.com/file/d/1N09DMuhpomICgqzFkPvIAjbSyJMQ4oET/view?usp=sharing
