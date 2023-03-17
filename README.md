@@ -1,27 +1,20 @@
 # chatgpt
-Da die main.py eine Nutzereingabe erwartet und die Ausgabe auf die Konsole erfolgt, ist es schwierig, eine automatisierte Unittests zu schreiben. Stattdessen könnte man jedoch manuelle Tests durchführen, indem man verschiedene Eingaben simuliert und die Ausgaben auf Korrektheit prüft. Zum Beispiel könnte man folgende Tests durchführen:
+Dieser Code ist ein Python-Skript, das eine Benutzeroberfläche für verschiedene Funktionen bereitstellt, die in anderen Modulen definiert sind. Die importierten Module sind:
 
-Teste, ob das Programm korrekt auf eine Übersetzungsanfrage reagiert:
+- `os`: bietet Funktionen zum Arbeiten mit dem Betriebssystem an
+- `komm_chat`: definiert eine Funktion `komm_chat()`, die einen Chatbot startet
+- `komm_revchatgpt`: definiert eine Funktion `chat_gpt_chat()`, die einen Chatbot startet, der auf OpenAI's GPT-3-Modell basiert, sowie zwei Funktionen zur Generierung von Diagrammen und Unittests
+- `models.dateien`: definiert Funktionen zum Lesen und Schreiben von Dateien
+- `models.functions`: definiert Hilfsfunktionen, die von anderen Modulen verwendet werden
 
-Gib "u" als Benutzereingabe ein
-Gib einen englischen Text ein
-Überprüfe, ob die Ausgabe eine korrekte Übersetzung des Textes ist
+Der Hauptteil des Skripts ist eine Schleife, die Benutzereingaben verarbeitet. Die verfügbaren Optionen sind:
 
-Teste, ob das Programm korrekt auf eine Erklärungsanfrage reagiert:
+- `a`: Erzeugt ein UML-Diagramm des Codes und speichert es als Bild
+- `c`: Startet den Kommunikations-Chatbot
+- `e`: Erklärt einen Codeausschnitt und gibt das Ergebnis als Markdown aus
+- `f`: Startet den GPT-3-Chatbot, um eine Frage zu beantworten
+- `p`: Überprüft, ob ein Python-Skript erfolgreich gebaut wurde
+- `t`: Generiert Unittests für ein Python-Skript und führt sie aus
+- `u`: Übersetzt einen Text aus einer Datei ins Deutsche mithilfe des GPT-3-Chatbots und speichert das Ergebnis in einer Datei
 
-Gib "e" als Benutzereingabe ein
-Gib den Quellcode des Codes ein, dessen Funktion erklärt werden soll
-Überprüfe, ob die Ausgabe eine korrekte Erklärung der Funktion des Codes ist
-
-Teste, ob das Programm korrekt auf eine allgemeine Frage reagiert:
-
-Gib "f" als Benutzereingabe ein
-Gib eine Frage ein
-Überprüfe, ob die Ausgabe eine korrekte Antwort auf die Frage ist
-
-Teste, ob das Programm korrekt auf das Beenden-Kommando reagiert:
-
-Gib "x" als Benutzereingabe ein
-Überprüfe, ob das Programm beendet wird
-
-Durch diese Tests kann man sicherstellen, dass das Programm in den meisten Fällen korrekt funktioniert.
+Die Funktionsweise des Skripts hängt von den importierten Modulen und den Details der definierten Funktionen ab, die hier nicht aufgeführt sind.
