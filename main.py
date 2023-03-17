@@ -1,7 +1,7 @@
 import os
 
 from komm_chat import komm_chat
-from komm_revchatgpt import chat, erzeuge_unittest, erzeuge_uml
+from komm_revchatgpt import chat, erzeuge_uml, erzeuge_unittest
 from models.dateien import lese_datei, schreibe_datei
 from models.functions import pruefe_py_gebaut
 
@@ -34,7 +34,10 @@ while True:
         ANTWORT = chat(ANWEISUNG, MODEL, 2035)
     elif eingabe_benutzer.lower() == "e":
         ANWEISUNG = input("Welche Datei")
-        ANWEISUNG = "Erkläre die Funktion des Codes. \n" + lese_datei(ANWEISUNG)
+        ANWEISUNG = (
+            "Kannst du bitte ein UML Ablaufdiagramm erstellen und das Ergebnis als Markdown ausgeben?\n"
+            + lese_datei(ANWEISUNG)
+        )
         print(ANWEISUNG)
         ANTWORT = chat(ANWEISUNG, MODEL, 2035)
     elif eingabe_benutzer.lower() == "x":

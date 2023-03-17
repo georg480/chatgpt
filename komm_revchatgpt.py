@@ -1,6 +1,6 @@
+import glob
 import json
 import os
-import glob
 from datetime import datetime
 
 import openai
@@ -11,13 +11,23 @@ from models.functions import pruefe_py_gebaut
 
 conf = json.load(open("chatgpt.json"))
 
-convo_id = "46f4b87e-8fcd-43fc-9b8d-97845fdc7f74"
-parent_id = "5d6b43fe-1042-428e-8614-4c476fd1c694"
+convo_id = None
+parent_id = None
 
 chatbot = Chatbot(config=conf, conversation_id=convo_id, parent_id=parent_id)
-# anweisung = input("Stellen Sie eine Frage: ") + ',"text-davinci-003", 4096'
+# anweisung = input("Stellen Sie eine Frage: ") + ', 2048'
 # print(anweisung)
-# antwort = list(chatbot.ask(anweisung))
+# try:
+#     antwort = list(chatbot.ask(anweisung))
+# except IOError as exc:
+#     print(f"Es gab ein Problem beim Lesen ")
+#     antwort = [{'message': 'N1'}, {'message': 'N2'}, {'message': 'N3'}]
+# except Exception as exc:
+#     print(
+#         f"Es gab einen unbekannten Fehler : {exc}"
+#     )
+#     antwort = [{'message': 'N1'}, {'message': 'N2'}, {'message': 'N3'}]
+#
 # print(f"antwort liste:{antwort}")
 # antwort = antwort[-1]['message']
 # print(antwort)
@@ -37,18 +47,18 @@ def chat(anweisung, model, max_laenge):
 
     get_msg_history = chatbot.get_msg_history(convo_id=convo_id, encoding=None)
     print(get_msg_history)
-#    id = antwort[-1]["id"]
- #   print(f"id: {id}")
-#    gen_title = chatbot.gen_title(convo_id=convo_id, message_id="TEST Titel")
-    #change_title= chatbot.change_title(convo_id=convo_id,title="Change")
-    #delete_conversation= chatbot.delete_conversation(convo_id=convo_id)
-    #print(f"delete_conversation: {delete_conversation}")
-    #clear_conversations=chatbot.clear_conversations()
-    #print(f"clear_conversations: {clear_conversations}")
-    #reset_chat = chatbot.reset_chat()
-    #print(f"reset_chat: {reset_chat}")
-    #rollback_conversation = chatbot.rollback_conversation(num=1)
-    #print(f"rollback_conversation: {rollback_conversation}")
+    #    id = antwort[-1]["id"]
+    #   print(f"id: {id}")
+    #    gen_title = chatbot.gen_title(convo_id=convo_id, message_id="TEST Titel")
+    # change_title= chatbot.change_title(convo_id=convo_id,title="Change")
+    # delete_conversation= chatbot.delete_conversation(convo_id=convo_id)
+    # print(f"delete_conversation: {delete_conversation}")
+    # clear_conversations=chatbot.clear_conversations()
+    # print(f"clear_conversations: {clear_conversations}")
+    # reset_chat = chatbot.reset_chat()
+    # print(f"reset_chat: {reset_chat}")
+    # rollback_conversation = chatbot.rollback_conversation(num=1)
+    # print(f"rollback_conversation: {rollback_conversation}")
     antwort = antwort[-1]["message"]
     schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
     print(f"Antwort: {antwort}")
@@ -85,72 +95,83 @@ def erzeuge_unittest(skript_quelle: str, model):
     print(f"geänderte Funktion: {funktion}")
     print(f"prüfe in der test/test_{skript_quelle}")
 
+
 def erzeuge_uml():
     python_files = glob.glob("**/*.py", recursive=True)
-    #print(python_files)
+    print(python_files)
     for skript_quelle in python_files:
-        with open(skript_quelle, "r", encoding="utf-8") as file:
-            datei_inhalt = file.readlines()
-        funktion = "Schreibe den Dateinamen zurück."
-        anweisung = f"{funktion}\nDateiname: {skript_quelle}\nPython-Code:\n{datei_inhalt}"
-        print(f"anweisung gpt:{anweisung}")
-        zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
-        schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
-        antwort = list(chatbot.ask(anweisung))
-        antwort = antwort[-1]["message"]
-        print(antwort)
-        # anweisung = f"{funktion}\n\n==== Python-Code ====\n\nPython-Code:\n{datei_inhalt}"
-    anweisung = "Erstelle ein UML Ablaufdiagramm des Gesamten prompt. gebe das ganze als Markdown aus."
-    print(f"anweisung gpt:{anweisung}")
-    zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
-    schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
-    antwort = list(chatbot.ask(anweisung))
-    antwort = antwort[-1]["message"]
-    schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
-    print(f"Der geänderte Inhalt ist: {antwort}")
-    try:
-        with open("ablauf_diagramm.md", "w", encoding="utf-8") as file:
-            lines = antwort[antwort.index("```"): antwort.rindex("```")]
-            for line in lines.split("\\n', '"):
-                print(line + "\n")
-                file.write(line + "\n")
-            print(f"Name des neuen ablauf_diagramm.md")
-    except Exception as exc:
-        print(f"Name des neuen ablauf_diagramm.md: {exc}")
-        return
-    anweisung = "Erstelle ein UML Sequenzdiagramm des Gesamten prompt. gebe das ganze als Markdown aus."
-    print(f"anweisung gpt:{anweisung}")
-    zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
-    schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
-    antwort = list(chatbot.ask(anweisung))
-    antwort = antwort[-1]["message"]
-    schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
-    print(f"Der geänderte Inhalt ist: {antwort}")
-    try:
-        with open("sequenz_diagramm.md", "w", encoding="utf-8") as file:
-            lines = antwort[antwort.index("```"): antwort.rindex("```")]
-            for line in lines.split("\\n', '"):
-                print(line + "\n")
-                file.write(line + "\n")
-            print(f"Name des neuen sequenz_diagramm.md")
-    except Exception as exc:
-        print(f"Name des neuen sequenz_diagramm.md: {exc}")
-        return
-    anweisung = "Erstelle ein UML Klassendiagramm des Gesamten prompt. gebe das ganze als Markdown aus."
-    print(f"anweisung gpt:{anweisung}")
-    zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
-    schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
-    antwort = list(chatbot.ask(anweisung))
-    antwort = antwort[-1]["message"]
-    schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
-    print(f"Der geänderte Inhalt ist: {antwort}")
-    try:
-        with open("klassen_diagramm.md", "w", encoding="utf-8") as file:
-            lines = antwort[antwort.index("```"): antwort.rindex("```")]
-            for line in lines.split("\\n', '"):
-                print(line + "\n")
-                file.write(line + "\n")
-            print(f"Name des neuen klassen_diagramm.md")
-    except Exception as exc:
-        print(f"Name des neuen klassen_diagramm.md: {exc}")
-        return
+        print(f"skript_quelle vor replace: {skript_quelle}")
+        skript_quelle = skript_quelle.replace("\\", "/")[:-3]
+        print(f"skript_quelle nach replace: {skript_quelle}")
+        if skript_quelle[-8:] == "__init__":
+            print(f"__init__: {skript_quelle}")
+            breakpoint
+        else:
+            print(f"skript_quelle else: {skript_quelle}")
+            with open(skript_quelle + ".py", "r", encoding="utf-8") as file:
+                datei_inhalt = file.readlines()
+            funktion = "Kannst du bitte ein UML Klassendiagramm erstellen und das Ergebnis als Markdown ausgeben?"
+            anweisung = f"{funktion}\nDateiname: {skript_quelle}.py\nPython-Code:\n{datei_inhalt}"
+            print(f"anweisung gpt:{anweisung}")
+            zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
+            schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
+            antwort = list(chatbot.ask(anweisung))
+            antwort = antwort[-1]["message"]
+            print(f"antwort von gpt: \n{antwort}\n")
+            if not "```" in antwort:
+                print(f"\nkeine ``` in Antwort von {skript_quelle}\n")
+                breakpoint
+            else:
+                skript_quelle = skript_quelle.split("/")[-1]
+                try:
+                    with open(
+                        f"uml/{skript_quelle}_klassen_diagramm.md",
+                        "w",
+                        encoding="utf-8",
+                    ) as file:
+                        lines = antwort[antwort.index("```") : antwort.rindex("```")]
+                        for line in lines.split("\\n', '"):
+                            print(line + "\n")
+                            file.write(line + "\n")
+                        print(f"Name uml/{skript_quelle}_klassen_diagramm.md")
+                except Exception as exc:
+                    print(f"Fehler uml/{skript_quelle}_klassen_diagramm.md: {exc}")
+                    return
+    for skript_quelle in python_files:
+        print(f"skript_quelle vor replace: {skript_quelle}")
+        skript_quelle = skript_quelle.replace("\\", "/")[:-3]
+        print(f"skript_quelle nach replace: {skript_quelle}")
+        if skript_quelle[-8:] == "__init__":
+            print(f"__init__: {skript_quelle}")
+            breakpoint
+        else:
+            print(f"skript_quelle else: {skript_quelle}")
+            with open(skript_quelle + ".py", "r", encoding="utf-8") as file:
+                datei_inhalt = file.readlines()
+            funktion = "Kannst du bitte ein UML Sequenzdiagrann erstellen und das Ergebnis als Markdown ausgeben?"
+            anweisung = f"{funktion}\nDateiname: {skript_quelle}.py\nPython-Code:\n{datei_inhalt}"
+            print(f"anweisung gpt:{anweisung}")
+            zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
+            schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
+            antwort = list(chatbot.ask(anweisung))
+            antwort = antwort[-1]["message"]
+            print(f"antwort von gpt: \n{antwort}\n")
+            if not "```" in antwort:
+                print(f"\nkeine ``` in Antwort von {skript_quelle}\n")
+                breakpoint
+            else:
+                skript_quelle = skript_quelle.split("/")[-1]
+                try:
+                    with open(
+                        f"uml/{skript_quelle}_sequenz_diagramm.md",
+                        "w",
+                        encoding="utf-8",
+                    ) as file:
+                        lines = antwort[antwort.index("```") : antwort.rindex("```")]
+                        for line in lines.split("\\n', '"):
+                            print(line + "\n")
+                            file.write(line + "\n")
+                        print(f"Name uml/{skript_quelle}_sequenz_diagramm.md")
+                except Exception as exc:
+                    print(f"Fehler uml/{skript_quelle}_sequenz_diagramm.md: {exc}")
+                    return

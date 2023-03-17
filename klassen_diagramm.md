@@ -1,21 +1,34 @@
 ```mermaid
 classDiagram
-    class User {
-        +name : string
-        +sendRequest(prompt: string) : void
-        +receiveResponse(response: string) : void
+    class komm_chat
+    class komm_revchatgpt
+    class models.dateien
+    class models.functions
+    class main
+    
+    class komm_revchatgpt {
+        +chat()
+        +erzeuge_unittest()
+        +erzeuge_uml()
     }
-
-    class Code {
-        -openai : OpenAI_API
-        +gpt3(prompt: string) : string
+    
+    class models.dateien {
+        +lese_datei()
+        +schreibe_datei()
     }
-
-    class OpenAI_API {
-        -api_key : string
-        +generateResponse(prompt: string) : string
+    
+    class models.functions {
+        +pruefe_py_gebaut()
     }
-
-    User --> Code
-    Code --> OpenAI_API
+    
+    class main {
+        -MODEL
+        +loop()
+    }
+    
+    komm_chat --> main
+    main --> komm_revchatgpt
+    main --> models.dateien
+    main --> models.functions
+    komm_revchatgpt --> models.dateien
 
