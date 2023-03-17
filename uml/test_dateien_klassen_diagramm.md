@@ -1,6 +1,4 @@
-```plantuml
-@startuml
-
+```mermaid
 class TestDateien {
     +setUp()
     +tearDown()
@@ -9,13 +7,11 @@ class TestDateien {
     +test_schreibe_datei()
 }
 
-class dateien {
-    +lese_datei(dateipfad: str) -> str
-    +schreibe_datei(dateipfad: str, inhalt: str)
-    +schreibe_protokol(dateipfad: str, protokoll: str)
+class Dateien {
+    +lese_datei(dateiname: str) -> str
+    +schreibe_datei(dateiname: str, inhalt: str) -> None
+    +schreibe_protokol(dateiname: str, protokoll: str) -> None
 }
 
-TestDateien --> dateien
-
-@enduml
+TestDateien --> Dateien
 

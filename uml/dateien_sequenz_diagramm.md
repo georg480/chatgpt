@@ -1,31 +1,24 @@
 ```mermaid
 sequenceDiagram
     participant User
-    participant FileModule
-    User->>+FileModule: schreibe_protokol(datei_namen, inhalt_einfuegen)
-    activate FileModule
-    FileModule->>+File: open(datei_namen, "a", encoding="utf-8")
-    activate File
-    File->>+File: write(inhalt_einfuegen)
-    deactivate File
-    FileModule->>-File: close()
-    deactivate FileModule
-    User->>+FileModule: lese_datei(datei_namen)
-    activate FileModule
-    FileModule->>+File: open(datei_namen, "r", encoding="utf-8")
-    activate File
-    File->>+File: readlines()
-    File-->>-FileModule: list of lines
-    File->>+File: close()
-    deactivate File
-    FileModule->>-File: close()
-    deactivate FileModule
-    User->>+FileModule: schreibe_datei(datei_namen, inhalt_einfuegen)
-    activate FileModule
-    FileModule->>+File: open(datei_namen, "w", encoding="utf-8")
-    activate File
-    File->>+File: write(inhalt_einfuegen)
-    deactivate File
-    FileModule->>-File: close()
-    deactivate FileModule
+    participant dateien_py
+    participant file
+    
+    User->>dateien_py: schreibe_protokol(datei_namen, inhalt_einfuegen)
+    dateien_py->>file: open(datei_namen, "a", encoding="utf-8")
+    file->>file: write(inhalt_einfuegen)
+    file-->>dateien_py: 
+    dateien_py-->>User: 
+    
+    User->>dateien_py: lese_datei(datei_namen)
+    dateien_py->>file: open(datei_namen, "r", encoding="utf-8")
+    file->>file: readlines()
+    file-->>dateien_py: datei_inhalt
+    dateien_py-->>User: datei_inhalt
+    
+    User->>dateien_py: schreibe_datei(datei_namen, inhalt_einfuegen)
+    dateien_py->>file: open(datei_namen, "w", encoding="utf-8")
+    file->>file: write(inhalt_einfuegen)
+    file-->>dateien_py: 
+    dateien_py-->>User: 
 

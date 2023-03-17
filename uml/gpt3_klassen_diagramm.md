@@ -1,20 +1,24 @@
 ```markdown
-# UML Klassendiagramm
+# UML Klassendiagramm - gpt3.py
 
-Klasse: gpt3
------------
-- prompt: str
-- engine: str
-- max_laenge: int
-- temperature: float
-- top_p: int
-- frequency_penalty: float
-- presence_penalty: float
-- start_text: str
-- restart_text: str
-- stop_seq: List[str]
-
-+ __init__(self, prompt: str, engine: str, max_laenge: int, temperature: float, top_p: int, frequency_penalty: float, presence_penalty: float, start_text: str, restart_text: str, stop_seq: List[str])
-+ gpt3(self) -> Tuple[str, str]
+|-------------------|
+|      gpt3()       |
+|-------------------|
+| - prompt          |
+| - engine          |
+| - max_laenge      |
+| - temperature     |
+| - top_p           |
+| - frequency_penalty|
+| - presence_penalty|
+| - start_text      |
+| - restart_text    |
+| - stop_seq        |
+|-------------------|
+| + answer          |
+| + new_prompt      |
+|-------------------|
+| + create_completion()|
+|-------------------|
 
 

@@ -1,9 +1,17 @@
 ```markdown
-# UML Klassendiagramm
+# UML Klassendiagramm - komm_chat.py
 
-Klasse: komm_chat
------------------
-- prompt: str
+|-------------------|
+|     komm_chat()    |
+|-------------------|
+| - prompt          |
+|-------------------|
+| + gpt3()          |
+|-------------------|
+| + answer          |
+|-------------------|
+| <<main>>          |
+| + while loop      |
+|-------------------|
 
-+ komm_chat()
 
