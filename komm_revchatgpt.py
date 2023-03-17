@@ -18,6 +18,9 @@ chatbot = Chatbot(config=conf, conversation_id=convo_id, parent_id=parent_id)
 
 
 def chat_gpt_chat(anweisung):
+    zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
+    print(f"zu gpt: \n{anweisung}")
+    schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
     try:
         for antwort in chatbot.ask(
             anweisung,
@@ -27,7 +30,8 @@ def chat_gpt_chat(anweisung):
             pass
             # print(antwort)
         antwort = antwort["message"]
-        print(f"antwort von gpt: \n{antwort}\n")
+        print(f"antwort von gpt: \n{antwort}")
+        schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
         return antwort
     except Exception as e:
         logger.exception(e)
