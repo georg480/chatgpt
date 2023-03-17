@@ -1,17 +1,12 @@
 ```markdown
-# UML Klassendiagramm - komm_chat.py
+# komm_chat.py
 
-|-------------------|
-|     komm_chat()    |
-|-------------------|
-| - prompt          |
-|-------------------|
-| + gpt3()          |
-|-------------------|
-| + answer          |
-|-------------------|
-| <<main>>          |
-| + while loop      |
-|-------------------|
+| Function    | komm_chat() |
+| ----------- | ----------- |
+| Parameters  | None        |
+| Returns     | None        |
+
+Dependencies:
+- gpt3.gpt3()
 
 

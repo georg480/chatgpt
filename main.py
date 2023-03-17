@@ -35,7 +35,7 @@ while True:
     elif eingabe_benutzer.lower() == "e":
         ANWEISUNG = input("Welche Datei")
         ANWEISUNG = (
-            "Kannst du ein UML Ablaufdiagramm erstellen und das Ergebnis als Markdown ausgeben?\n"
+            "Kannst du erklären, was der Code macht und das Ergebnis als Markdown ausgeben?\n"
             + lese_datei(ANWEISUNG)
         )
         print(ANWEISUNG)

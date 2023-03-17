@@ -2,26 +2,34 @@
 sequenceDiagram
     participant unittest
     participant models.functions
-    participant os
     participant subprocess
+    participant os
+    participant pytest
+    participant isort
+    participant black
+    participant pylint
+    participant pyreverse
     
-    unittest->>+models.functions: test_pruefe_py_gebaut()
+    unittest->>+models.functions: test_pruefe_py_gebaut(skript_name)
     activate models.functions
-    models.functions->>os: os.getcwd()
-    activate os
-    os-->>-models.functions: path
-    models.functions->>+subprocess: subprocess.call("isort .", shell=True)
-    activate subprocess
-    subprocess-->>-models.functions: isort result
-    models.functions->>+subprocess: subprocess.call("black .", shell=True)
-    subprocess-->>-models.functions: black result
-    models.functions->>+subprocess: subprocess.call("pylint " + skript_name, shell=True)
-    subprocess-->>-models.functions: pylint result
-    models.functions->>+subprocess: subprocess.call("pyreverse -a1 -s1  -f ALL -d ALL  .  -o pdf", shell=True)
-    subprocess-->>-models.functions: pyreverse result
-    models.functions->>+subprocess: subprocess.call("pytest", shell=True)
-    subprocess-->>-models.functions: pytest result
-    deactivate subprocess
-    models.functions-->>-unittest: assertion
+    alt Skript existiert
+        models.functions->>os: getcwd()
+        os-->>models.functions: C:\\Users\\georg\\Seafile\\Meine Bibliothek-008100\\Dokumente\\documents\\programmieren\\PycharmProjects\\chatgpt
+        models.functions->>subprocess: isort .
+        subprocess-->>models.functions: 
+        models.functions->>subprocess: black .
+        subprocess-->>models.functions: 
+        models.functions->>subprocess: pylint main.py
+        subprocess-->>models.functions: 
+        models.functions->>subprocess: pyreverse -a1 -s1  -f ALL -d ALL  .  -o pdf
+        subprocess-->>models.functions: 
+        models.functions->>subprocess: pytest
+        subprocess-->>models.functions: 
+        models.functions->>unittest: assert subprocess.call called with expected commands
+        unittest-->>models.functions: 
+    else Skript existiert nicht
+        models.functions->>unittest: raise FileNotFoundError
+        unittest-->>models.functions: 
+    end
     deactivate models.functions
 

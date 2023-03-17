@@ -1,8 +1,9 @@
-```markdown
-# UML Klassendiagramm - test/test_functions.py
+```mermaid
+class TestFunctions {
+    +test_pruefe_py_gebaut()
+}
 
-| TestFunctions |
-|---------------|
-| test_pruefe_py_gebaut(mock_subprocess_call) |
-
+TestFunctions <|-- subprocess
+TestFunctions <|-- os
+TestFunctions <|-- patch
 

@@ -8,10 +8,10 @@ class TestDateien {
 }
 
 class Dateien {
-    +lese_datei(dateiname: str) -> str
-    +schreibe_datei(dateiname: str, inhalt: str) -> None
-    +schreibe_protokol(dateiname: str, protokoll: str) -> None
+    +lese_datei(datei: str) -> str
+    +schreibe_datei(datei: str, inhalt: str) -> None
+    +schreibe_protokol(datei: str, inhalt: str) -> None
 }
 
-TestDateien --> Dateien
+TestDateien -> Dateien
 

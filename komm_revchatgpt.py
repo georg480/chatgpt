@@ -69,9 +69,7 @@ def chat(anweisung, model, max_laenge):
     print(f"Antwort: {antwort}")
     return antwort
 
-
 openai.api_key = os.getenv("OPENAI_API_KEY")
-
 
 def erzeuge_unittest(skript_quelle: str, model):
     with open(skript_quelle, "r", encoding="utf-8") as file:
@@ -116,23 +114,14 @@ def erzeuge_uml():
                 datei_inhalt = file.readlines()
             funktion = "Kannst du bitte ein UML Klassendiagramm erstellen und das Ergebnis als Markdown ausgeben?"
             anweisung = f"{funktion}\nDateiname: {skript_quelle}.py\nPython-Code:\n{datei_inhalt}"
-            print(f"anweisung gpt:{anweisung}")
-            zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
-            schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
-            antwort = list(chatbot.ask(anweisung))
-            antwort = antwort[-1]["message"]
-            print(f"antwort von gpt: \n{antwort}\n")
+            antwort = chat_gpt_chat(anweisung)
             if not "```" in antwort:
                 print(f"\nkeine ``` in Antwort von {skript_quelle}\n")
                 breakpoint
             else:
                 skript_quelle = skript_quelle.split("/")[-1]
                 try:
-                    with open(
-                        f"uml/{skript_quelle}_klassen_diagramm.md",
-                        "w",
-                        encoding="utf-8",
-                    ) as file:
+                    with open(f"uml/{skript_quelle}_klassen_diagramm.md", "w", encoding="utf-8") as file:
                         lines = antwort[antwort.index("```") : antwort.rindex("```")]
                         for line in lines.split("\\n', '"):
                             print(line + "\n")
@@ -154,23 +143,14 @@ def erzeuge_uml():
                 datei_inhalt = file.readlines()
             funktion = "Kannst du bitte ein UML Sequenzdiagrann erstellen und das Ergebnis als Markdown ausgeben?"
             anweisung = f"{funktion}\nDateiname: {skript_quelle}.py\nPython-Code:\n{datei_inhalt}"
-            print(f"anweisung gpt:{anweisung}")
-            zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
-            schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
-            antwort = list(chatbot.ask(anweisung))
-            antwort = antwort[-1]["message"]
-            print(f"antwort von gpt: \n{antwort}\n")
+            antwort = chat_gpt_chat(anweisung)
             if not "```" in antwort:
                 print(f"\nkeine ``` in Antwort von {skript_quelle}\n")
                 breakpoint
             else:
                 skript_quelle = skript_quelle.split("/")[-1]
                 try:
-                    with open(
-                        f"uml/{skript_quelle}_sequenz_diagramm.md",
-                        "w",
-                        encoding="utf-8",
-                    ) as file:
+                    with open(f"uml/{skript_quelle}_sequenz_diagramm.md", "w", encoding="utf-8") as file:
                         lines = antwort[antwort.index("```") : antwort.rindex("```")]
                         for line in lines.split("\\n', '"):
                             print(line + "\n")
