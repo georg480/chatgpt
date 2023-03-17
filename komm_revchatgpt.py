@@ -4,33 +4,34 @@ import os
 from datetime import datetime
 
 import openai
-from revChatGPT.V1 import Chatbot
+from revChatGPT.V1 import Chatbot, logger
 
 from models.dateien import schreibe_protokol
 from models.functions import pruefe_py_gebaut
 
 conf = json.load(open("chatgpt.json"))
 
-convo_id = None
-parent_id = None
+convo_id = "339e6ebd-e5f0-49f0-b54a-05f9614125b1"
+parent_id = "a0c3abd8-b9bd-4b60-b31a-d73abf0ae7b7"
 
 chatbot = Chatbot(config=conf, conversation_id=convo_id, parent_id=parent_id)
-# anweisung = input("Stellen Sie eine Frage: ") + ', 2048'
-# print(anweisung)
-# try:
-#     antwort = list(chatbot.ask(anweisung))
-# except IOError as exc:
-#     print(f"Es gab ein Problem beim Lesen ")
-#     antwort = [{'message': 'N1'}, {'message': 'N2'}, {'message': 'N3'}]
-# except Exception as exc:
-#     print(
-#         f"Es gab einen unbekannten Fehler : {exc}"
-#     )
-#     antwort = [{'message': 'N1'}, {'message': 'N2'}, {'message': 'N3'}]
-#
-# print(f"antwort liste:{antwort}")
-# antwort = antwort[-1]['message']
-# print(antwort)
+
+
+def chat_gpt_chat(anweisung):
+    try:
+        for antwort in chatbot.ask(
+            anweisung,
+            conversation_id=chatbot.config.get("conversation"),
+            parent_id=chatbot.config.get("parent_id"),
+        ):
+            pass
+            # print(antwort)
+        antwort = antwort["message"]
+        print(f"antwort von gpt: \n{antwort}\n")
+        return antwort
+    except Exception as e:
+        logger.exception(e)
+        print(e)
 
 
 def chat(anweisung, model, max_laenge):
@@ -78,7 +79,6 @@ def erzeuge_unittest(skript_quelle: str, model):
     schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
     antwort = list(chatbot.ask(anweisung))
     antwort = antwort[-1]["message"]
-    #    print(f"Antwort: {antwort}")
     schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
     print(f"Der geänderte Inhalt ist: {antwort}")
     try:

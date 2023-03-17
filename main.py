@@ -1,7 +1,7 @@
 import os
 
 from komm_chat import komm_chat
-from komm_revchatgpt import chat, erzeuge_uml, erzeuge_unittest
+from komm_revchatgpt import chat_gpt_chat, erzeuge_uml, erzeuge_unittest
 from models.dateien import lese_datei, schreibe_datei
 from models.functions import pruefe_py_gebaut
 
@@ -18,7 +18,7 @@ while True:
             + lese_datei("englischer_text.txt")
             + "\n\n"
         )
-        ANTWORT = chat(ANWEISUNG, MODEL, 2035)
+        ANTWORT = chat_gpt_chat(ANWEISUNG)
         print(f"\n{ANTWORT}")
         schreibe_datei("deutscher_text.txt", ANTWORT)
     elif eingabe_benutzer.lower() == "a":
@@ -31,15 +31,15 @@ while True:
         pruefe_py_gebaut(input("Skript Name?"))
     elif eingabe_benutzer.lower() == "f":
         ANWEISUNG = input("Eingabe Frage")
-        ANTWORT = chat(ANWEISUNG, MODEL, 2035)
+        ANTWORT = chat_gpt_chat(ANWEISUNG)
     elif eingabe_benutzer.lower() == "e":
         ANWEISUNG = input("Welche Datei")
         ANWEISUNG = (
-            "Kannst du bitte ein UML Ablaufdiagramm erstellen und das Ergebnis als Markdown ausgeben?\n"
+            "Kannst du ein UML Ablaufdiagramm erstellen und das Ergebnis als Markdown ausgeben?\n"
             + lese_datei(ANWEISUNG)
         )
         print(ANWEISUNG)
-        ANTWORT = chat(ANWEISUNG, MODEL, 2035)
+        ANTWORT = chat_gpt_chat(ANWEISUNG)
     elif eingabe_benutzer.lower() == "x":
         break
     else:
