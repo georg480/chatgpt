@@ -1,17 +1,15 @@
 ```mermaid
-class TestDateien {
-    +setUp()
-    +tearDown()
-    +test_schreibe_protokol()
-    +test_lese_datei()
-    +test_schreibe_datei()
-}
-
-class Dateien {
-    +lese_datei(datei: str) -> str
-    +schreibe_datei(datei: str, inhalt: str) -> None
-    +schreibe_protokol(datei: str, inhalt: str) -> None
-}
-
-TestDateien -> Dateien
+classDiagram
+    TestDateien <|-- unittest.TestCase
+    TestDateien : +setUp()
+    TestDateien : +tearDown()
+    TestDateien : +test_schreibe_protokol()
+    TestDateien : +test_lese_datei()
+    TestDateien : +test_schreibe_datei()
+    TestDateien --> lese_datei()
+    TestDateien --> schreibe_datei()
+    TestDateien --> schreibe_protokol()
+    lese_datei() : +str
+    schreibe_datei() : +None
+    schreibe_protokol() : +None
 

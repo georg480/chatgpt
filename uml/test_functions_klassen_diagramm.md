@@ -1,9 +1,15 @@
 ```mermaid
-class TestFunctions {
-    +test_pruefe_py_gebaut()
-}
-
-TestFunctions <|-- subprocess
-TestFunctions <|-- os
-TestFunctions <|-- patch
+classDiagram
+    class TestFunctions {
+        +test_pruefe_py_gebaut()
+        -mock_subprocess_call
+    }
+    class subprocess {
+        +call()
+    }
+    class os {
+        +getcwd()
+    }
+    TestFunctions --|> subprocess
+    TestFunctions --|> os
 

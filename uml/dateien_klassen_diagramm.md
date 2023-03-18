@@ -1,9 +1,24 @@
-```plantuml
-@startuml
+```mermaid
 class dateien {
-    -schreibe_protokol(datei_namen, inhalt_einfuegen): void
-    +lese_datei(datei_namen): str
-    +schreibe_datei(datei_namen, inhalt_einfuegen): void
+    +schreibe_protokol(datei_namen: str, inhalt_einfuegen: str): void
+    +lese_datei(datei_namen: str): str
+    +schreibe_md(datei_namen: str, datei_inhalt: str): void
+    +schreibe_datei(datei_namen: str, inhalt_einfuegen: str): void
+    +lese_gesuchte_dateinamen(suchfilter: str): List[str]
+    +aendere_datei_pfard(datei: str): str
+    +gebe_nur_dateinamen(datei_namen: str): str
 }
-@enduml
+
+class glob {
+    +glob(suchfilter: str, recursive: bool): List[str]
+}
+
+class Exception {
+}
+
+class IOError {
+}
+
+dateien --|> Exception
+dateien --|> IOError
 
