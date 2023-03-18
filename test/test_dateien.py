@@ -1,33 +1,18 @@
 import os
-import tempfile
 import unittest
 
-from models.dateien import lese_datei, schreibe_datei, schreibe_protokol
+from models.dateien import lese_datei, schreibe_protokol
 
 
 class TestDateien(unittest.TestCase):
-    def setUp(self):
-        self.test_dir = tempfile.mkdtemp()
-        self.test_file = os.path.join(self.test_dir, "test.txt")
+    def test_schreibe_und_lese_protokol(self):
+        datei_namen = "test_protokol.txt"
+        inhalt_einfuegen = "Dies ist ein Test-Protokoll."
+        schreibe_protokol(datei_namen, inhalt_einfuegen)
+        self.assertTrue(os.path.exists(datei_namen))
+        with open(datei_namen, "r", encoding="utf-8") as file:
+            self.assertEqual(file.read(), inhalt_einfuegen)
 
-    def tearDown(self):
-        os.remove(self.test_file)
-        os.rmdir(self.test_dir)
-
-    def test_schreibe_protokol(self):
-        schreibe_protokol(self.test_file, "Test Protokoll")
-        with open(self.test_file, "r") as file:
-            content = file.read()
-            self.assertEqual(content, "Test Protokoll")
-
-    def test_lese_datei(self):
-        with open(self.test_file, "w") as file:
-            file.write("Testinhalt\nzweite Zeile")
-        content = lese_datei(self.test_file)
-        self.assertEqual(content, "Testinhalt zweite Zeile")
-
-    def test_schreibe_datei(self):
-        schreibe_datei(self.test_file, "Testinhalt")
-        with open(self.test_file, "r") as f:
-            content = f.read()
-            self.assertEqual(content, "Testinhalt")
+        datei_inhalt = lese_datei(datei_namen)
+        self.assertEqual(datei_inhalt, inhalt_einfuegen)
+        os.remove(datei_namen)

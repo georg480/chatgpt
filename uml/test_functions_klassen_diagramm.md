@@ -1,15 +1,25 @@
-```mermaid
-classDiagram
-    class TestFunctions {
-        +test_pruefe_py_gebaut()
-        -mock_subprocess_call
-    }
-    class subprocess {
-        +call()
-    }
-    class os {
-        +getcwd()
-    }
-    TestFunctions --|> subprocess
-    TestFunctions --|> os
+```
++----------------+       +----------------+
+|   unittest     |       |   subprocess   |
++----------------+       +----------------+
+|   TestCase     |       |     call       |
++----------------+       +----------------+
+        |                           ^
+        |                           |
+        |            +-------------------------+
+        |            |      functions.py        |
+        |            +-------------------------+
+        |            |      pruefe_py_gebaut()  |
+        |            +-------------------------+
+        |                           ^
+        |                           |
+        +---------------------------+
+                                    |
+                         +-----------------------+
+                         |    test_functions.py   |
+                         +-----------------------+
+                         |    TestFunctions()     |
+                         +-----------------------+
+                         | test_pruefe_py_gebaut()|
+                         +-----------------------+
 

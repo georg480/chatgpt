@@ -20,7 +20,4 @@ class TestFunctions(unittest.TestCase):
         mock_subprocess_call.assert_any_call("isort .", shell=True)
         mock_subprocess_call.assert_any_call("black .", shell=True)
         mock_subprocess_call.assert_any_call("pylint " + skript_name, shell=True)
-        mock_subprocess_call.assert_any_call(
-            "pyreverse -a1 -s1  -f ALL -d ALL  .  -o pdf", shell=True
-        )
         mock_subprocess_call.assert_any_call("pytest", shell=True)

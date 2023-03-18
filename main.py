@@ -26,7 +26,7 @@ while True:
     elif eingabe_benutzer.lower() == "c":
         komm_chat()
     elif eingabe_benutzer.lower() == "t":
-        erzeuge_unittest(input("Skript Name?"), MODEL)
+        erzeuge_unittest(input("Skript Name?")[:-3])
     elif eingabe_benutzer.lower() == "p":
         pruefe_py_gebaut(input("Skript Name?"))
     elif eingabe_benutzer.lower() == "f":

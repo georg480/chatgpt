@@ -6,7 +6,15 @@ from datetime import datetime
 import openai
 from revChatGPT.V1 import Chatbot, logger
 
-from models.dateien import lese_datei, schreibe_datei, schreibe_protokol, lese_gesuchte_dateinamen, aendere_datei_pfard, gebe_nur_dateinamen, schreibe_md
+from models.dateien import (
+    aendere_datei_pfard,
+    gebe_nur_dateinamen,
+    lese_datei,
+    lese_gesuchte_dateinamen,
+    schreibe_datei,
+    schreibe_md,
+    schreibe_protokol,
+)
 from models.functions import pruefe_py_gebaut
 
 conf = json.load(open("chatgpt.json"))
@@ -55,33 +63,27 @@ def chat(anweisung, model, max_laenge):
     print(f"Antwort: {antwort}")
     return antwort
 
+
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-def erzeuge_unittest(skript_quelle: str, model):
-    with open(skript_quelle, "r", encoding="utf-8") as file:
-        datei_inhalt = file.readlines()
-    funktion = "Schreibe zu der Funktion einen Unittest der in einem extra Datei ist."
-    anweisung = f"{funktion}\n\n==== Python-Code ====\n\nPython-Code:\n{datei_inhalt}"
-    print(f"anweisung gpt:{anweisung}")
-    zeit_aktuell = datetime.now().strftime("%Y.%m.%d_%H:%M:%S")
-    schreibe_protokol("protokoll.txt", f"zu gpt {zeit_aktuell}: {anweisung}\n")
-    antwort = list(chatbot.ask(anweisung))
-    antwort = antwort[-1]["message"]
-    schreibe_protokol("protokoll.txt", f"von gpt {zeit_aktuell}: {antwort}\n")
-    print(f"Der geänderte Inhalt ist: {antwort}")
-    try:
-        with open("test/test_" + skript_quelle, "w", encoding="utf-8") as file:
-            lines = antwort[antwort.index("imp") : -2]
-            for line in lines.split("\\n', '"):
-                print(line + "\n")
-                file.write(line + "\n")
-            print(f"Name des neuen Skripts: test_{skript_quelle}")
-    except Exception as exc:
-        print(f"Name des neuen Skripts: test_{skript_quelle}: {exc}")
-        return
-    pruefe_py_gebaut("test/test_" + skript_quelle)
-    print(f"geänderte Funktion: {funktion}")
-    print(f"prüfe in der test/test_{skript_quelle}")
+
+def erzeuge_unittest(skript_quelle: str):
+    print(f"skript_quelle else: {skript_quelle}")
+    datei_inhalt = lese_datei(skript_quelle + ".py")
+    anweisung = (
+        f"Schreibe zu der Funktion einen Unittest der in einem extra Datei ist.\n"
+        f"Dateiname: {skript_quelle}.py\nPython-Code:\n{datei_inhalt}"
+    )
+    antwort = chat_gpt_chat(anweisung)
+    skript_quelle = gebe_nur_dateinamen(skript_quelle)
+    if not "```" in antwort:
+        print(f"\nkeine ``` in Antwort von {skript_quelle}\n")
+        breakpoint
+    else:
+        antwort = antwort[antwort.index("import ") : antwort.rindex("if __") - 1]
+        schreibe_datei(f"test/test_{skript_quelle}.py", antwort)
+        pruefe_py_gebaut(f"test/test_{skript_quelle}.py")
+        print(f"prüfe in der test/test_{skript_quelle}.py")
 
 
 def erzeuge_uml():
@@ -93,8 +95,10 @@ def erzeuge_uml():
         else:
             print(f"skript_quelle else: {skript_quelle}")
             datei_inhalt = lese_datei(skript_quelle + ".py")
-            anweisung = f"Kannst du ein UML Klassendiagramm{FUNKTION_STANDART}\n" \
-                        f"Dateiname: {skript_quelle}.py\nPython-Code:\n{datei_inhalt}"
+            anweisung = (
+                f"Kannst du ein UML Klassendiagramm{FUNKTION_STANDART}\n"
+                f"Dateiname: {skript_quelle}.py\nPython-Code:\n{datei_inhalt}"
+            )
             antwort = chat_gpt_chat(anweisung)
             if not "```" in antwort:
                 print(f"\nkeine ``` in Antwort von {skript_quelle}\n")
@@ -102,8 +106,10 @@ def erzeuge_uml():
             else:
                 skript_quelle = gebe_nur_dateinamen(skript_quelle)
                 schreibe_md(f"uml/{skript_quelle}_klassen_diagramm.md", antwort)
-                anweisung = f"Kannst du ein UML Sequenzdiagramm{FUNKTION_STANDART}\n" \
-                            f"Dateiname: {skript_quelle}.py\nPython-Code:\n{datei_inhalt}"
+                anweisung = (
+                    f"Kannst du ein UML Sequenzdiagramm{FUNKTION_STANDART}\n"
+                    f"Dateiname: {skript_quelle}.py\nPython-Code:\n{datei_inhalt}"
+                )
                 antwort = chat_gpt_chat(anweisung)
                 if not "```" in antwort:
                     print(f"\nkeine ``` in Antwort von {skript_quelle}\n")
