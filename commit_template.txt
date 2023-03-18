@@ -1,16 +1,5 @@
-Hallo Max Mustermann,
+Subject line
 
-Ich hoffe, es geht Ihnen gut. Hier ist eine Zusammenfassung Ihrer Bestellung:
+Body of commit message
 
-
-2x Produkt A (10 Euro pro Stück)
-
-1x Produkt B (5 Euro pro Stück)
-
-3x Produkt C (8 Euro pro Stück)
-
-
-Vielen Dank für Ihre Bestellung!
-
-Mit freundlichen Grüßen,
-Ihr Name
+$(git status)
