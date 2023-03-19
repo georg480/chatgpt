@@ -7,6 +7,7 @@ import komm_github
 
 class TestGitCommit(unittest.TestCase):
     def test_git_commit(self):
+        os.remove("commit_template.txt")
         komm_github.git_commit()
 
         self.assertTrue(os.path.isfile("commit_template.txt"))
