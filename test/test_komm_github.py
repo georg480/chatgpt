@@ -19,4 +19,4 @@ class TestGitCommit(unittest.TestCase):
 
         subprocess.call(["git", "reset", "--hard"])
         subprocess.call(["git", "clean", "-f"])
-        os.remove("commit_template.txt")
+        os.remove("../commit_template.txt")
