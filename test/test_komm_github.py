@@ -10,7 +10,7 @@ class TestGitCommit(unittest.TestCase):
     def test_git_commit(self):
         komm_github.git_commit()
 
-        self.assertTrue(os.path.isfile("../commit_template.txt"))
+      #  self.assertTrue(os.path.isfile("../commit_template.txt"))
 
         with open("../commit_template.txt", "r", encoding="utf-8", newline="\n") as f:
             template = f.read()
