@@ -1,6 +1,7 @@
 import os.path
 import subprocess
 import unittest
+import sys
 
 import komm_github
 
