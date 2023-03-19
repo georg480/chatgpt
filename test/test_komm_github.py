@@ -28,4 +28,4 @@ class TestGitCommit(unittest.TestCase):
 
         subprocess.call(["git", "reset", "--hard"])
         subprocess.call(["git", "clean", "-f"])
-        os.remove(datei_name)
+        #os.remove(datei_name)
