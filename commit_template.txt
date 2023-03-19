@@ -1,3 +1,3 @@
 - komm_github.py
 
-Add feature X and fix bug Y
+Funktion hinzufügen.
