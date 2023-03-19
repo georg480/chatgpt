@@ -1,19 +1,30 @@
-from jinja2 import Environment, FileSystemLoader
+import subprocess
 
-# Definieren Sie die Variablen
-name = "Max Mustermann"
-order = [
-    {"name": "Produkt A", "quantity": 2, "price": 10},
-    {"name": "Produkt B", "quantity": 1, "price": 5},
-    {"name": "Produkt C", "quantity": 3, "price": 8},
-]
-your_name = "Ihr Name"
+# Führe git status aus und erfasse die Ausgabe
+output = subprocess.check_output(["git", "status"])
 
-# Erstellen Sie die Jinja2-Umgebung und laden Sie die Template-Datei
-env = Environment(loader=FileSystemLoader("."))
-template = env.get_template("template.j2")
+# Dekodiere die Ausgabe von Bytes zu String
+output = output.decode("utf-8")
 
-# Rendern Sie das Template mit den Variablen und speichern Sie es in einer Datei
-output = template.render(name=name, order=order, your_name=your_name)
-with open("commit_template.txt", "w") as file:
-    file.write(output)
+# Teile die Ausgabe in Zeilen auf
+lines = output.split("\n")
+
+# Initialisiere eine leere Liste für die Commit-Nachrichten-Zeilen
+commit_message = []
+
+# Schleife durch die Zeilen und suche nach geänderten Dateien
+for line in lines:
+    # Wenn die Zeile mit "modified:" beginnt, füge den Dateinamen zur Commit-Nachricht hinzu
+    if line.startswith("\tmodified:"):
+        # Entferne das Präfix "modified:" und entferne alle Leerzeichen
+        file_name = line.replace("modified:", "").strip()
+        # Füge einen Aufzählungspunkt mit dem Dateinamen zur Commit-Nachricht hinzu
+        commit_message.append(f"- {file_name}")
+
+# Verbinde die Commit-Nachrichten-Zeilen mit Zeilenumbrüchen
+commit_message = "\n".join(commit_message)
+
+# Öffne die Vorlagendatei im Anhängemodus
+with open("commit_template.txt", "a") as f:
+    # Schreibe die Commit-Nachricht in die Datei
+    f.write(commit_message)

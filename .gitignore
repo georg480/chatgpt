@@ -3,3 +3,4 @@ venv
 .pytest_cache
 protokoll.txt
 chatgpt.json
+commit_template.txt
