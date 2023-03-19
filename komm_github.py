@@ -26,3 +26,4 @@ def git_push():
     subprocess.call(["git", "pull"])
 
 git_commit()
+git_push()

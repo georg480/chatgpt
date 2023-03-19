@@ -1,3 +1,3 @@
-- komm_github.py
+- commit_template.txt
 
 Funktion hinzufügen.
