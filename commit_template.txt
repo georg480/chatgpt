@@ -1,4 +1,6 @@
+- __pycache__/komm_github.cpython-311.pyc
 - commit_template.txt
 - komm_github.py
+- main.py
 
 Funktion hinzufügen.
