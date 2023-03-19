@@ -24,6 +24,3 @@ def git_commit():
 def git_push():
     subprocess.call(["git", "push"])
     subprocess.call(["git", "pull"])
-
-git_commit()
-git_push()

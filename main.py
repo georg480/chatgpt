@@ -1,6 +1,7 @@
 import os
 
 from komm_chat import komm_chat
+from komm_github import git_push, git_commit
 from komm_revchatgpt import chat_gpt_chat, erzeuge_uml, erzeuge_unittest
 from models.dateien import lese_datei, schreibe_datei
 from models.functions import pruefe_py_gebaut
@@ -9,7 +10,7 @@ MODEL = "davinci"
 
 while True:
     eingabe_benutzer = input(
-        "Eingabe a(abl), e(erkl.Code), f(Frage), p(prü), t(Unittest), u(E->D), x"
+        "Eingabe a(abl), c(com), e(erkl.Code), f(Frage), p(prü), pu(push), t(Unittest), u(E->D), x"
     )
     if eingabe_benutzer.lower() == "u":
         print(lese_datei("englischer_text.txt"))
@@ -24,11 +25,13 @@ while True:
     elif eingabe_benutzer.lower() == "a":
         erzeuge_uml()
     elif eingabe_benutzer.lower() == "c":
-        komm_chat()
+        git_commit()
     elif eingabe_benutzer.lower() == "t":
         erzeuge_unittest(input("Skript Name?")[:-3])
     elif eingabe_benutzer.lower() == "p":
         pruefe_py_gebaut(input("Skript Name?"))
+    elif eingabe_benutzer.lower() == "pu":
+        git_push()
     elif eingabe_benutzer.lower() == "f":
         ANWEISUNG = input("Eingabe Frage")
         ANTWORT = chat_gpt_chat(ANWEISUNG)
