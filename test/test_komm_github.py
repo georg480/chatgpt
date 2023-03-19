@@ -16,7 +16,14 @@ class TestGitCommit(unittest.TestCase):
         #
         with open(datei_name, "r", encoding="utf-8", newline="\n") as file:
               template = file.read()
-              expected_template = 'test\\----commit_template__txt' #"- "+datei_name+"\n\n- test/test_komm_github.py\n\nFunktion hinzufügen."
+              expected_template =('- __pycache__/test_komm_github.cpython-311-pytest-7.2.1.pyc\r\n'
+                                  '- test_komm_github.py\r\n'
+                                  '- ../main.py\r\n'
+                                  '- ../models/namensmodel.py\r\n'
+                                  '\r\n'
+                                  'Funktion hinzufügen.')
+
+              #"- "+datei_name+"\n\n- test/test_komm_github.py\n\nFunktion hinzufügen."
               self.assertEqual(template.strip(), expected_template)
 
         # subprocess.call(["git", "reset", "--hard"])
