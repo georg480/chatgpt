@@ -16,7 +16,7 @@ commit_message = "\n".join(commit_message)
 
 # Definiere die Commit-Beschreibung und Autor-Information
 commit_description = "Add feature X and fix bug Y"
-author_info = "John Doe <johndoe@example.com>"
+author_info = "Georg Dahmen <georg.dahmen@gmx.de>"
 
 # Schreibe die Commit-Nachricht und die Commit-Beschreibung in die Vorlagendatei
 with open("commit_template.txt", "w") as f:
