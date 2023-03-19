@@ -1,5 +1,6 @@
 import subprocess
 
+
 def git_commit():
     subprocess.call(["git", "add", "."])
 
@@ -16,10 +17,13 @@ def git_commit():
     commit_beschreibung = "Funktion hinzufügen."
     author_info = "Georg Dahmen <georg.dahmen@gmx.de>"
 
-    with open("commit_template.txt", "w",encoding="utf-8") as f:
+    with open("commit_template.txt", "w", encoding="utf-8") as f:
         f.write(commit_nachricht + "\n\n" + commit_beschreibung)
 
-    subprocess.call(["git", "commit", "-F", "commit_template.txt", "--author=" + author_info])
+    subprocess.call(
+        ["git", "commit", "-F", "commit_template.txt", "--author=" + author_info]
+    )
+
 
 def git_push():
     subprocess.call(["git", "push"])
