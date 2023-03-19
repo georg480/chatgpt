@@ -1,29 +1,28 @@
 import subprocess
 
-# Füge alle geänderten Dateien dem Index hinzu
-subprocess.call(["git", "add", "."])
+def git_commit():
+    subprocess.call(["git", "add", "."])
 
-# Erfasse die geänderten Dateien und erstelle eine automatische Commit-Nachricht
-output = subprocess.check_output(["git", "status"])
-output = output.decode("utf-8")
-lines = output.split("\n")
-commit_message = []
-for line in lines:
-    if line.startswith("\tmodified:"):
-        file_name = line.replace("modified:", "").strip()
-        commit_message.append(f"- {file_name}")
-commit_message = "\n".join(commit_message)
+    antwort = subprocess.check_output(["git", "status"])
+    antwort = antwort.decode("utf-8")
+    lines = antwort.split("\n")
+    commit_nachricht = []
+    for line in lines:
+        if line.startswith("\tmodified:"):
+            datei_name = line.replace("modified:", "").strip()
+            commit_nachricht.append(f"- {datei_name}")
+    commit_nachricht = "\n".join(commit_nachricht)
 
-# Definiere die Commit-Beschreibung und Autor-Information
-commit_description = "Add feature X and fix bug Y"
-author_info = "Georg Dahmen <georg.dahmen@gmx.de>"
+    commit_beschreibung = "Funktion hinzufügen."
+    author_info = "Georg Dahmen <georg.dahmen@gmx.de>"
 
-# Schreibe die Commit-Nachricht und die Commit-Beschreibung in die Vorlagendatei
-with open("commit_template.txt", "w",encoding="utf-8") as f:
-    f.write(commit_message + "\n\n" + commit_description)
+    with open("commit_template.txt", "w",encoding="utf-8") as f:
+        f.write(commit_nachricht + "\n\n" + commit_beschreibung)
 
-# Erstelle einen Commit mit der automatisch generierten Commit-Nachricht, der Commit-Beschreibung und der Autor-Information
-subprocess.call(["git", "commit", "-F", "commit_template.txt", "--author=" + author_info])
+    subprocess.call(["git", "commit", "-F", "commit_template.txt", "--author=" + author_info])
 
-#subprocess.call(["git", "push"])
-#subprocess.call(["git", "pull"])
+def git_push():
+    subprocess.call(["git", "push"])
+    subprocess.call(["git", "pull"])
+
+git_commit()
