@@ -14,7 +14,7 @@ class TestGitCommit(unittest.TestCase):
 
         with open("commit_template.txt", "r", encoding="utf-8", newline="\n") as f:
             template = f.read()
-            expected_template = "- ../commit_template.txt\n\n- test_komm_github.py\n\nFunktion hinzufügen."
+            expected_template = "- ../commit_template.txt\n- test_komm_github.py\n Funktion hinzufügen."
             self.assertEqual(template.strip(), expected_template)
 
         subprocess.call(["git", "reset", "--hard"])
