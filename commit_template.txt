@@ -6,3 +6,5 @@
 - test/__pycache__/test_functions.cpython-311-pytest-7.2.1.pyc
 - test/__pycache__/test_main.cpython-311-pytest-7.2.1.pyc
 - test/__pycache__/test_openai_com.cpython-311-pytest-7.2.1.pyc
+
+Add feature X and fix bug Y
