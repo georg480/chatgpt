@@ -26,6 +26,6 @@ class TestGitCommit(unittest.TestCase):
               #"- "+datei_name+"\n\n- test/test_komm_github.py\n\nFunktion hinzufügen."
               self.assertEqual(template.strip(), expected_template)
 
-        # subprocess.call(["git", "reset", "--hard"])
-        # subprocess.call(["git", "clean", "-f"])
-      #  os.remove(datei_name)
+        subprocess.call(["git", "reset", "--hard"])
+        subprocess.call(["git", "clean", "-f"])
+        os.remove(datei_name)
