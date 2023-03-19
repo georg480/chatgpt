@@ -14,8 +14,8 @@ class TestGitCommit(unittest.TestCase):
 
         self.assertTrue(os.path.isfile(datei_name))
         #
-        with open(datei_name, "r", encoding="utf-8", newline="\n") as f:
-              template = f.read()
+        with open(datei_name, "r", encoding="utf-8", newline="\n") as file:
+              template = file.read()
               expected_template = 'test\\----commit_template__txt' #"- "+datei_name+"\n\n- test/test_komm_github.py\n\nFunktion hinzufügen."
               self.assertEqual(template.strip(), expected_template)
 
