@@ -16,7 +16,7 @@ commit_message = "\n".join(commit_message)
 
 # Definiere die Commit-Beschreibung und Autor-Information
 commit_description = "Add feature X and fix bug Y"
-author_info = "Georg Dahmen <georg.dahmen@gmx.de>"
+author_info = "John Doe <johndoe@example.com>"
 
 # Schreibe die Commit-Nachricht und die Commit-Beschreibung in die Vorlagendatei
 with open("commit_template.txt", "w") as f:
@@ -24,3 +24,7 @@ with open("commit_template.txt", "w") as f:
 
 # Erstelle einen Commit mit der automatisch generierten Commit-Nachricht, der Commit-Beschreibung und der Autor-Information
 subprocess.call(["git", "commit", "-F", "commit_template.txt", "--author=" + author_info])
+
+# Pushen und Updates holen
+subprocess.call(["git", "push"])
+subprocess.call(["git", "pull"])
