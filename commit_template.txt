@@ -1,8 +1,8 @@
+- commit_template.txt
+- komm_github.py
 - models/__pycache__/dateien.cpython-311.pyc
 - models/__pycache__/functions.cpython-311.pyc
 - test/__pycache__/test_dateien.cpython-311-pytest-7.2.1.pyc
 - test/__pycache__/test_functions.cpython-311-pytest-7.2.1.pyc
 - test/__pycache__/test_main.cpython-311-pytest-7.2.1.pyc
 - test/__pycache__/test_openai_com.cpython-311-pytest-7.2.1.pyc
-- commit_template.txt
-- komm_github.py
