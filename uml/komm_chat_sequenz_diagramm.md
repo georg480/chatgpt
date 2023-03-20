@@ -1,16 +1,18 @@
-```markdown
-# KommChat
+```
+@startuml
+title: Kommunikations-Chatbot mit GPT-3
 
-## Sequenzdiagramm
-participant Client
-participant Gpt3
+actor Benutzer
+participant komm_chat
+participant gpt3
+participant functions
 
-Client -> Gpt3: komm_chat()
-Gpt3 -> Client: prompt = "Mensch: Erkläre alles auf Deutsch AI: Mensch:"
-loop
-    Client -> Gpt3: input("Du: ")
-    Gpt3 -> Gpt3: gpt3(prompt, temperature, frequency_penalty, presence_penalty, start_text, restart_text, stop_seq)
-    Gpt3 -> Client: answer, prompt
-    Client -> Client: print("GPT-3:" + answer)
-end loop
+Benutzer -> komm_chat: start()
+komm_chat -> gpt3: prompt
+gpt3 -> functions: eingabe()
+functions --> gpt3: Eingabe
+gpt3 -> gpt3: Antwort generieren
+gpt3 -> komm_chat: Antwort
+komm_chat -> Benutzer: Antwort anzeigen
+@enduml
 

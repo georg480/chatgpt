@@ -1,9 +1,12 @@
-```markdown
-# Class Diagram
-
-| TestDateien |
-|-------------|
-| test_schreibe_und_lese_protokol() |
-
-TestDateien --> models/dateien
+```
++---------------------+
+|    TestDateien      |
++---------------------+
+| - test_schreibe_und |
+|   _lese_protokol()   |
++---------------------+
+|      +assertTrue()  |
+|      +assertEqual() |
+|      +remove()      |
++---------------------+
 

@@ -1,4 +1,5 @@
 from gpt3 import gpt3
+from models.functions import eingabe
 
 
 def komm_chat():
@@ -6,7 +7,7 @@ def komm_chat():
 AI: 
 Mensch:"""
     while True:
-        prompt += input("Du: ")
+        prompt += eingabe("Du: ")
         answer, prompt = gpt3(
             prompt,
             temperature=0.9,

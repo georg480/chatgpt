@@ -4,12 +4,12 @@ from komm_chat import komm_chat
 from komm_github import git_commit, git_push
 from komm_revchatgpt import chat_gpt_chat, erzeuge_uml, erzeuge_unittest
 from models.dateien import lese_datei, schreibe_datei
-from models.functions import pruefe_py_gebaut
+from models.functions import eingabe, pruefe_py_gebaut
 
 MODEL = "davinci"
 
 while True:
-    eingabe_benutzer = input(
+    eingabe_benutzer = eingabe(
         "Eingabe a(abl), c(com), e(erkl.Code), f(Frage), p(prü), pu(push), t(Unittest), u(E->D), x"
     )
     if eingabe_benutzer.lower() == "u":
@@ -27,16 +27,16 @@ while True:
     elif eingabe_benutzer.lower() == "c":
         git_commit()
     elif eingabe_benutzer.lower() == "t":
-        erzeuge_unittest(input("Skript Name?")[:-3])
+        erzeuge_unittest(eingabe("Skript Name?")[:-3])
     elif eingabe_benutzer.lower() == "p":
-        pruefe_py_gebaut(input("Skript Name?"))
+        pruefe_py_gebaut(eingabe("Skript Name?"))
     elif eingabe_benutzer.lower() == "pu":
         git_push()
     elif eingabe_benutzer.lower() == "f":
-        ANWEISUNG = input("Eingabe Frage")
+        ANWEISUNG = eingabe("Eingabe Frage")
         ANTWORT = chat_gpt_chat(ANWEISUNG)
     elif eingabe_benutzer.lower() == "e":
-        ANWEISUNG = input("Welche Datei")
+        ANWEISUNG = eingabe("Welche Datei")
         ANWEISUNG = (
             "Kannst du erklären, was der Code macht und das Ergebnis als Markdown ausgeben?\n"
             + lese_datei(ANWEISUNG)

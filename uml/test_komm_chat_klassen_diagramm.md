@@ -1,11 +1,17 @@
 ```
-       +----------------+        +-----------+
-       |   TestKommChat  |        | komm_chat |
-       +----------------+        +-----------+
-       | - test_komm_chat() |     | - komm_chat() |
-       +----------------+        +-----------+
-                  |                      |
-                  +------mock input------>|
-                  |                      |
-                  +-----mock output----->|
+   +-----------------+
+   |  TestKommChat   |
+   +-----------------+
+   | - test_komm_chat()|
+   +-----------------+
+            |
+            |
+            v
+   +----------------+
+   |    komm_chat    |
+   +----------------+
+   | - get_gpt3_answer(prompt: str) -> str |
+   | - get_weather() -> str |
+   | - get_favorite_color() -> str |
+   +----------------+
 
