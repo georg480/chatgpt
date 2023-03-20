@@ -2,7 +2,7 @@ sequenceDiagram
     participant Benutzer
     participant System
 
-    Benutzer->>System: Erstellen der Änderungung(issues)
+    Benutzer->>System: Erstellen der Änderung (Issues)
     System-->>Benutzer: Bestätigung
 
     Benutzer->>System: Identifizieren der beteiligten Personen
@@ -11,8 +11,8 @@ sequenceDiagram
     Benutzer->>System: Erstellen der Änderung zum Programmieren
     System-->>Benutzer: Bestätigung, dass es fertig programmiert ist
     
-    System-->>Benutzer: was muss genau und in welcher reinfolge passieren?
-    System-->>Benutzer: Intregation unittest
+    System-->>Benutzer:  Was muss genau und in welcher Reihenfolge passieren?
+    System-->>Benutzer: Integration Unittest
     System-->>Benutzer: Dokumentation anpassen Ablaufpläne
     System-->>Benutzer: Anpassen Readme und Projektbeschreibung.
     
