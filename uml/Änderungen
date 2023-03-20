@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant Benutzer
+    participant System
+
+    Benutzer->>System: Identifizieren des Elements
+    System-->>Benutzer: Bestätigung
+
+    Benutzer->>System: Erstellen der Änderungsliste
+    System-->>Benutzer: Bestätigung
+
+    Benutzer->>System: Identifizieren der beteiligten Personen
+    System-->>Benutzer: Bestätigung
+
+    Benutzer->>System: Erstellen des Zeitplans
+    System-->>Benutzer: Bestätigung
