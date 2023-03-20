@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant Benutzer
+    participant System
+
+    Benutzer->>System: Erstellen der Änderungung(issues)
+    System-->>Benutzer: Bestätigung
+
+    Benutzer->>System: Identifizieren der beteiligten Personen
+    System-->>Benutzer: Bestätigung
+
+    Benutzer->>System: Erstellen des Änderung zum programmieren
+    System-->>Benutzer: Bestätigung das fertig programmiert ist
+    
+    System-->>Benutzer: was muss genau und in welcher reinfolge passieren?
+    System-->>Benutzer: Intregation unittest
+    System-->>Benutzer: Dokumentation Anpasen Ablaufpläne
+    System-->>Benutzer: Anpassen Readme und Projektbeschreibung.
+    
+    Benutzer->>System: Issus beendet.
