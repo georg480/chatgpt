@@ -96,13 +96,13 @@ if __name__ == "__main__":
             sprechen("öffne Youtube\n")
             webbrowser.open("youtube.com")
 
+        elif "mache updates" in query:
+            sprechen("push\n")
+            git_push()
+
         elif "mache Samsung" or "mache komm mit" in query:
             sprechen("commit\n")
             git_commit()
-
-        elif "mach Update" in query:
-            sprechen("push\n")
-            git_push()
 
         elif "öffne google" in query:
             sprechen("öffne Google\n")
