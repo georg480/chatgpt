@@ -97,11 +97,11 @@ if __name__ == "__main__":
             webbrowser.open("youtube.com")
 
         elif "mache updates" in query:
-            sprechen("push\n")
+            sprechen("mache push\n")
             git_push()
 
         elif "mache Samsung" or "mache komm mit" in query:
-            sprechen("commit\n")
+            sprechen("mache commit\n")
             git_commit()
 
         elif "öffne google" in query:
