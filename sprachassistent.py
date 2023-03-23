@@ -3,6 +3,12 @@ import os
 import shutil
 import webbrowser
 import json
+from komm_chat import komm_chat
+from komm_github import git_commit, git_push
+from komm_revchatgpt import chat_gpt_chat, erzeuge_uml, erzeuge_unittest
+from models.dateien import lese_datei, schreibe_datei
+from models.functions import eingabe, pruefe_py_gebaut, aufnahme
+
 
 import pyjokes
 import pyttsx3
@@ -52,9 +58,7 @@ ergebnisse = [{'transcript': 'mache commit', 'confidence': 0.83590513}, {'transc
 # elif eingabe_benutzer.lower() == "p":
 #     pruefe_py_gebaut(eingabe("Skript Name?"))
 # elif eingabe_benutzer.lower() == "f":
-#     ANWEISUNG = aufnahme()
-#     ANTWORT = chat_gpt_chat(ANWEISUNG)
-#     sprechen(ANTWORT)
+#
 # elif eingabe_benutzer.lower() == "e":
 #     ANWEISUNG = eingabe("Welche Datei")
 #     ANWEISUNG = (
@@ -71,11 +75,13 @@ if auswerten_liste(ergebnisse, 'alles auswerten'):
 elif auswerten_liste(ergebnisse, 'mache commit'):
     git_commit()
     sprechen('mache commit')
-elif auswerten_liste(ergebnisse, 'mache commit'):
-    git_commit()
-    sprechen('mache commit')
+elif auswerten_liste(ergebnisse, 'stelle frage'):
+    sprechen('stelle frage')
+    ANWEISUNG = aufnahme()
+    ANTWORT = chat_gpt_chat(ANWEISUNG)
+    sprechen(ANTWORT)
 elif auswerten_liste(ergebnisse, "mache update"):
-    git_commit()
+    git_push()
     sprechen('mache push und update')
 else:
     print("Der String ist nicht enthalten.")
