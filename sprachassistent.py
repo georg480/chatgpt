@@ -38,7 +38,7 @@ def auswerten_liste(ergebnisse, string):
     print(f"nicht in liste: {string}")
     return False
 
-ergebnisse = [{'transcript': 'mache commit', 'confidence': 0.83590513}, {'transcript': 'mache update'}, {'transcript': 'mache jetzt'}, {'transcript': 'mache eins'}, {'transcript': 'mache ein Witz'}]
+ergebnisse = [{'transcript': 'mache commit', 'confidence': 0.83590513}, {'transcript': 'mache update'}, {'transcript': 'mache jetzt'}, {'transcript': 'mache eins'}, {'transcript': 'stelle frage'}]
 #Eingabe a(abl), c(com), e(erkl.Code), f(Frage), p(prü), pu(push), t(Unittest.md), u(E->D), x
 # if eingabe_benutzer.lower() == "u":
 #     print(lese_datei("englischer_text.txt"))
@@ -77,7 +77,7 @@ elif auswerten_liste(ergebnisse, 'mache commit'):
     sprechen('mache commit')
 elif auswerten_liste(ergebnisse, 'stelle frage'):
     sprechen('stelle frage')
-    ANWEISUNG = aufnahme()
+    ANWEISUNG = input("Stelle Frage")  #aufnahme()
     ANTWORT = chat_gpt_chat(ANWEISUNG)
     sprechen(ANTWORT)
 elif auswerten_liste(ergebnisse, "mache update"):
