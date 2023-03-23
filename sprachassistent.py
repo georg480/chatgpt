@@ -38,7 +38,7 @@ def auswerten_liste(ergebnisse, string):
     print(f"nicht in liste: {string}")
     return False
 
-ergebnisse = [{'transcript': 'mache commit_', 'confidence': 0.83590513}, {'transcript': 'mache update'}, {'transcript': 'mache jetzt'}, {'transcript': 'mache eins'}, {'transcript': 'stelle frage'}]
+ergebnisse = [{'transcript': 'mache commit_', 'confidence': 0.83590513}, {'transcript': 'mache update_'}, {'transcript': 'mache jetzt'}, {'transcript': 'mache eins'}, {'transcript': 'stelle frage'}]
 #Eingabe a(abl), c(com), e(erkl.Code), f(Frage), p(prü), pu(push), t(Unittest.md), u(E->D), x
 # if eingabe_benutzer.lower() == "u":
 #     print(lese_datei("englischer_text.txt"))
