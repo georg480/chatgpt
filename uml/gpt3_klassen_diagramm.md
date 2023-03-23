@@ -1,31 +1,18 @@
 ```
 @startuml
 class gpt3 {
-  -prompt: str
-  -engine: str
-  -max_laenge: int
-  -temperature: float
-  -top_p: float
-  -frequency_penalty: float
-  -presence_penalty: float
-  -start_text: str
-  -restart_text: str
-  -stop_seq: list[str]
-
-  +gpt3(prompt: str, engine: str, max_laenge: int, temperature: float, top_p: float, frequency_penalty: float, presence_penalty: float, start_text: str, restart_text: str, stop_seq: list[str])
-  +generate_text() -> str
+    -prompt: str
+    -engine: str
+    -max_laenge: int
+    -temperature: float
+    -top_p: int
+    -frequency_penalty: int
+    -presence_penalty: int
+    -start_text: str
+    -restart_text: str
+    -stop_seq: list[str]
+    +__init__(self, prompt:str, engine:str="davinci", max_laenge:int=2035, temperature:float=0.7, top_p:int=1, frequency_penalty:int=0, presence_penalty:int=0, start_text:str="", restart_text:str="", stop_seq:list[str]=['"""'])
+    +gpt3(self) -> Tuple[str, str]
 }
-
-class openai {
-  +api_key: str
-  +Completion.create(prompt: str, engine: str, max_tokens: int, temperature: float, top_p: float, frequency_penalty: float, presence_penalty: float, stop: list[str]) -> Completion
-}
-
-class Completion {
-  -choices: list[dict]
-  +choices_text() -> list[str]
-}
-gpt3 -> Completion
-openai --> Completion
 @enduml
 

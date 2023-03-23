@@ -1,9 +1,12 @@
-```mermaid
-classDiagram
-    class TestMyFunction{
-        +test_output()
-        +test_input()
-    }
-    TestMyFunction --> my_function
-    TestMyFunction --> unittest.TestCase
+```
+# Class Diagram
+
+|TestMyFunction|
+|--------------|
+|test_output()  |
+|test_input()   |
+|--------------|
+|my_function()  |
+
+
 

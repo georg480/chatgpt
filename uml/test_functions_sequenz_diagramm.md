@@ -1,22 +1,19 @@
 ```mermaid
 sequenceDiagram
-    participant TestFunctions
-    participant subprocess
-    participant os
+    participant mock_subprocess_call
     participant pruefe_py_gebaut
-    participant getcwd
-    participant pylint
-    participant pytest
-    TestFunctions->>+pruefe_py_gebaut: call pruefe_py_gebaut(skript_name)
-    pruefe_py_gebaut->>+os: getcwd()
-    os-->>-pruefe_py_gebaut: return current working directory
-    pruefe_py_gebaut->>-os: patch object getcwd
-    pruefe_py_gebaut->>+subprocess: call("isort .", shell=True)
-    subprocess-->>-pruefe_py_gebaut: return call status
-    pruefe_py_gebaut->>+subprocess: call("black .", shell=True)
-    subprocess-->>-pruefe_py_gebaut: return call status
-    pruefe_py_gebaut->>+pylint: call("pylint " + skript_name, shell=True)
-    pylint-->>-pruefe_py_gebaut: return pylint status
-    pruefe_py_gebaut->>+subprocess: call("pytest", shell=True)
-    subprocess-->>-pruefe_py_gebaut: return call status
+    participant mock_input
+    participant eingabe
+    participant unittest
+
+    unittest ->>+ pruefe_py_gebaut: test_pruefe_py_gebaut
+    pruefe_py_gebaut ->>+ mock_subprocess_call: subprocess.call
+    unittest ->>+ eingabe: test_eingabe
+    eingabe ->>+ mock_input: builtins.input
+    mock_input -->>- eingabe: Testeingabe
+    unittest ->>+ eingabe: test_eingabe_leer
+    eingabe ->>+ mock_input: builtins.input
+    mock_input -->>- eingabe: ""
+    eingabe ->>+ mock_input: builtins.input
+    mock_input -->>- eingabe: Testeingabe
 

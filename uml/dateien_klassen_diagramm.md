@@ -1,11 +1,11 @@
 ```mermaid
-classDiagram
-    class Datei:
-        +lese_datei(datei_namen: str) : str
-        +schreibe_datei(datei_namen: str, inhalt_einfuegen: str) : None
-        +schreibe_md(datei_namen: str, datei_inhalt: str) : None
-        +schreibe_protokol(datei_namen: str, inhalt_einfuegen: str) : None
-        +lese_gesuchte_dateinamen(suchfilter: str) : List[str]
-        +aendere_datei_pfard(datei: str) : str
-        +gebe_nur_dateinamen(datei_namen: str) : str
+class dateien {
+    -schreibe_protokol(datei_namen, inhalt_einfuegen)
+    +lese_datei(datei_namen)
+    -schreibe_md(datei_namen, datei_inhalt)
+    +schreibe_datei(datei_namen, inhalt_einfuegen)
+    +lese_gesuchte_dateinamen(suchfilter)
+    +aendere_datei_pfard(datei)
+    +gebe_nur_dateinamen(datei_namen)
+}
 

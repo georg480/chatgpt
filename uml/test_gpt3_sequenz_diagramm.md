@@ -1,24 +1,18 @@
 ```mermaid
 sequenceDiagram
-    participant TestCase
+    participant unittest
     participant gpt3
-    TestCase->>+gpt3: prompt
+    participant OpenAI
+    participant API_Key
+    unittest ->>+ gpt3: prompt = "This is a test prompt."
     activate gpt3
-    gpt3-->>-TestCase: answer, new_prompt
+    gpt3 ->>+ OpenAI: API_Key, prompt
+    OpenAI -->>- gpt3: response
     deactivate gpt3
-    alt answer is a non-empty string
-        TestCase->>+TestCase: test assertions
-        activate TestCase
-        TestCase->>+TestCase: assertIsInstance
-        TestCase->>+TestCase: assertGreater
-        TestCase->>+TestCase: assertEqual
-        activate TestCase
-        TestCase-->>-TestCase: test passed
-        deactivate TestCase
-    else answer is an empty string
-        TestCase->>+TestCase: test failed
-        activate TestCase
-        TestCase-->>-TestCase: test failed
-        deactivate TestCase
-    end
+    gpt3 ->>+ unittest: answer, new_prompt = response
+    activate unittest
+    unittest -->>- gpt3: assertIsInstance(answer, str)
+    unittest -->>- gpt3: assertGreater(len(answer.strip()), 0)
+    unittest -->>- gpt3: assertEqual(prompt + answer, new_prompt)
+    deactivate unittest
 

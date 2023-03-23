@@ -1,22 +1,22 @@
-```plantuml
-@startuml
-title GitHub Communication
+```mermaid
+sequenceDiagram
+    participant User
+    participant subprocess
+    participant Git
 
-participant User
-participant Git
-participant Terminal
-
-User -> Terminal: Type 'python komm_github.py'
-Terminal -> Git: git add .
-Terminal -> Git: git status
-Git -> Terminal: Returns the status of the files
-Terminal -> Python: Parses the file names that have been modified
-Python -> Terminal: Formats the commit message and author info
-Terminal -> Git: git commit -F commit_template.txt --author=author_info
-Git -> Terminal: Returns the commit ID
-Terminal -> Git: git push
-Terminal -> Git: git pull
-Git -> Terminal: Returns the changes made by other users
-
-@enduml
+    User->>subprocess: call(["git", "add", "."])
+    subprocess->>subprocess: check_output(["git", "status"])
+    subprocess->>subprocess: decode("utf-8")
+    subprocess->>subprocess: split("\n")
+    loop for each line in the output
+        subprocess->>subprocess: replace("modified:", "").strip()
+        subprocess->>subprocess: append to commit_nachricht list
+    end
+    subprocess->>subprocess: join commit_nachricht list
+    User->>subprocess: open("commit_template.txt", "w", encoding="utf-8")
+    subprocess->>subprocess: write(commit_nachricht + "\n\n" + commit_beschreibung)
+    User->>subprocess: call(["git", "commit", "-F", "commit_template.txt", "--author=" + author_info])
+    User->>Git: push changes to remote repository
+    Git->>subprocess: call(["git", "push"])
+    Git->>subprocess: call(["git", "pull"])
 
