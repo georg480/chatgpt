@@ -33,8 +33,45 @@ def auswerten_liste(ergebnisse, string):
     return False
 
 ergebnisse = [{'transcript': 'mache commit', 'confidence': 0.83590513}, {'transcript': 'mache update'}, {'transcript': 'mache jetzt'}, {'transcript': 'mache eins'}, {'transcript': 'mache ein Witz'}]
+#Eingabe a(abl), c(com), e(erkl.Code), f(Frage), p(prü), pu(push), t(Unittest.md), u(E->D), x
+# if eingabe_benutzer.lower() == "u":
+#     print(lese_datei("englischer_text.txt"))
+#     ANWEISUNG = (
+#             "Translate this into German:\n\n"
+#             + lese_datei("englischer_text.txt")
+#             + "\n\n"
+#     )
+#     ANTWORT = chat_gpt_chat(ANWEISUNG)
+#     print(f"\n{ANTWORT}")
+#     schreibe_datei("deutscher_text.txt", ANTWORT)
+#
+# elif eingabe_benutzer.lower() == "c":
+#     git_commit()
+# elif eingabe_benutzer.lower() == "t":
+#     erzeuge_unittest(eingabe("Skript Name?")[:-3])
+# elif eingabe_benutzer.lower() == "p":
+#     pruefe_py_gebaut(eingabe("Skript Name?"))
+# elif eingabe_benutzer.lower() == "f":
+#     ANWEISUNG = aufnahme()
+#     ANTWORT = chat_gpt_chat(ANWEISUNG)
+#     sprechen(ANTWORT)
+# elif eingabe_benutzer.lower() == "e":
+#     ANWEISUNG = eingabe("Welche Datei")
+#     ANWEISUNG = (
+#             "Kannst du erkläre"
+#             "n, was der Code macht und das Ergebnis als Markdown ausgeben?\n"
+#             + lese_datei(ANWEISUNG)
+#     )
+#     print(ANWEISUNG)
+#     ANTWORT = chat_gpt_chat(ANWEISUNG)
 
-if auswerten_liste(ergebnisse, 'mache commit'):
+if auswerten_liste(ergebnisse, 'alles auswerten'):
+    erzeuge_uml()
+    sprechen('Alles auswerten')
+elif auswerten_liste(ergebnisse, 'mache commit'):
+    git_commit()
+    sprechen('mache commit')
+elif auswerten_liste(ergebnisse, 'mache commit'):
     git_commit()
     sprechen('mache commit')
 elif auswerten_liste(ergebnisse, "mache update"):
@@ -44,7 +81,7 @@ else:
     print("Der String ist nicht enthalten.")
 
 ass_name = "Joy"
-sprechen("Hey ")
+sprechen("Hey")
 sprechen(ass_name)
 def username():
     sprechen("helfen?")
