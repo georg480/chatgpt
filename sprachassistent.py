@@ -96,11 +96,11 @@ if __name__ == "__main__":
             sprechen("öffne Youtube\n")
             webbrowser.open("youtube.com")
 
-        elif "jetzt komm mit" or "ich komme mit" in query:
+        elif "mache Samsung" or "mache komm mit" in query:
             sprechen("commit\n")
             git_commit()
 
-        elif "komm mit" in query:
+        elif "Bach Busch" in query:
             sprechen("push\n")
             git_push()
 
