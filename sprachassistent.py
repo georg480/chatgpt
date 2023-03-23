@@ -100,7 +100,7 @@ if __name__ == "__main__":
             sprechen("commit\n")
             git_commit()
 
-        elif "push" in query:
+        elif "komm mit" in query:
             sprechen("push\n")
             git_push()
 
