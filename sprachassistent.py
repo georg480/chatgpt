@@ -64,12 +64,14 @@ def takeCommand():
     try:
         print("auswerten...")
         query = r.recognize_google(audio, language="DE-de")
-        print(f"User sagt: {query}\n")
+        print(f"Benutzer sagt: {query}\n")
+        sprechen(f"Benutzer sagt: {query}\n")
 
     except Exception as e:
         print(e)
-        print("Nicht in deinen befehlen.")
-        return "None"
+        print("Nicht in deinen Befehlen.")
+        sprechen(f"Nicht in deinen Befehlen.{e}")
+        return f"Nicht in deinen Befehlen.{e}"
 
     return query
 
@@ -85,31 +87,33 @@ if __name__ == "__main__":
     username()
 
     while True:
-        query = takeCommand().lower()
+        commando = takeCommand().lower()
 
         # All the commands said by user will be
         # stored here in 'query' and will be
         # converted to lower case for easily
         # recognition of command
 
-        if "öffne youtube" in query:
+        if "öffne youtube" in commando:
             sprechen("öffne Youtube\n")
             webbrowser.open("youtube.com")
 
-        elif "mache updates" in query:
+        elif "mache updates" in commando:
             sprechen("mache push und update\n")
+            eingabe_test = input("push ausgerufen?")
             git_push()
 
-        elif "mache Samsung" or "mache komm mit" in query:
+        elif "mache komm mit" in commando:
             sprechen("mache commit\n")
+            eingabe_test = input("commit ausgerufen?")
             git_commit()
 
-        elif "öffne google" in query:
+        elif "öffne google" in commando:
             sprechen("öffne Google\n")
             webbrowser.open("google.com")
 
 
-        elif "spiele musik" in query or "spiele lied" in query:
+        elif "spiele musik" in commando or "spiele lied" in commando:
             sprechen("Spiele Musik oder Lied")
             # music_dir = "G:\\Song"
             music_dir = r"C:\Users\georg\Seafile\Meine Bibliothek-008100\Musik"
@@ -117,7 +121,7 @@ if __name__ == "__main__":
             print(songs)
             os.startfile(os.path.join(music_dir, songs[1]))
 
-        elif "open opera" in query:
+        elif "open opera" in commando:
             codePath = (
                 r"C:\\Users\\GEORG\\AppD"
                 r""
@@ -125,36 +129,36 @@ if __name__ == "__main__":
             )
             os.startfile(codePath)
 
-        elif "sage uhrzeit" in query:
+        elif "sage uhrzeit" in commando:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             print(f"Hey die Zeit {strTime}")
             sprechen(f"Hey die Zeit {strTime}")
 
-        elif "ändere den namen zu" in query:
-            query = query.replace("Ändere den Namen zu", "")
-            assname = query
+        elif "ändere den namen zu" in commando:
+            commando = commando.replace("Ändere den Namen zu", "")
+            assname = commando
 
-        elif "ändere name" in query:
+        elif "ändere name" in commando:
             sprechen("What would you like to call me, Sir ")
             assname = takeCommand()
             sprechen("Thanks for naming me")
 
-        elif "beenden" in query:
+        elif "beenden" in commando:
             sprechen("Danke für deine Zeit")
 
 
-        elif "wo bist du erstellt" in query or "who created you" in query:
+        elif "wo bist du erstellt" in commando or "who created you" in commando:
             sprechen("Ich komme aus Sonsbeck.")
 
-        elif "erzähle witz" in query:
+        elif "erzähle witz" in commando:
             sprechen(pyjokes.get_joke())
 
-        elif "suche" in query or "play" in query:
-            query = query.replace("suche", "")
-            query = query.replace("play", "")
-            webbrowser.open(query)
+        elif "suche" in commando or "play" in commando:
+            commando = commando.replace("suche", "")
+            commando = commando.replace("play", "")
+            webbrowser.open(commando)
 
-        elif "wetter" in query:
+        elif "wetter" in commando:
             # Google Open weather website
             # to get API of Open weather
             api_key = "64534252b0c9839708f6afcb08ff7b65"
@@ -187,47 +191,40 @@ if __name__ == "__main__":
             else:
                 sprechen(" City Not Found ")
 
-        elif "öffne wikipedia" in query:
+        elif "öffne wikipedia" in commando:
             webbrowser.open("wikipedia.com")
 
-        elif "Good Morning" in query:
-            sprechen("A warm" + query)
+        elif "Good Morning" in commando:
+            sprechen("A warm" + commando)
             sprechen("How are you Mister")
             sprechen(assname)
 
         # most asked question from google Assistant
-        elif "will you be my gf" in query or "will you be my bf" in query:
+        elif "will you be my gf" in commando or "will you be my bf" in commando:
             sprechen("I'm not sure about, may be you should give me some time")
 
-        elif "lauter" in query:
+        elif "lauter" in commando:
             volume = engine.getProperty('volume')
             print(f"volume: {volume}")
             engine.setProperty('volume', volume + 0.25)
             sprechen("Georg lauter")
 
-        elif "leiser" in query:
+        elif "leiser" in commando:
             volume = engine.getProperty('volume')
             print(f"volume: {volume}")
             engine.setProperty('volume', volume - 0.25)
             sprechen("Georg leiser")
 
-        elif "unterbreche" in query:
+        elif "unterbreche" in commando:
             sprechen("unterbreche")
 
-        elif "weiter" in query:
+        elif "weiter" in commando:
             sprechen("weiter")
 
-        elif "what is" in query or "who is" in query:
-            # Use the same API key
-            # that we have generated earlier
-            client = wolframalpha.Client("API_ID")
-            res = client.query(query)
+        else:
+            print("kenne kein Befehl: {commando}")
+            sprechen("kenne kein Befehl: {commando}")
 
-            try:
-                print(next(res.results).text)
-                sprechen(next(res.results).text)
-            except StopIteration:
-                print("No results")
 
     # elif "" in query:
     # Command go here
