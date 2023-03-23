@@ -1,6 +1,8 @@
 import os
 import subprocess
+
 import speech_recognition as sr
+
 
 def pruefe_py_gebaut(skript_name: str):
     subprocess.call("isort .", shell=True)
@@ -8,6 +10,12 @@ def pruefe_py_gebaut(skript_name: str):
     subprocess.call("pylint " + skript_name, shell=True)
     subprocess.call("pytest", shell=True)
     print("Suche nach ERROR und entferne am Ende das init, Fehler und prüfe den Import")
+
+def gleich_string(string1, string2):
+    if len(string1) == len(string2) and string1 == string2:
+        return True
+    else:
+        return False
 
 
 def eingabe(anzeige: str):
@@ -25,7 +33,9 @@ import speech_recognition as sr
 
 recognizer = sr.Recognizer()
 
-''' recording the sound '''
+""" recording the sound """
+
+
 def aufnahme():
     with sr.Microphone() as source:
         print("Umgebebungsgeräusche auto")
@@ -34,14 +44,10 @@ def aufnahme():
         recorded_audio = recognizer.listen(source, timeout=15)
         print("Aufzeichnung fertig")
 
-
-    ''' Recorgnizing the Audio '''
+    """ Recorgnizing the Audio """
     try:
         print("Recognizing the text")
-        text = recognizer.recognize_google(
-            recorded_audio,
-            language="de-DE"
-        )
+        text = recognizer.recognize_google(recorded_audio, language="de-DE")
         print("Decoded Text : {}".format(text))
         return "Decoded Text : {}".format(text)
 
@@ -52,13 +58,15 @@ def aufnahme():
 from gtts import gTTS
 from playsound import playsound
 
+
 def sprechen(text):
-    ausgabe = gTTS(text=text, lang='de', slow=False)
+    ausgabe = gTTS(text=text, lang="de", slow=False)
     ausgabe.save("etc/musik/tts.mp3")
     playsound("etc/musik/tts.mp3")
     os.remove("etc/musik/tts.mp3")
 
-#sprechen("Hallo")
+
+# sprechen("Hallo")
 
 # Python program to translate
 # speech to text and text to speech

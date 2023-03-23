@@ -4,8 +4,7 @@ from komm_chat import komm_chat
 from komm_github import git_commit, git_push
 from komm_revchatgpt import chat_gpt_chat, erzeuge_uml, erzeuge_unittest
 from models.dateien import lese_datei, schreibe_datei
-from models.functions import eingabe, pruefe_py_gebaut, sprechen, aufnahme
-
+from models.functions import aufnahme, eingabe, pruefe_py_gebaut, sprechen
 
 MODEL = "davinci"
 
