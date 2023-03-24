@@ -39,9 +39,9 @@ def auswerten_liste(ergebnisse, suche):
     print(f"nicht in liste: {suche}")
     return False
 
-ass_name = "Joy"
+#ass_name = "Joy"
 sprechen("Hey")
-sprechen(ass_name)
+#sprechen(ass_name)
 
 
 def username():
@@ -108,21 +108,21 @@ if __name__ == "__main__":
             ANTWORT = chat_gpt_chat(ANWEISUNG)
             print(ANTWORT)
             sprechen(ANTWORT)
-        elif auswerten_liste(ergebnisse, "mache unittest"):
-            sprechen("mache unittest")
+        elif auswerten_liste(ergebnisse, "Mach Unittest"):
+            sprechen("Mach Unittest")
             erzeuge_unittest(eingabe("Skript Name?")[:-3])
-        elif auswerten_liste(ergebnisse, "mache pruefung"):
-            sprechen("mache pruefung")
+        elif auswerten_liste(ergebnisse, "Mach Pruefung"):
+            sprechen("mache pruefung. Skript Name?")
             pruefe_py_gebaut(eingabe("Skript Name?"))
-        elif auswerten_liste(ergebnisse, "stelle frage"):
-            sprechen("stelle frage")
+        elif auswerten_liste(ergebnisse, "Mach Frage"):
+            sprechen("Mach Frage")
             ANWEISUNG = input("Stelle Frage")  # aufnahme()
             ANTWORT = chat_gpt_chat(ANWEISUNG)
             sprechen(ANTWORT)
         elif auswerten_liste(ergebnisse, "mach update"):
             git_push()
             sprechen("mache push und update")
-        elif auswerten_liste(ergebnisse, "Übersetzer Datei"):
+        elif auswerten_liste(ergebnisse, "mach Übersetzung"):
             sprechen("Übersetzte Datei")
             print(lese_datei("englischer_text.txt"))
             ANWEISUNG = (
