@@ -38,8 +38,7 @@ def auswerten_liste(ergebnisse, suche):
             vergleich = ergebnis["transcript"]
             print(f"in liste: {suche} = {vergleich}")
             return True
-        
-
+    print(f"nicht in liste: {suche}")
     return False
 
 ass_name = "Joy"
