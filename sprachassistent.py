@@ -45,7 +45,7 @@ sprechen(ass_name)
 
 
 def username():
-    sprechen("helfen?")
+    #sprechen("helfen?")
     #uname = takeCommand()
     sprechen("Hallo Georg")
     #sprechen(uname)
@@ -89,9 +89,6 @@ if __name__ == "__main__":
 
     while True:
         ergebnisse = takeCommand()
-        #ergebnisse = [{'transcript': 'mach komm mit', 'confidence': 0.84865618}, {'transcript': 'macht komm mit'}, {'transcript': 'Mark komm mit'}, {'transcript': 'Mark kommet'}]
-        # ergebnisse = {'alternative': [{'transcript': 'Marco mit', 'confidence': 0.89634383}, {'transcript': 'mach komm mit'}, {'transcript': 'macht Komet'}, {'transcript': 'mach komm jetzt'}, {'transcript': 'Marco nix'}], 'final': True}
-        # Eingabe a(abl), c(com), e(erkl.Code), f(Frage), p(prü), pu(push), t(Unittest.md), u(E->D), x
 
         if auswerten_liste(ergebnisse, "alles auswerten"):
             erzeuge_uml()
@@ -100,7 +97,7 @@ if __name__ == "__main__":
             git_commit()
             sprechen("mache commit")
         elif auswerten_liste(ergebnisse, "mach erklärung"):
-            sprechen("mache erklaerung")
+            sprechen("mache erklaerung. Welche Datei")
             ANWEISUNG = eingabe("Welche Datei")
             ANWEISUNG = (
                     "Kannst du erkläre"
@@ -110,6 +107,7 @@ if __name__ == "__main__":
             print(ANWEISUNG)
             ANTWORT = chat_gpt_chat(ANWEISUNG)
             print(ANTWORT)
+            sprechen(ANTWORT)
         elif auswerten_liste(ergebnisse, "mache unittest"):
             sprechen("mache unittest")
             erzeuge_unittest(eingabe("Skript Name?")[:-3])
@@ -124,8 +122,8 @@ if __name__ == "__main__":
         elif auswerten_liste(ergebnisse, "mach update"):
             git_push()
             sprechen("mache push und update")
-        elif auswerten_liste(ergebnisse, "uebersetztedatei"):
-            sprechen("uebersetzte datei")
+        elif auswerten_liste(ergebnisse, "Übersetzer Datei"):
+            sprechen("Übersetzte Datei")
             print(lese_datei("englischer_text.txt"))
             ANWEISUNG = (
                     "Translate this into German:\n\n"
@@ -135,6 +133,7 @@ if __name__ == "__main__":
             ANTWORT = chat_gpt_chat(ANWEISUNG)
             print(f"\n{ANTWORT}")
             schreibe_datei("deutscher_text.txt", ANTWORT)
+            sprechen(ANTWORT)
         else:
             print("Der String ist nicht enthalten.")
 
