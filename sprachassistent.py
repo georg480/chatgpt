@@ -79,7 +79,7 @@ def takeCommand():
         print("Nicht in deinen Befehlen.")
         sprechen(f"Nicht in deinen Befehlen.{e}")
         return f"Nicht in deinen Befehlen.{e}"
-    return [{'transcript': 'Marco mit', 'confidence': 0.89634383}, {'transcript': 'mach komm mit'}, {'transcript': 'macht Komet'}, {'transcript': 'mach komm jetzt'}, {'transcript': 'Marco nix'}]
+    return None #{'alternative': [{'transcript': 'eine Frage', 'confidence': 0.81899917}, {'transcript': 'Stelle Frage'}, {'transcript': 'stelle eine Frage'}, {'transcript': 'Stelle fragen'}], 'final': True}
 
 if __name__ == "__main__":
     reinigen = lambda: os.system("cls")
@@ -89,6 +89,7 @@ if __name__ == "__main__":
 
     while True:
         ergebnisse = takeCommand()
+        print(f"ergebnisse: in True {ergebnisse}")
 
         if auswerten_liste(ergebnisse, "alles auswerten"):
             erzeuge_uml()
@@ -117,8 +118,9 @@ if __name__ == "__main__":
         elif auswerten_liste(ergebnisse, "Frage"):
             sprechen("Frage")
             ANWEISUNG = aufnahme()
-            ANTWORT = chat_gpt_chat(ANWEISUNG)
-            sprechen(ANTWORT)
+            if not ANWEISUNG == None:
+                ANTWORT = chat_gpt_chat(ANWEISUNG)
+                sprechen(ANTWORT)
         elif auswerten_liste(ergebnisse, "mach update"):
             git_push()
             sprechen("mache push und update")

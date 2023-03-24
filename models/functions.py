@@ -41,8 +41,19 @@ def aufnahme():
         print("Warte.. Umgebebungsgeräusche auto")
         recognizer.adjust_for_ambient_noise(source, duration=1)
         print("Aufzeichnung.. (15 Sekunden Pausenzeit)")
-        recorded_audio = recognizer.listen(source, timeout=15)
-        print("Aufzeichnung fertig")
+        try:
+            recorded_audio = recognizer.listen(source, timeout=15)
+            print("Aufzeichnung fertig")
+            text = recognizer.recognize_google(recorded_audio, language="de-DE")
+            print("Decoded Text : {}".format(text))
+            return "Decoded Text : {}".format(text)
+        except sr.WaitTimeoutError:
+            print("Kein Audio erkannt. Bitte sprechen Sie erneut.")
+            return None
+        except Exception as ex:
+            print(ex)
+            return None
+
 
     """ Recorgnizing the Audio """
     try:
