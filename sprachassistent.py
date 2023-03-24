@@ -33,7 +33,7 @@ def sprechen(text):
 def auswerten_liste(ergebnisse, suche):
     for alternative in ergebnisse['alternative']:
         print(alternative['transcript'])
-        if gleich_string(alternative['transcript'], suche):
+        if gleich_string(alternative['transcript'].lower(), suche.lower()):
             print(f"in liste: {suche} = {alternative['transcript']}")
             return True
     print(f"nicht in liste: {suche}")
@@ -104,7 +104,7 @@ if __name__ == "__main__":
         elif auswerten_liste(ergebnisse, "mach komm mit"):
             git_commit()
             sprechen("mache commit")
-        elif auswerten_liste(ergebnisse, "mache erklärung"):
+        elif auswerten_liste(ergebnisse, "mach erklärung"):
             sprechen("mache erklaerung")
             ANWEISUNG = eingabe("Welche Datei")
             ANWEISUNG = (
@@ -125,7 +125,7 @@ if __name__ == "__main__":
             ANWEISUNG = input("Stelle Frage")  # aufnahme()
             ANTWORT = chat_gpt_chat(ANWEISUNG)
             sprechen(ANTWORT)
-        elif auswerten_liste(ergebnisse, "mache update"):
+        elif auswerten_liste(ergebnisse, "mach update"):
             git_push()
             sprechen("mache push und update")
         elif auswerten_liste(ergebnisse, "uebersetztedatei"):
