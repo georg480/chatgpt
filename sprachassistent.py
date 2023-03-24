@@ -31,12 +31,10 @@ def sprechen(text):
     os.remove("etc/musik/tts.mp3")
 
 def auswerten_liste(ergebnisse, suche):
-    if not isinstance(ergebnisse, list):
-        return False
-    for ergebnis in ergebnisse:
-        if gleich_string(ergebnis["transcript"], suche):
-            vergleich = ergebnis["transcript"]
-            print(f"in liste: {suche} = {vergleich}")
+    for alternative in ergebnisse['alternative']:
+        print(alternative['transcript'])
+        if gleich_string(alternative['transcript'], suche):
+            print(f"in liste: {suche} = {alternative['transcript']}")
             return True
     print(f"nicht in liste: {suche}")
     return False
@@ -96,7 +94,8 @@ if __name__ == "__main__":
 
     while True:
         ergebnisse = takeCommand()
-        ergebnisse = [{'transcript': 'mach komm mit', 'confidence': 0.84865618}, {'transcript': 'macht komm mit'}, {'transcript': 'Mark komm mit'}, {'transcript': 'Mark kommet'}]
+        #ergebnisse = [{'transcript': 'mach komm mit', 'confidence': 0.84865618}, {'transcript': 'macht komm mit'}, {'transcript': 'Mark komm mit'}, {'transcript': 'Mark kommet'}]
+        ergebnisse = {'alternative': [{'transcript': 'Marco mit', 'confidence': 0.89634383}, {'transcript': 'mach komm mit'}, {'transcript': 'macht Komet'}, {'transcript': 'mach komm jetzt'}, {'transcript': 'Marco nix'}], 'final': True}
         print(ergebnisse)
         # ergebnisse = [
         #     {"transcript": "mache update", "confidence": 0.83590513},
@@ -151,147 +150,4 @@ if __name__ == "__main__":
         else:
             print("Der String ist nicht enthalten.")
 
-    #
-    #
-    #
-    #
-    #
-    #     # All the commands said by user will be
-    #     # stored here in 'query' and will be
-    #     # converted to lower case for easily
-    #     # recognition of command
-    #
-    #     if "öffne youtube" in commando:
-    #         sprechen("öffne Youtube\n")
-    #         webbrowser.open("youtube.com")
-    #
-    #     elif "mache updates" in commando:
-    #        # sprechen("mache push und update\n")
-    #         eingabe_test = input("push ausgerufen?")
-    #         git_push()
-    #
-    #     elif "mache komm mit" in commando:
-    #         sprechen("mache commit\n")
-    #         eingabe_test = input("commit ausgerufen?")
-    #         git_commit()
-    #
-    #     elif "öffne google" in commando:
-    #         sprechen("öffne Google\n")
-    #         webbrowser.open("google.com")
-    #
-    #
-    #     elif "spiele musik" in commando or "spiele lied" in commando:
-    #         sprechen("Spiele Musik oder Lied")
-    #         # music_dir = "G:\\Song"
-    #         music_dir = r"C:\Users\georg\Seafile\Meine Bibliothek-008100\Musik"
-    #         songs = os.listdir(music_dir)
-    #         print(songs)
-    #         os.startfile(os.path.join(music_dir, songs[1]))
-    #
-    #     elif "open opera" in commando:
-    #         codePath = (
-    #             r"C:\\Users\\GEORG\\AppD"
-    #             r""
-    #             r"ata\\Local\\Programs\\Opera\\launcher.exe"
-    #         )
-    #         os.startfile(codePath)
-    #
-    #     elif "sage uhrzeit" in commando:
-    #         strTime = datetime.datetime.now().strftime("%H:%M:%S")
-    #         print(f"Hey die Zeit {strTime}")
-    #         sprechen(f"Hey die Zeit {strTime}")
-    #
-    #     elif "ändere den namen zu" in commando:
-    #         commando = commando.replace("Ändere den Namen zu", "")
-    #         assname = commando
-    #
-    #     elif "ändere name" in commando:
-    #         sprechen("What would you like to call me, Sir ")
-    #         assname = takeCommand()
-    #         sprechen("Thanks for naming me")
-    #
-    #     elif "beenden" in commando:
-    #         sprechen("Danke für deine Zeit")
-    #
-    #
-    #     elif "wo bist du erstellt" in commando or "who created you" in commando:
-    #         sprechen("Ich komme aus Sonsbeck.")
-    #
-    #     elif "erzähle witz" in commando:
-    #         sprechen(pyjokes.get_joke())
-    #
-    #     elif "suche" in commando or "play" in commando:
-    #         commando = commando.replace("suche", "")
-    #         commando = commando.replace("play", "")
-    #         webbrowser.open(commando)
-    #
-    #     elif "wetter" in commando:
-    #         # Google Open weather website
-    #         # to get API of Open weather
-    #         api_key = "64534252b0c9839708f6afcb08ff7b65"
-    #         base_url = "http://api.openweathermap.org/data/2.5/weather?"
-    #         # speak(" Stadt name ")
-    #         # print(" Stadt name : ")
-    #         # city_name = takeCommand()
-    #         complete_url = base_url + "appid=" + api_key + "&q=sonsbeck"  # + city_name
-    #         response = requests.get(complete_url)
-    #         x = response.json()
-    #
-    #         if x["code"] != "404":
-    #             y = x["main"]
-    #             current_temperature = y["temp"]
-    #             current_pressure = y["pressure"]
-    #             current_humidiy = y["humidity"]
-    #             z = x["weather"]
-    #             weather_description = z[0]["description"]
-    #             print(
-    #                 " Temperature (in kelvin unit) = "
-    #                 + str(current_temperature)
-    #                 + "\n atmospheric pressure (in hPa unit) ="
-    #                 + str(current_pressure)
-    #                 + "\n humidity (in percentage) = "
-    #                 + str(current_humidiy)
-    #                 + "\n description = "
-    #                 + str(weather_description)
-    #             )
-    #
-    #         else:
-    #             sprechen(" City Not Found ")
-    #
-    #     elif "öffne wikipedia" in commando:
-    #         webbrowser.open("wikipedia.com")
-    #
-    #     elif "Good Morning" in commando:
-    #         sprechen("A warm" + commando)
-    #         sprechen("How are you Mister")
-    #         sprechen(assname)
-    #
-    #     # most asked question from google Assistant
-    #     elif "will you be my gf" in commando or "will you be my bf" in commando:
-    #         sprechen("I'm not sure about, may be you should give me some time")
-    #
-    #     elif "lauter" in commando:
-    #         volume = engine.getProperty('volume')
-    #         print(f"volume: {volume}")
-    #         engine.setProperty('volume', volume + 0.25)
-    #         sprechen("Georg lauter")
-    #
-    #     elif "leiser" in commando:
-    #         volume = engine.getProperty('volume')
-    #         print(f"volume: {volume}")
-    #         engine.setProperty('volume', volume - 0.25)
-    #         sprechen("Georg leiser")
-    #
-    #     elif "unterbreche" in commando:
-    #         sprechen("unterbreche")
-    #
-    #     elif "weiter" in commando:
-    #         sprechen("weiter")
-    #
-    #     else:
-    #         print("kenne kein Befehl: {commando}")
-    #         sprechen("kenne kein Befehl: {commando}")
 
-    # elif "" in query:
-    # Command go here
-    # For adding more commands
