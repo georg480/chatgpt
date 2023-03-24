@@ -55,7 +55,7 @@ def username():
     print("Hallo Georg " )#, uname.center(columns))
     print("#####################".center(columns))
 
-    sprechen("helfen")
+#    sprechen("helfen")
 
 
 def takeCommand():
@@ -63,6 +63,7 @@ def takeCommand():
 
     with sr.Microphone() as source:
         print("Helfen...")
+        sprechen("Helfen ")
         r.pause_threshold = 1.2
         audio = r.listen(source)
 
@@ -108,6 +109,7 @@ if __name__ == "__main__":
             )
             print(ANWEISUNG)
             ANTWORT = chat_gpt_chat(ANWEISUNG)
+            print(ANTWORT)
         elif auswerten_liste(ergebnisse, "mache unittest"):
             sprechen("mache unittest")
             erzeuge_unittest(eingabe("Skript Name?")[:-3])
