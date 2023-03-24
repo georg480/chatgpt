@@ -46,13 +46,13 @@ sprechen(ass_name)
 
 def username():
     sprechen("helfen?")
-   # uname = takeCommand()
+    #uname = takeCommand()
     sprechen("Hallo Georg")
     #sprechen(uname)
     columns = shutil.get_terminal_size().columns
 
     print("#####################".center(columns))
-    print("Hallo Georg ")# , uname.center(columns)###)
+    print("Hallo Georg " )#, uname.center(columns))
     print("#####################".center(columns))
 
     sprechen("helfen")
@@ -78,13 +78,7 @@ def takeCommand():
         print("Nicht in deinen Befehlen.")
         sprechen(f"Nicht in deinen Befehlen.{e}")
         return f"Nicht in deinen Befehlen.{e}"
-    return [
-        {"transcript": "0", "confidence": 0.83590513},
-        {"transcript": "1"},
-        {"transcript": "2"},
-        {"transcript": "3"},
-        {"transcript": "4"},
-    ]
+    return [{'transcript': 'Marco mit', 'confidence': 0.89634383}, {'transcript': 'mach komm mit'}, {'transcript': 'macht Komet'}, {'transcript': 'mach komm jetzt'}, {'transcript': 'Marco nix'}]
 
 if __name__ == "__main__":
     reinigen = lambda: os.system("cls")
