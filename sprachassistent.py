@@ -95,16 +95,8 @@ if __name__ == "__main__":
     while True:
         ergebnisse = takeCommand()
         #ergebnisse = [{'transcript': 'mach komm mit', 'confidence': 0.84865618}, {'transcript': 'macht komm mit'}, {'transcript': 'Mark komm mit'}, {'transcript': 'Mark kommet'}]
-        ergebnisse = {'alternative': [{'transcript': 'Marco mit', 'confidence': 0.89634383}, {'transcript': 'mach komm mit'}, {'transcript': 'macht Komet'}, {'transcript': 'mach komm jetzt'}, {'transcript': 'Marco nix'}], 'final': True}
-        print(ergebnisse)
-        # ergebnisse = [
-        #     {"transcript": "mache update", "confidence": 0.83590513},
-        #     {"transcript": "ma"},
-        #     {"transcript": "mache jetzt"},
-        #     {"transcript": "mache eins"},
-        #     {"transcript": "kk"},
-        # ]
-        # # Eingabe a(abl), c(com), e(erkl.Code), f(Frage), p(prü), pu(push), t(Unittest.md), u(E->D), x
+        # ergebnisse = {'alternative': [{'transcript': 'Marco mit', 'confidence': 0.89634383}, {'transcript': 'mach komm mit'}, {'transcript': 'macht Komet'}, {'transcript': 'mach komm jetzt'}, {'transcript': 'Marco nix'}], 'final': True}
+        # Eingabe a(abl), c(com), e(erkl.Code), f(Frage), p(prü), pu(push), t(Unittest.md), u(E->D), x
 
         if auswerten_liste(ergebnisse, "alles auswerten"):
             erzeuge_uml()
