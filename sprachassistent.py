@@ -31,6 +31,8 @@ def sprechen(text):
     os.remove("etc/musik/tts.mp3")
 
 def auswerten_liste(ergebnisse, suche):
+    if not ergebnisse:
+        return False
     for alternative in ergebnisse['alternative']:
         print(alternative['transcript'])
         if gleich_string(alternative['transcript'].lower(), suche.lower()):
