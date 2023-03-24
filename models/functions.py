@@ -38,9 +38,9 @@ recognizer = sr.Recognizer()
 
 def aufnahme():
     with sr.Microphone() as source:
-        print("Umgebebungsgeräusche auto")
+        print("Warte.. Umgebebungsgeräusche auto")
         recognizer.adjust_for_ambient_noise(source, duration=1)
-        print("Aufzeichen mit Zeitunterbrechung von 15 Sekunden")
+        print("Aufzeichnung.. (15 Sekunden Pausenzeit)")
         recorded_audio = recognizer.listen(source, timeout=15)
         print("Aufzeichnung fertig")
 

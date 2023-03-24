@@ -114,9 +114,9 @@ if __name__ == "__main__":
         elif auswerten_liste(ergebnisse, "Mach Pruefung"):
             sprechen("mache pruefung. Skript Name?")
             pruefe_py_gebaut(eingabe("Skript Name?"))
-        elif auswerten_liste(ergebnisse, "Mach Frage"):
-            sprechen("Mach Frage")
-            ANWEISUNG = input("Stelle Frage")  # aufnahme()
+        elif auswerten_liste(ergebnisse, "Frage"):
+            sprechen("Frage")
+            ANWEISUNG = aufnahme()
             ANTWORT = chat_gpt_chat(ANWEISUNG)
             sprechen(ANTWORT)
         elif auswerten_liste(ergebnisse, "mach update"):
