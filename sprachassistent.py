@@ -57,7 +57,6 @@ def username():
 
 #    sprechen("helfen")
 
-
 def takeCommand():
     r = sr.Recognizer()
 
@@ -71,15 +70,15 @@ def takeCommand():
         print("auswerten...")
         ausgabe = r.recognize_google(audio, language="DE-de", show_all=True)
         print(f"Benutzer sagt: {ausgabe}\n")
-        #sprechen(f"Benutzer sagt: {#}\n")
-        return ausgabe
+        if ausgabe is not None: # Überprüfen, ob die Rückgabe leer ist
+            return ausgabe
 
     except Exception as e:
         print(e)
         print("Nicht in deinen Befehlen.")
         sprechen(f"Nicht in deinen Befehlen.{e}")
         return f"Nicht in deinen Befehlen.{e}"
-    return None #{'alternative': [{'transcript': 'eine Frage', 'confidence': 0.81899917}, {'transcript': 'Stelle Frage'}, {'transcript': 'stelle eine Frage'}, {'transcript': 'Stelle fragen'}], 'final': True}
+    #return {'alternative': [{'transcript': 'eine Frage', 'confidence': 0.81899917}, {'transcript': 'Stelle Frage'}, {'transcript': 'stelle eine Frage'}, {'transcript': 'Stelle fragen'}], 'final': True}
 
 if __name__ == "__main__":
     reinigen = lambda: os.system("cls")
